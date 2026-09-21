@@ -1,6 +1,8 @@
-const nav=document.querySelector(".nav");
-window.addEventListener("scroll",()=>nav.classList.toggle("solid",scrollY>24),{passive:true});
-document.querySelectorAll(".ham").forEach(b=>b.onclick=()=>document.getElementById("drawer").classList.toggle("open"));
+document.querySelectorAll(".ham").forEach(b=>b.onclick=()=>{
+  const d=document.getElementById("drawer");
+  d.classList.toggle("open");
+  document.body.classList.toggle("menu-open", d.classList.contains("open"));
+});
 document.querySelectorAll("form[data-sms]").forEach(f=>f.addEventListener("submit",e=>{
   e.preventDefault();
   const d=new FormData(f);

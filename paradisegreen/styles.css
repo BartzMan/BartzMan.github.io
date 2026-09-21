@@ -32,8 +32,11 @@ nav.desk{display:none;gap:2rem}nav.desk a{font-size:12px;font-weight:500;letter-
 .bleed img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .bleed p{position:absolute;left:0;bottom:0;max-width:28rem;background:var(--bg);padding:1rem 1.2rem}
 .wrap{max-width:88rem;margin:0 auto;padding:4rem 1.25rem}
-.svc a{display:grid;gap:1.4rem;padding:2.4rem 0;border-top:1px solid var(--line);align-items:center}
-.svc img{height:14rem;width:100%;object-fit:cover}
+.sec-head{display:flex;align-items:end;justify-content:space-between;gap:1rem;margin-bottom:2.5rem}
+.lookbook{display:grid;gap:2.4rem}
+.lookbook img{width:100%;aspect-ratio:4/5;object-fit:cover;height:auto}
+.lookbook h3{margin-top:1.15rem;font-size:clamp(1.5rem,2.2vw,1.85rem)}
+.lookbook p{margin:.55rem 0 0;max-width:36ch}
 .work{display:grid;gap:.75rem}
 .work img{width:100%;object-fit:cover}
 .how li{display:grid;grid-template-columns:3rem 1fr;gap:1rem;border-top:1px solid var(--line);padding:1.4rem 0}
@@ -69,7 +72,7 @@ footer{border-top:1px solid var(--line);padding:3rem 1.25rem 1rem}
 @media(min-width:1024px){
   nav.desk{display:flex}.ham{display:none}.sticky,.pad{display:none}.call-desk{display:inline-flex!important}
   .caption .row{grid-template-columns:2fr 1fr;align-items:end}
-  .svc a{grid-template-columns:8rem 1fr 1fr}
+  .lookbook{grid-template-columns:1fr 1fr 1fr;gap:2rem}
   .work{grid-template-columns:repeat(6,1fr)}.work .big{grid-column:span 4}.work .mid{grid-column:span 2}
   .work .big img{height:28rem}.work .mid img{height:28rem}.work .sm img{height:14rem}
   .foot{grid-template-columns:1fr 1fr 1fr}

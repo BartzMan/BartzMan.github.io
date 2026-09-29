@@ -6,6 +6,17 @@ document.querySelectorAll("#drawer a").forEach((a) => {
   a.addEventListener("click", () => drawer && drawer.classList.remove("open"));
 });
 
+const nav = document.querySelector(".nav");
+const onHero = document.querySelector(".hero");
+const setNav = () => {
+  if (!nav) return;
+  const y = window.scrollY;
+  if (onHero) nav.classList.toggle("solid", y > window.innerHeight * 0.72);
+  else nav.classList.add("solid");
+};
+setNav();
+window.addEventListener("scroll", setNav, { passive: true });
+
 const form = document.getElementById("quote");
 if (form) {
   form.addEventListener("submit", (e) => {
@@ -29,6 +40,6 @@ if (form) {
       ok.className = "okmsg";
       form.appendChild(ok);
     }
-    ok.textContent = "Saved. Call (480) 969-6719 if the tree is on the house — do not wait on the form.";
+    ok.textContent = "Noted. Call (480) 969-6719 if the tree is on the house.";
   });
 }

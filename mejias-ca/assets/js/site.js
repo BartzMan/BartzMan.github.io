@@ -23,7 +23,7 @@
   document.addEventListener('click', function (e) {
     if (!e.target.closest('.has-sub')) closeSubs();
     var lang = e.target.closest('a.lang');
-    if (lang && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey && e.button === 0) { e.preventDefault(); swapLang(lang.href, true); }
+    if (lang && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey && e.button === 0) { e.preventDefault(); if (!lang.classList.contains('on')) swapLang(lang.href, true); }
   });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeSubs(); });
   window.addEventListener('popstate', function () { swapLang(location.href, false); });
@@ -134,7 +134,7 @@
       body.innerHTML = doc.body.innerHTML;
       window.scrollTo(0, y);
       init();
-      var l = $('.nav-cta .lang'); if (l) l.focus({ preventScroll: true });
+      var l = $('.nav-cta .lang.on'); if (l) l.focus({ preventScroll: true });
       body.style.opacity = '1';
       setTimeout(function () { body.style.transition = ''; body.style.opacity = ''; }, 200);
       swapping = false;

@@ -103,42 +103,84 @@
     var yr = $('#yr'); if (yr) yr.textContent = new Date().getFullYear();
   }
 
-  /* ---- English <-> Español: swap the text in place, no reload, keep the scroll position.
-          Each language keeps its own URL (so search engines index both), and we fall back to a normal
-          page load if anything goes wrong (including file:// previews, where fetch is blocked). ---- */
+  /* ---- English <-> Español: change ONLY the words. The two languages are the same page built from the same
+          template, so we walk the old and new page side by side and update just the text and the links; photos,
+          layout, scroll position, open menus and anything typed into the form are never touched. Each language
+          keeps its own URL (so search engines index both). If the two pages ever differ in shape, or anything
+          goes wrong (including file:// previews, where fetch is blocked), we fall back to a normal page load. ---- */
   var HEAD_SWAP = ['link[rel="icon"]', 'link[rel="canonical"]', 'link[rel="alternate"]', 'meta[name="description"]', 'meta[property^="og:"]', 'script[type="application/ld+json"]'];
+  var KEEP_ATTR = { 'class': 1, 'style': 1, 'open': 1, 'aria-expanded': 1 };   // state that belongs to the page the visitor is on
   var swapping = false;
+
+  function skipNode(n) { return n.tagName === 'SCRIPT' || n.id === 'lb'; }
+  function sameShape(a, b) {
+    if (a.nodeType !== b.nodeType) return false;
+    if (a.nodeType !== 1) return true;
+    if (a.tagName !== b.tagName) return false;
+    if (skipNode(a)) return true;
+    if (a.childNodes.length !== b.childNodes.length) return false;
+    for (var i = 0; i < a.childNodes.length; i++) if (!sameShape(a.childNodes[i], b.childNodes[i])) return false;
+    return true;
+  }
+  function morph(a, b) {
+    if (a.nodeType === 3) { if (a.nodeValue !== b.nodeValue) a.nodeValue = b.nodeValue; return; }
+    if (a.nodeType !== 1 || skipNode(a)) return;
+    var keepClass = a.classList.contains('lang');                  // the EN | ES switch changes which side is "on"
+    var skip = function (name) { return KEEP_ATTR[name] && !(keepClass && name === 'class'); };
+    [].slice.call(b.attributes).forEach(function (at) {
+      if (!skip(at.name) && a.getAttribute(at.name) !== at.value) a.setAttribute(at.name, at.value);
+    });
+    [].slice.call(a.attributes).forEach(function (at) {
+      if (!skip(at.name) && !b.hasAttribute(at.name)) a.removeAttribute(at.name);
+    });
+    for (var i = 0; i < a.childNodes.length; i++) morph(a.childNodes[i], b.childNodes[i]);
+  }
+  function swapHead(doc) {
+    document.title = doc.title;
+    document.documentElement.lang = doc.documentElement.lang;
+    HEAD_SWAP.forEach(function (sel) {
+      $$(sel).forEach(function (n) { n.remove(); });
+      $$(sel, doc).forEach(function (n) { document.head.appendChild(document.importNode(n, true)); });
+    });
+  }
+
   function swapLang(url, push) {
     if (swapping) return;
     var sameOrigin = false;
     try { sameOrigin = new URL(url, location.href).origin === location.origin; } catch (e) { }
     if (!sameOrigin || location.protocol === 'file:' || !window.fetch || !window.DOMParser) { location.href = url; return; }
     swapping = true;
-    var y = window.scrollY, body = document.body;
-    var fadeOut = reduce ? Promise.resolve() : new Promise(function (r) {
-      body.style.transition = 'opacity .14s ease'; body.style.opacity = '0'; setTimeout(r, 150);
-    });
-    var load = fetch(url, { credentials: 'same-origin' }).then(function (r) {
+    var y = window.scrollY, body = document.body, done = function () { swapping = false; };
+    fetch(url, { credentials: 'same-origin' }).then(function (r) {
       if (!r.ok) throw new Error('http ' + r.status); return r.text();
-    });
-    Promise.all([load, fadeOut]).then(function (res) {
-      var doc = new DOMParser().parseFromString(res[0], 'text/html');
+    }).then(function (text) {
+      var doc = new DOMParser().parseFromString(text, 'text/html');
       if (!doc.body || !$('main', doc)) throw new Error('bad page');
-      if (push) history.pushState({}, '', url);          // first, so relative links in the new text resolve against the new URL
-      document.title = doc.title;
-      document.documentElement.lang = doc.documentElement.lang;
-      HEAD_SWAP.forEach(function (sel) {
-        $$(sel).forEach(function (n) { n.remove(); });
-        $$(sel, doc).forEach(function (n) { document.head.appendChild(document.importNode(n, true)); });
-      });
-      body.innerHTML = doc.body.innerHTML;
-      window.scrollTo(0, y);
-      init();
-      var l = $('.nav-cta .lang.on'); if (l) l.focus({ preventScroll: true });
-      body.style.opacity = '1';
-      setTimeout(function () { body.style.transition = ''; body.style.opacity = ''; }, 200);
-      swapping = false;
-    }).catch(function () { swapping = false; location.href = url; });
+      var inPlace = sameShape(body, doc.body);
+      var apply = function () {
+        if (push) history.pushState({}, '', url);                  // first, so relative links in the new text resolve against the new URL
+        swapHead(doc);
+        if (inPlace) {
+          morph(body, doc.body);
+          var t = $('#toast'); if (t) { t.textContent = ''; t.className = 'toast'; }
+        } else {                                                   // pages differ in shape (e.g. an English-only legal page): rebuild
+          body.innerHTML = doc.body.innerHTML;
+          window.scrollTo(0, y);
+          init();
+        }
+        var l = $('.nav-cta .lang.on'); if (l) l.focus({ preventScroll: true });
+      };
+      if (inPlace && !reduce && document.startViewTransition) {   // unchanged pixels stay put, only the words cross-fade
+        document.startViewTransition(apply).finished.then(done, done);
+      } else if (inPlace || reduce) { apply(); done(); }
+      else {
+        body.style.transition = 'opacity .14s ease'; body.style.opacity = '0';
+        setTimeout(function () {
+          apply(); body.style.opacity = '1';
+          setTimeout(function () { body.style.transition = ''; body.style.opacity = ''; }, 200); done();
+        }, 150);
+      }
+    }).catch(function () { done(); location.href = url; });
   }
 
   init();

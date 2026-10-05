@@ -1,0 +1,806 @@
+/* ==========================================================================
+   CLEAN TILE — Pomonok Heating and Plumbing
+   Tile-white base, mint, deep teal ink, marigold accent, grout lines.
+   One stylesheet. No framework, no external requests.
+   ========================================================================== */
+
+/* ---- self-hosted fonts (files already in /fonts) ------------------------- */
+@font-face {
+  font-family: 'Young Serif';
+  src: url('../fonts/young-serif-normal-latin.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Mulish';
+  src: url('../fonts/mulish-normal-latin.woff2') format('woff2');
+  font-weight: 200 1000;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---- palette ------------------------------------------------------------ */
+:root {
+  --tile:        #F4FBF8;   /* tile white   */
+  --mint:        #BFE8DD;   /* mint         */
+  --mint-wash:   #D2EDE7;   /* glossy card  */
+  --grout:       #DCE9E4;   /* grout line   */
+  --ink:         #12343B;   /* deep teal ink */
+  --ink-2:       #31585F;   /* secondary ink */
+  --gold:        #FF9F1C;   /* marigold     */
+  --gold-ink:    #8A4F00;   /* marigold darkened for text */
+
+  /* the tile module. 48px is roughly a third of the 130px grid this site
+     started with, so the pattern reads as surface, not as a graphic. */
+  --tile-mod:    48px;
+  --tile-line:   1px;       /* grout line weight inside the patterns */
+  --tile-gap:    10px;      /* the grout gap between photo tiles */
+  --rule:        rgba(18, 52, 59, .13);   /* hairline grout rule */
+
+  /* the grout lines are a whisper away from the fill they sit on, so body copy
+     laid over the pattern keeps its contrast (see PLACEHOLDERS.md §3).
+     Solid values, not alpha: a 1px gradient stop gets averaged away at
+     fractional device-pixel positions and disappears. */
+  --pattern-line: #E7F2EE;        /* grout on a tile-white field */
+  --pattern-line-mint: #DFF4EE;   /* grout on a mint field */
+
+  --radius:    10px;
+  --pad:  clamp(16px, 4.2vw, 40px);
+  --shell: 1180px;
+
+  --shadow-soft: 0 1px 2px rgba(18, 52, 59, .05), 0 10px 26px -14px rgba(18, 52, 59, .26);
+  --shadow-lift: 0 2px 4px rgba(18, 52, 59, .07), 0 22px 44px -22px rgba(18, 52, 59, .34);
+
+  --font-display: 'Young Serif', Georgia, 'Times New Roman', serif;
+  --font-body: 'Mulish', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ---- reset -------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  padding-bottom: 88px;                 /* room for the phone bottom bar */
+  background-color: var(--tile);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: clamp(1rem, .96rem + .22vw, 1.08rem);
+  line-height: 1.65;
+  overflow-wrap: break-word;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.14;
+  letter-spacing: -.012em;
+  margin: 0 0 .5em;
+  overflow-wrap: break-word;
+}
+h1 { font-size: clamp(2rem, 1.28rem + 4.1vw, 3.6rem); }
+h2 { font-size: clamp(1.5rem, 1.22rem + 1.7vw, 2.35rem); }
+h3 { font-size: clamp(1.1rem, 1.03rem + .42vw, 1.3rem); }
+p  { margin: 0 0 1em; max-width: 62ch; }
+
+ul { margin: 0 0 1em; padding-left: 1.15em; }
+li { margin: 0 0 .4em; }
+
+a { color: var(--ink); text-decoration-color: var(--gold); text-underline-offset: 3px; }
+a:hover { text-decoration-color: var(--ink); }
+
+:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+.on-dark :focus-visible,
+.btn-call:focus-visible { outline-color: var(--mint); }
+
+/* ---- utilities ---------------------------------------------------------- */
+.shell {
+  width: 100%;
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.hide-xs { display: none; }
+@media (min-width: 480px) { .hide-xs { display: inline; } }
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 200;
+  background-color: var(--ink);
+  color: var(--tile);
+  padding: 12px 18px;
+  border-radius: 0 0 var(--radius) 0;
+  font-weight: 700;
+  text-decoration: none;
+}
+.skip:focus { left: 0; }
+
+section { padding-block: clamp(46px, 6vw, 84px); }
+section[id], h2[id], h3[id] { scroll-margin-top: 96px; }
+/* a hairline grout rule is what separates the sections now, instead of a
+   patterned background on every one of them */
+main > section + section { border-top: var(--tile-line) solid var(--rule); }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .55em;
+  margin: 0 0 14px;
+  color: var(--gold-ink);
+  font-size: .74rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.eyebrow::before {
+  content: "";
+  width: 26px; height: 4px;
+  border-radius: 2px;
+  background-color: var(--gold);
+}
+
+.lead { color: var(--ink-2); font-size: 1.06em; }
+
+/* ---- tile pattern (CSS grout grid) ---------------------------------------
+   One 48px square module, 1px lines, and a line colour only a shade off the
+   fill. Used on exactly two surfaces on the page: the mint photo wall (the
+   accent) and the small mint stage behind the hero photos. Everywhere else is
+   plain tile white with generous space.                                       */
+.grid-tile {
+  background-color: var(--tile);
+  background-image:
+    linear-gradient(90deg,  var(--pattern-line) 0 var(--tile-line), transparent var(--tile-line)),
+    linear-gradient(180deg, var(--pattern-line) 0 var(--tile-line), transparent var(--tile-line));
+  background-size: var(--tile-mod) var(--tile-mod);
+}
+/* on mint the grout reads as a pale line rather than a recess */
+.on-mint { --pattern-line: var(--pattern-line-mint); background-color: var(--mint); }
+
+/* two small tiles side by side (404 page) */
+.tile-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--tile-gap);
+  max-width: 300px;
+  margin-bottom: clamp(26px, 3vw, 38px);
+}
+
+/* ---- photo tiles: square cells in a grout bed --------------------------- */
+.tile-photo {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 4px;
+  background-color: var(--tile);
+  box-shadow: inset 0 0 0 1px rgba(18, 52, 59, .10);
+}
+.tile-photo > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform-origin: center center;
+}
+/* one soft glaze over every photo so the five tiles read as one surface */
+.tile-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(191, 232, 221, .06), rgba(18, 52, 59, .10));
+  pointer-events: none;
+}
+
+/* crops (see PLACEHOLDERS.md) */
+.ph-valve   > img { transform: translate(0%, 17.8%) scale(1.12); }
+.ph-pipes   > img { object-position: 50% 88%; }
+.ph-unit    > img { transform: none; }              /* already a square crop */
+.ph-drain   > img { object-position: 50% 100%; }
+.ph-counter > img { object-position: 50% 68%; filter: brightness(1.12) contrast(1.05) saturate(1.04); }
+
+/* ---- glossy tile cards -------------------------------------------------- */
+.tile-card {
+  position: relative;
+  min-width: 0;
+  border: 1px solid rgba(18, 52, 59, .12);
+  border-radius: var(--radius);
+  background-color: var(--mint-wash);
+  background-image: linear-gradient(180deg, rgba(255,255,255,.9) 0, rgba(255,255,255,0) 38%);
+  box-shadow: var(--shadow-soft);
+}
+
+/* ---- chrome buttons ----------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5em;
+  min-height: 48px;
+  min-width: 48px;
+  padding: .7em 1.15em;
+  border: 0;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.15;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn-call {
+  color: var(--tile);
+  background-image: linear-gradient(180deg, #245A66 0%, #14404A 52%, #0D2C33 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .32),
+    inset 0 -1px 0 rgba(0, 0, 0, .24),
+    0 1px 2px rgba(18, 52, 59, .18),
+    0 12px 24px -14px rgba(18, 52, 59, .6);
+}
+.btn-chrome {
+  color: #0E2C33;
+  background-image: linear-gradient(180deg, #FFFFFF 0%, #EDF7F4 46%, #D6EAE4 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .95),
+    inset 0 -1px 0 rgba(18, 52, 59, .12),
+    0 1px 2px rgba(18, 52, 59, .10),
+    0 12px 24px -16px rgba(18, 52, 59, .5);
+}
+.btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+.site-head {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: var(--mint);
+  border-bottom: 1px solid rgba(18, 52, 59, .16);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .55), 0 8px 20px -16px rgba(18, 52, 59, .8);
+}
+.site-head__in {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  min-height: 66px;
+}
+.mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  text-decoration: none;
+  color: var(--ink);
+}
+.mark__tile { flex: none; width: 34px; height: 34px; border-radius: 6px; }
+.mark__txt { display: grid; line-height: 1.12; }
+.mark__name {
+  font-family: var(--font-display);
+  font-size: 1.16rem;
+  letter-spacing: -.01em;
+}
+/* the sub-label is the first thing read after the business name, so it holds a
+   12px floor (was .68rem / 10.88px, which was too small on a phone). Tracking
+   is trimmed a little to keep the lockup balanced at the larger size; if it ever
+   crowds the 34px tile or the header nav at 360px, trim the gap, never the type. */
+.mark__sub {
+  font-size: .75rem;                    /* 12px floor at the 16px root */
+  font-weight: 700;
+  letter-spacing: .085em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.top-nav { display: none; }
+.top-nav ul { display: flex; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.top-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 12px;
+  border-radius: 8px;
+  font-size: .95rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+.top-nav a:hover { background-color: rgba(255, 255, 255, .55); }
+.head-call { display: inline-flex; padding: .55em .95em; font-size: .94rem; }
+
+@media (min-width: 940px) {
+  .top-nav { display: block; }
+}
+
+/* ==========================================================================
+   HERO — calm field on the left, one confident tile stage on the right
+   ========================================================================== */
+.hero { padding-block: clamp(40px, 5vw, 72px) clamp(44px, 5.5vw, 78px); }
+.hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(30px, 4vw, 52px);
+  align-items: center;
+}
+.hero__copy { min-width: 0; }
+.hero__lead { color: var(--ink-2); font-size: 1.08em; }
+.hero__call { margin-top: 24px; font-size: clamp(1.02rem, .96rem + .4vw, 1.18rem); }
+
+/* the stage is the whole right-hand composition: a mint wall of 48px tiles
+   with the leading photo across the top, the smaller supporting photo bottom
+   left and the rating chip bottom right — one grid, three unequal cells */
+.stage {
+  display: grid;
+  gap: var(--tile-gap);
+  padding: var(--tile-gap);
+  min-width: 0;
+  border-radius: 14px;
+  background-color: var(--mint);
+  --pattern-line: var(--pattern-line-mint);
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "lead"
+    "sup"
+    "chip";
+}
+.stage__lead { grid-area: lead; }
+.stage__sup  { grid-area: sup; }
+.stage__chip { grid-area: chip; }
+
+@media (min-width: 560px) {
+  .stage {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+    grid-template-areas:
+      "lead lead"
+      "sup  chip";
+  }
+}
+@media (min-width: 940px) {
+  .hero__grid { grid-template-columns: minmax(0, 1.06fr) minmax(0, .94fr); }
+}
+
+/* ==========================================================================
+   RATING CHIP — the asset of this site, so it is a tile of its own
+   ========================================================================== */
+.rating-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-content: center;
+  align-items: center;
+  gap: 2px 12px;
+  padding: 16px 18px;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, .42);
+  text-decoration: none;
+  color: var(--ink);
+}
+.rating-card:hover { background-color: rgba(255, 255, 255, .66); box-shadow: var(--shadow-lift); }
+.stars {
+  display: inline-flex;
+  gap: 2px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background-color: var(--gold);
+  color: var(--ink);
+  grid-row: span 2;
+  align-self: center;
+}
+.rating-card__num {
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 1.7rem + 2.2vw, 2.7rem);
+  line-height: 1;
+}
+.rating-card__meta {
+  align-self: center;
+  font-weight: 700;
+  font-size: .9rem;
+  line-height: 1.35;
+}
+.rating-card__go {
+  grid-column: 1 / -1;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: var(--tile-line) solid var(--rule);
+  font-size: .88rem;
+  font-weight: 800;
+  color: var(--gold-ink);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 419px) {
+  .rating-card { grid-template-columns: minmax(0, 1fr); }
+  .stars { grid-row: auto; justify-self: start; }
+}
+
+/* ==========================================================================
+   SERVICES — an editorial index, not five identical boxes
+   ========================================================================== */
+.svc-index {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  margin: clamp(18px, 2vw, 28px) 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: var(--tile-line) solid var(--rule);
+}
+.svc-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 6px clamp(14px, 2.2vw, 26px);
+  padding: clamp(20px, 2.4vw, 30px) 0;
+  border-bottom: var(--tile-line) solid var(--rule);
+}
+/* the numeral is a little tile of its own — marigold on the featured job,
+   mint on the rest, so the hierarchy is visible before a word is read */
+.svc-n {
+  display: grid;
+  place-items: center;
+  width: 46px; height: 46px;
+  border-radius: 5px;
+  background-color: var(--mint-wash);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 1.16rem;
+  line-height: 1;
+  box-shadow: inset 0 0 0 1px rgba(18, 52, 59, .14);
+}
+.svc-row__body { min-width: 0; }
+.svc-row h3 { margin: 2px 0 .3em; }
+.svc-row p { margin: 0; color: var(--ink-2); max-width: 46ch; }
+
+@media (min-width: 760px) {
+  .svc-index {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(30px, 4.5vw, 68px);
+  }
+  /* the featured job takes the full measure */
+  .svc-row--lead { grid-column: 1 / -1; }
+  .svc-row--lead .svc-n {
+    width: 74px; height: 74px;
+    background-color: var(--gold);
+    font-size: 1.72rem;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .6);
+  }
+  .svc-row--lead h3 { font-size: clamp(1.5rem, 1.2rem + 1.1vw, 2rem); margin-top: 4px; }
+  .svc-row--lead p { font-size: 1.06rem; max-width: 58ch; }
+  /* the four under it are tighter, and the last one hangs a little lower so the
+     block is not a plain 2x2 */
+  .svc-row:last-child { margin-top: calc(var(--tile-mod) / 2); }
+}
+
+/* ==========================================================================
+   HOW IT WORKS
+   ========================================================================== */
+.steps { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.step { padding: 20px 20px 22px; }
+.step__n {
+  display: grid;
+  place-items: center;
+  width: 40px; height: 40px;
+  margin-bottom: 12px;
+  border-radius: 9px;
+  background-image: linear-gradient(180deg, #FFC45C 0%, var(--gold) 100%);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .7), 0 6px 14px -10px rgba(18, 52, 59, .6);
+}
+.step h3 { margin-bottom: .3em; }
+.step p { margin: 0; color: var(--ink-2); font-size: .98rem; }
+@media (min-width: 680px) {
+  .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* ==========================================================================
+   PHOTOS — the one accent section: a mint wall of 48px tiles with three
+   tile-cropped squares laid into it as an uneven mosaic (2x2 + 1 + 1)
+   ========================================================================== */
+.photos__head { margin-bottom: clamp(22px, 2.6vw, 34px); }
+.mosaic {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--tile-gap);
+}
+.shot {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  min-width: 0;
+}
+.shot figcaption {
+  margin-top: 10px;
+  padding-left: 12px;
+  border-left: 4px solid var(--gold);
+  font-size: .92rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--ink-2);
+}
+@media (min-width: 700px) {
+  .mosaic {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: auto auto;
+  }
+  .shot--a { grid-column: 1 / 3; grid-row: 1 / 3; }
+  /* the double tile's caption sits on the same line as the lower single tile's */
+  .shot--a figcaption { margin-top: auto; padding-top: 10px; }
+}
+
+/* ==========================================================================
+   SERVICE AREA
+   ========================================================================== */
+.area__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(22px, 3vw, 34px);
+  align-items: start;
+}
+.area__copy { min-width: 0; }
+.area__tile {
+  padding: 22px 24px 24px;
+  display: grid;
+  gap: 6px;
+  align-content: start;
+  max-width: 420px;
+}
+.area__pin {
+  display: grid;
+  place-items: center;
+  width: 46px; height: 46px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+  background-color: var(--gold);
+  color: var(--ink);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .6);
+}
+.area__tile-v {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.24rem, 1.1rem + .7vw, 1.6rem);
+  line-height: 1.2;
+}
+.area__tile-note { margin: 0; color: var(--ink-2); font-size: .95rem; }
+.area__note {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 0;
+  max-width: none;
+  padding: clamp(18px, 2.2vw, 26px) 0 0;
+  border-top: var(--tile-line) solid var(--rule);
+  font-weight: 700;
+}
+.area__note svg { flex: none; width: 22px; height: 22px; margin-top: 3px; color: var(--gold-ink); }
+@media (min-width: 720px) {
+  .area__grid { grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); }
+  .area__tile { justify-self: end; }
+}
+
+/* ==========================================================================
+   FAQ
+   ========================================================================== */
+.faq__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.faq-card { padding: 18px 20px 20px; }
+.faq-card h3 { margin-bottom: .35em; }
+.faq-card p { margin: 0; color: var(--ink-2); font-size: .98rem; }
+@media (min-width: 680px) {
+  .faq__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* ==========================================================================
+   CONTACT
+   ========================================================================== */
+.contact__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }
+.contact__lines { display: grid; gap: 12px; align-content: start; }
+.contact-line { padding: 16px 18px; }
+.contact-line__k {
+  font-size: .73rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gold-ink);
+}
+.contact-line__v {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--font-display);
+  font-size: clamp(1.28rem, 1.1rem + .8vw, 1.7rem);
+  line-height: 1.2;
+}
+.contact-line__v a { display: inline-flex; align-items: center; min-height: 44px; text-decoration-color: var(--gold); text-decoration-thickness: 2px; }
+.contact-line__note { margin: 2px 0 0; font-size: .9rem; color: var(--ink-2); }
+@media (min-width: 880px) {
+  .contact__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
+  .form-card { max-width: none; }
+}
+
+.form-card { padding: 20px; max-width: 520px; }
+.form-card h3 { margin-bottom: .25em; }
+.form-card > p { color: var(--ink-2); font-size: .95rem; }
+.field { display: grid; gap: 6px; margin-bottom: 14px; }
+.field label { font-size: .92rem; font-weight: 800; }
+.field input, .field textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid rgba(18, 52, 59, .3);
+  border-radius: 9px;
+  background-color: var(--tile);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+}
+.field textarea { min-height: 116px; resize: vertical; }
+.field input::placeholder, .field textarea::placeholder { color: #4E7178; opacity: 1; }
+.form-note { margin: 14px 0 0; font-size: .88rem; color: var(--ink-2); }
+.form-card .btn { width: 100%; }
+
+/* ==========================================================================
+   PHONE BOTTOM BAR (phones only)
+   ========================================================================== */
+.dock {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 60;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding: 10px var(--pad) calc(10px + env(safe-area-inset-bottom, 0px));
+  background-color: rgba(244, 251, 248, .97);
+  border-top: 1px solid var(--grout);
+  box-shadow: 0 -8px 22px -18px rgba(18, 52, 59, .9);
+}
+@media (min-width: 720px) {
+  .dock { display: none; }
+  body { padding-bottom: 0; }
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.site-foot {
+  padding-block: clamp(34px, 4.5vw, 52px);
+  background-color: var(--ink);
+  color: var(--mint-wash);
+}
+.site-foot a { color: var(--mint); text-decoration-color: var(--gold); }
+.site-foot a:hover { text-decoration-color: var(--mint); }
+.foot__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
+.foot__mark { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; min-height: 44px; }
+.foot__name { font-family: var(--font-display); font-size: 1.3rem; }
+.foot__where {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  min-height: 44px;
+  margin: 6px 0 0;
+  font-size: .95rem;
+}
+.foot__where a { display: inline-flex; align-items: center; min-height: 44px; }
+.foot__h {
+  margin: 0 0 6px;
+  font-family: var(--font-body);
+  font-size: .73rem;
+  font-weight: 800;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  color: var(--mint);
+}
+.foot__list { list-style: none; margin: 0; padding: 0; display: grid; }
+.foot__list a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 700; }
+.foot__legal {
+  margin: 26px 0 0;
+  padding-top: 18px;
+  border-top: 1px solid rgba(191, 232, 221, .24);
+  font-size: .86rem;
+  color: var(--mint);
+}
+@media (min-width: 780px) {
+  .foot__grid { grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 1fr)); }
+}
+
+/* ==========================================================================
+   LEGAL PAGES
+   ========================================================================== */
+.legal-hero { padding-block: clamp(34px, 4.5vw, 56px) 6px; }
+.legal-body {
+  padding-block: clamp(28px, 4vw, 46px) clamp(44px, 6vw, 70px);
+}
+.legal-card { padding: clamp(18px, 3vw, 34px); }
+.legal-card h2 {
+  margin-top: 1.4em;
+  font-size: clamp(1.2rem, 1.08rem + .6vw, 1.5rem);
+}
+.legal-card h2:first-of-type { margin-top: .6em; }
+.legal-card h3 { font-family: var(--font-body); font-size: 1.05rem; font-weight: 800; margin-top: 1.2em; }
+.legal-card p, .legal-card li { max-width: 74ch; }
+.legal-card a { font-weight: 700; display: inline-block; padding-block: 12px; white-space: nowrap; }
+
+/* ==========================================================================
+   404
+   ========================================================================== */
+.nf { padding-block: clamp(48px, 8vw, 90px); }
+.nf__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 30px; align-items: center; }
+.nf__copy { min-width: 0; }
+.nf__code {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-size: clamp(3.4rem, 2.4rem + 6vw, 6rem);
+  line-height: .9;
+  color: var(--gold-ink);
+}
+.nf__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+.nf .tile-pair { max-width: none; margin-bottom: 0; }
+@media (min-width: 760px) {
+  .nf__grid { grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); gap: clamp(30px, 4vw, 60px); }
+  .nf .tile-pair {
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+    max-width: 300px;
+    justify-self: end;
+  }
+}
+
+/* ==========================================================================
+   MOTION — only when the visitor has not asked for less
+   ========================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+  html.js .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity .55s ease, transform .55s ease;
+  }
+  html.js .reveal.is-in { opacity: 1; transform: none; }
+  .btn:hover, .rating-card:hover, .tile-card:hover { transform: translateY(-2px); }
+  .tile-card, .rating-card, .btn { transition: transform .18s ease, box-shadow .18s ease; }
+}
+/* phone menu */
+.mm-btn{display:none;flex:none;width:46px;height:46px;margin-left:6px;padding:0;border:0;background:transparent;color:inherit;cursor:pointer;place-items:center;border-radius:10px}
+.mm-btn:focus-visible,.mm-close:focus-visible,.mm-sheet a:focus-visible{outline:3px solid currentColor;outline-offset:3px}
+.mm-bars,.mm-bars::before,.mm-bars::after{display:block;width:24px;height:2.5px;background:currentColor;border-radius:2px;transition:transform .25s ease,background-color .2s}
+.mm-bars{position:relative}
+.mm-bars::before,.mm-bars::after{content:"";position:absolute;left:0}
+.mm-bars::before{top:-8px}.mm-bars::after{top:8px}
+.mm-btn[aria-expanded="true"] .mm-bars{background:transparent}
+.mm-btn[aria-expanded="true"] .mm-bars::before{transform:translateY(8px) rotate(45deg)}
+.mm-btn[aria-expanded="true"] .mm-bars::after{transform:translateY(-8px) rotate(-45deg)}
+.mm-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.mm-sheet{position:fixed;left:0;right:0;bottom:0;top:var(--mm-top,0px);z-index:9999;background:#12343B;color:#F4FBF8;padding:18px 22px calc(24px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:18px;overflow:auto}
+.mm-sheet[hidden]{display:none}
+.mm-top{display:flex;justify-content:space-between;align-items:center;font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:.8}
+.mm-close{min-height:44px;padding:0 14px;border:1px solid rgba(244,251,248,.2);border-radius:999px;background:transparent;color:#F4FBF8;font:inherit;letter-spacing:.1em;cursor:pointer}
+.mm-links{display:flex;flex-direction:column}
+.mm-links a{font-family:var(--mm-font,inherit);font-size:1.9rem;line-height:1.15;color:#F4FBF8;text-decoration:none;padding:13px 0;border-bottom:1px solid rgba(244,251,248,.2)}
+.mm-cta{margin-top:auto;display:grid;gap:10px}
+.mm-cta a{display:flex;align-items:center;justify-content:center;min-height:54px;border-radius:var(--mm-radius,999px);border:2px solid #F4FBF8;color:#F4FBF8;font-weight:700;text-decoration:none}
+.mm-cta .mm-call{background:#FF9F1C;border-color:#FF9F1C;color:#12343B}
+.mm-meta{margin:0;font-size:.88rem;opacity:.8;line-height:1.5}
+html.mm-open{overflow:hidden}
+@media (max-width:900px){.mm-btn{display:grid}}
+@media (max-width:420px){header a[href^="tel:"]{display:none!important}}

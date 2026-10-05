@@ -1,0 +1,2081 @@
+/* ==========================================================================
+   COPPER & BRASS — Testerman Plumbing & Heating Inc.
+   Single stylesheet. Vanilla CSS, no build step, no external requests.
+   1  Fonts
+   2  Tokens
+   3  Base
+   4  Shared pieces (rules, eyebrows, buttons, gauges, plates)
+   5  Mast (top bar) + section rail (side rail on desktop)
+   6  Hero
+   7  Trust strip
+   8  Services
+   9  Process
+   10 Work / gallery
+   11 Service area
+   12 Questions (FAQ)
+   13 Contact + form
+   14 Footer
+   15 Mobile bottom bar
+   16 Legal pages
+   17 404
+   18 Motion
+   ========================================================================== */
+
+/* 1  Fonts ---------------------------------------------------------------- */
+
+@font-face {
+  font-family: "DM Serif Display";
+  src: url("../fonts/dm-serif-display-normal-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Karla";
+  src: url("../fonts/karla-normal-latin.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* 2  Tokens --------------------------------------------------------------- */
+
+:root {
+  /* palette */
+  --espresso: #1d1511;
+  --espresso-deep: #150f0c;
+  --espresso-lift: #241a14;
+  --copper: #c9773f;
+  --copper-deep: #a85a28;
+  --copper-ink: #8f4620;
+  --brass: #d9a566;
+  --bone: #f3e9db;
+  --bone-dim: #e4d7c4;
+  --muted: #b9a999;
+  --muted-ink: #6b5b4c;
+  --verdigris: #3e8e7e;
+
+  /* on-dark muted copy */
+  --dim-on-dark: #b9a999;
+  /* transparent lines */
+  --hair: rgba(217, 165, 102, 0.24);
+  --hair-soft: rgba(243, 233, 219, 0.12);
+  --hair-dark: rgba(29, 21, 17, 0.16);
+
+  /* type */
+  --display: "DM Serif Display", "Iowan Old Style", Georgia, serif;
+  --body: "Karla", "Helvetica Neue", Arial, sans-serif;
+
+  /* metrics */
+  --rail-w: 104px;
+  --bar-h: 62px;
+  --gut: 20px;
+  --maxw: 1180px;
+
+  /* legibility floor: no visible label, caption or link is set below this.
+     Small tracked uppercase is part of this concept; sub-11px is not. */
+  --fs-min: 11px;
+}
+
+/* 3  Base ----------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--bar-h) + 12px);
+}
+
+body {
+  margin: 0;
+  padding-bottom: 78px;
+  background: var(--espresso);
+  color: var(--bone);
+  font-family: var(--body);
+  font-size: 1.0625rem;
+  line-height: 1.62;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  overflow-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--display);
+  font-weight: 400;
+  margin: 0;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+ul,
+ol,
+dl {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+figure {
+  margin: 0;
+}
+
+hr {
+  border: 0;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--verdigris);
+  flex: none;
+}
+
+a {
+  color: inherit;
+}
+
+svg {
+  display: block;
+}
+
+::selection {
+  background: var(--copper);
+  color: var(--espresso);
+}
+
+:focus-visible {
+  outline: 3px solid var(--brass);
+  outline-offset: 3px;
+}
+
+.tone-bone :focus-visible,
+.tone-bone :focus-visible a,
+.tone-bone a:focus-visible,
+.tone-bone button:focus-visible,
+.tone-bone input:focus-visible,
+.tone-bone textarea:focus-visible {
+  outline-color: var(--espresso);
+}
+
+.skip {
+  position: absolute;
+  left: 8px;
+  top: -80px;
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 18px;
+  background: var(--bone);
+  color: var(--espresso);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: top 0.15s ease;
+}
+
+.skip:focus {
+  top: 8px;
+}
+
+/* layout helpers */
+.wrap {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gut);
+}
+
+.wrap-narrow {
+  width: 100%;
+  max-width: 780px;
+  margin-inline: auto;
+  padding-inline: var(--gut);
+}
+
+.tone-bone {
+  background: var(--bone);
+  color: var(--espresso);
+}
+
+.tone-lift {
+  background: var(--espresso-lift);
+}
+
+.tone-bone .lede,
+.tone-bone .dim {
+  color: var(--muted-ink);
+}
+
+.dim {
+  color: var(--dim-on-dark);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 4  Shared pieces -------------------------------------------------------- */
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 14px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.75;
+}
+
+.tone-bone .eyebrow {
+  color: var(--copper-ink);
+}
+
+.eyebrow .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--verdigris);
+  flex: none;
+}
+
+.section-head .rule + .eyebrow {
+  margin-top: 22px;
+}
+
+.rule {
+  height: 2px;
+  border: 0;
+  margin: 0;
+  background: linear-gradient(
+    90deg,
+    var(--copper-deep) 0%,
+    var(--copper) 22%,
+    var(--brass) 48%,
+    rgba(185, 169, 153, 0.08) 100%
+  );
+}
+
+.tone-bone .rule {
+  background: linear-gradient(
+    90deg,
+    var(--copper-deep) 0%,
+    var(--copper) 26%,
+    rgba(143, 70, 32, 0.12) 100%
+  );
+}
+
+.hair {
+  height: 1px;
+  border: 0;
+  margin: 0;
+  background: linear-gradient(90deg, var(--hair), rgba(217, 165, 102, 0.02));
+}
+
+.tone-bone .hair {
+  background: linear-gradient(90deg, var(--hair-dark), rgba(29, 21, 17, 0.03));
+}
+
+.section {
+  padding-block: 56px;
+  position: relative;
+}
+
+.section-head {
+  margin-bottom: 30px;
+}
+
+.section-head h2 {
+  font-size: clamp(1.85rem, 1.3rem + 2.3vw, 3rem);
+  line-height: 1.06;
+}
+
+.section-head .lede {
+  margin-top: 14px;
+  max-width: 46ch;
+  color: var(--dim-on-dark);
+}
+
+/* buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 12px 26px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  font-family: var(--body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, background-color 0.16s ease;
+}
+
+.btn-copper {
+  background-color: var(--copper);
+  background-image: linear-gradient(
+    168deg,
+    var(--brass) 0%,
+    var(--copper) 42%,
+    var(--copper-deep) 100%
+  );
+  color: var(--espresso-deep);
+  box-shadow: 0 1px 0 rgba(243, 233, 219, 0.28) inset;
+}
+
+.btn-bone {
+  background-color: transparent;
+  border-color: rgba(243, 233, 219, 0.42);
+  color: var(--bone);
+}
+
+.btn-bone:hover {
+  border-color: var(--brass);
+  color: var(--brass);
+}
+
+.tone-bone .btn-bone {
+  border-color: rgba(29, 21, 17, 0.32);
+  color: var(--espresso);
+}
+
+.tone-bone .btn-bone:hover {
+  border-color: var(--copper-deep);
+  color: var(--copper-ink);
+}
+
+.btn .ico {
+  flex: none;
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* gauge: circular pressure-gauge photo frame.
+   The tick ring is a conic gradient masked to a clean annulus, so the marks
+   never run off the edge of the circle and never blur over a ragged alpha
+   band — they sit on a solid lit bezel between a copper hairline and the
+   photo aperture. */
+.gauge {
+  position: relative;
+  width: min(var(--gd, 250px), 72vw);
+  aspect-ratio: 1 / 1;
+  flex: none;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle closest-side,
+    rgba(46, 33, 25, 0) 0 77%,
+    rgba(52, 37, 28, 0.95) 77% 98%,
+    rgba(21, 15, 12, 0.5) 98% 100%
+  );
+}
+
+.gauge::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background:
+    repeating-conic-gradient(
+      from 0deg,
+      rgba(226, 186, 132, 0.5) 0deg 0.8deg,
+      rgba(226, 186, 132, 0) 0.8deg 9deg
+    ),
+    repeating-conic-gradient(
+      from 0deg,
+      rgba(232, 195, 145, 0.96) 0deg 1.5deg,
+      rgba(232, 195, 145, 0) 1.5deg 45deg
+    );
+  -webkit-mask: radial-gradient(circle closest-side, transparent 0 80%, #000 80% 93%, transparent 93%);
+  mask: radial-gradient(circle closest-side, transparent 0 80%, #000 80% 93%, transparent 93%);
+}
+
+.gauge::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  box-shadow:
+    inset 0 0 0 1px rgba(201, 119, 63, 0.66),
+    inset 0 0 0 4px rgba(21, 15, 12, 0.9);
+}
+
+.gauge-photo {
+  position: absolute;
+  inset: 11%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--espresso-lift);
+  box-shadow: 0 0 0 1px rgba(201, 119, 63, 0.5), 0 16px 34px rgba(0, 0, 0, 0.42);
+}
+
+.gauge-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* decorative dial (no photo) */
+.dial {
+  position: relative;
+  width: min(var(--gd, 148px), 52vw);
+  aspect-ratio: 1 / 1;
+  flex: none;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(36, 26, 20, 0.9) 0 52%, rgba(21, 15, 12, 0.55) 62% 100%),
+    var(--espresso-lift);
+  border: 1px solid rgba(217, 165, 102, 0.28);
+  display: grid;
+  place-items: center;
+}
+
+.dial--xs {
+  --gd: 74px;
+}
+
+.dial--lg {
+  --gd: 182px;
+}
+
+.dial::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    from -136deg,
+    rgba(217, 165, 102, 0.75) 0deg 1deg,
+    rgba(217, 165, 102, 0) 1deg 18deg
+  );
+  -webkit-mask: radial-gradient(circle closest-side, transparent 0 82%, #000 82% 100%);
+  mask: radial-gradient(circle closest-side, transparent 0 82%, #000 82% 100%);
+}
+
+.dial-needle {
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  width: 2px;
+  height: 34%;
+  background: linear-gradient(180deg, var(--copper), rgba(201, 119, 63, 0.12));
+  transform-origin: 50% 100%;
+  transform: translateX(-50%) rotate(41deg);
+  border-radius: 2px;
+}
+
+.dial-hub {
+  position: relative;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--brass);
+  box-shadow: 0 0 0 4px rgba(21, 15, 12, 0.85);
+}
+
+.tone-bone .dial {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(243, 233, 219, 0.95) 0 52%, rgba(228, 215, 196, 0.7) 62% 100%),
+    var(--bone-dim);
+  border-color: rgba(143, 70, 32, 0.28);
+}
+
+/* rectangular copper-bezelled plate */
+.plate {
+  position: relative;
+  padding: 10px;
+  background: linear-gradient(
+    148deg,
+    rgba(201, 119, 63, 0.62) 0%,
+    rgba(185, 169, 153, 0.14) 42%,
+    rgba(201, 119, 63, 0.45) 100%
+  );
+}
+
+.plate::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(243, 233, 219, 0.2);
+  pointer-events: none;
+}
+
+.plate img {
+  width: 100%;
+  height: auto;
+}
+
+/* one caption plate for every photo in the site, rectangular or circular */
+.plate-caption,
+.gauge-caption {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 15px 0 0;
+  padding-top: 11px;
+  border-top: 1px solid var(--hair);
+  font-size: 0.78rem;
+  line-height: 1.42;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.cap-num {
+  flex: none;
+  font-family: var(--display);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  color: var(--copper);
+}
+
+.tone-bone .plate-caption,
+.tone-bone .gauge-caption {
+  border-top-color: var(--hair-dark);
+  color: var(--muted-ink);
+}
+
+/* 5  Mast + rail ---------------------------------------------------------- */
+
+.mast {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: var(--bar-h);
+  padding: 8px var(--gut);
+  background: var(--espresso);
+  border-bottom: 1px solid var(--hair);
+}
+
+.mark {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-height: 44px;
+  padding-inline: 4px;
+  text-decoration: none;
+  color: var(--bone);
+}
+
+.mark-dial {
+  flex: none;
+  width: 38px;
+  height: 38px;
+}
+
+.mark-type {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  line-height: 1;
+}
+
+.mark-name {
+  font-family: var(--display);
+  font-size: 1.16rem;
+  letter-spacing: 0.06em;
+}
+
+.mark-sub {
+  font-size: var(--fs-min);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+.mast-tools {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mast-call {
+  min-height: 44px;
+  padding: 8px 16px;
+  font-size: 0.72rem;
+}
+
+.rail {
+  background: var(--espresso-lift);
+  border-bottom: 1px solid var(--hair);
+}
+
+.rail-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 4px;
+  padding: 6px var(--gut);
+}
+
+.rail-list a {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 44px;
+  padding: 6px 10px;
+  font-size: var(--fs-min);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--muted);
+  border-bottom: 1px solid transparent;
+}
+
+.rail-list a:hover {
+  color: var(--brass);
+  border-bottom-color: var(--copper);
+}
+
+.rail-num {
+  font-family: var(--display);
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  color: var(--copper);
+}
+
+/* desktop: the rail becomes a slim vertical column on the left.
+   Needs enough viewport HEIGHT as well as width, or the rail would collide with
+   the wordmark and the call button — below that height the top bar is used. */
+@media (min-width: 1024px) and (min-height: 641px) {
+  html {
+    scroll-padding-top: 24px;
+  }
+
+  body {
+    padding-left: var(--rail-w);
+  }
+
+  .mast {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: var(--rail-w);
+    height: auto;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0;
+    padding: 26px 0 24px;
+    border-bottom: 0;
+    border-right: 0;
+  }
+
+  .mast::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(
+      180deg,
+      rgba(217, 165, 102, 0) 0%,
+      rgba(217, 165, 102, 0.42) 18%,
+      rgba(217, 165, 102, 0.42) 82%,
+      rgba(217, 165, 102, 0) 100%
+    );
+  }
+
+  .mast .mark {
+    flex-direction: column;
+    gap: 16px;
+    padding-inline: 10px;
+  }
+
+  .mast .mark-type {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    align-items: center;
+    gap: 14px;
+  }
+
+  .mast .mark-name {
+    font-size: 1.05rem;
+    letter-spacing: 0.34em;
+  }
+
+  .mast .mark-sub {
+    font-size: var(--fs-min);
+    letter-spacing: 0.3em;
+    color: var(--brass);
+  }
+
+  .mast-tools {
+    flex-direction: column;
+  }
+
+  .mast-call {
+    flex-direction: column;
+    gap: 7px;
+    width: 62px;
+    height: 62px;
+    min-height: 0;
+    padding: 0;
+    border-radius: 50%;
+    font-size: var(--fs-min);
+    letter-spacing: 0.14em;
+  }
+
+  .rail {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 51;
+    width: var(--rail-w);
+    padding-block: 240px 92px;
+    border-bottom: 0;
+    background: transparent;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    overflow: auto;
+    pointer-events: none;
+  }
+
+  .rail-list {
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 0;
+    width: 100%;
+    margin-block: auto;
+    pointer-events: auto;
+  }
+
+  .rail-list a {
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+    padding: 10px 8px;
+    text-align: center;
+    font-size: var(--fs-min);
+    letter-spacing: 0.14em;
+    border-bottom: 0;
+    border-left: 2px solid transparent;
+  }
+
+  .rail-list a:hover {
+    border-left-color: var(--copper);
+  }
+
+  .section {
+    padding-block: 74px;
+  }
+
+  .hero-grid {
+    grid-template-columns: minmax(0, 1.06fr) minmax(0, 0.94fr);
+    align-items: center;
+    gap: 46px;
+  }
+
+  .hero {
+    padding-top: 52px;
+    padding-bottom: 58px;
+  }
+
+  body {
+    padding-bottom: 0;
+  }
+}
+
+/* short desktop viewports: tighten the rail so it never crowds the wordmark.
+   The legibility floor still holds here — the type is not shrunk to make the
+   column fit, the furniture around it is what gives way. */
+@media (min-width: 1024px) and (min-height: 641px) and (max-height: 800px) {
+  .mast {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .mast .mark-dial {
+    width: 32px;
+    height: 32px;
+  }
+
+  .mast .mark {
+    gap: 8px;
+  }
+
+  .mast .mark-type {
+    gap: 11px;
+  }
+
+  .mast .mark-name {
+    font-size: 0.92rem;
+    letter-spacing: 0.26em;
+  }
+
+  .mast .mast-call {
+    width: 52px;
+    height: 52px;
+  }
+
+  .rail {
+    padding-block: 238px 76px;
+  }
+
+  .rail-list {
+    gap: 0;
+  }
+
+  .rail-list a {
+    padding: 6px 8px;
+    font-size: var(--fs-min);
+  }
+
+  .rail-num {
+    font-size: 0.74rem;
+  }
+}
+
+/* 6  Hero ----------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  padding-top: 40px;
+  padding-bottom: 48px;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(217, 165, 102, 0.5), rgba(217, 165, 102, 0));
+}
+
+.hero-glow {
+  position: absolute;
+  top: -140px;
+  right: -180px;
+  width: 460px;
+  height: 460px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(201, 119, 63, 0.2) 0%,
+    rgba(201, 119, 63, 0.05) 46%,
+    rgba(201, 119, 63, 0) 72%
+  );
+  pointer-events: none;
+}
+
+.hero-grid {
+  position: relative;
+  display: grid;
+  gap: 34px;
+}
+
+.hero h1 {
+  font-size: clamp(2.3rem, 1.6rem + 2.9vw, 3.6rem);
+  line-height: 1.04;
+  letter-spacing: -0.005em;
+  max-width: 15ch;
+}
+
+.hero h1 .h1-place {
+  display: block;
+  color: var(--brass);
+  font-style: italic;
+  white-space: nowrap;
+}
+
+.hero .lede {
+  margin-top: 18px;
+  max-width: 44ch;
+  font-size: 1.08rem;
+  color: var(--dim-on-dark);
+}
+
+.hero-cta {
+  margin-top: 26px;
+}
+
+/* the direct line: the primary action on the page, so it is a plate of its
+   own rather than a footnote under the buttons */
+.readout {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 28px;
+  min-height: 84px;
+  padding: 12px 18px 12px 14px;
+  text-decoration: none;
+  border: 1px solid rgba(217, 165, 102, 0.32);
+  border-left: 3px solid var(--copper);
+  background:
+    linear-gradient(
+      104deg,
+      rgba(201, 119, 63, 0.16) 0%,
+      rgba(201, 119, 63, 0.05) 46%,
+      rgba(21, 15, 12, 0) 78%
+    ),
+    rgba(21, 15, 12, 0.5);
+  box-shadow: inset 0 1px 0 rgba(243, 233, 219, 0.06);
+}
+
+.readout:hover {
+  border-color: rgba(217, 165, 102, 0.55);
+  border-left-color: var(--brass);
+}
+
+.readout-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.readout-label {
+  font-size: var(--fs-min);
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+.readout-num {
+  font-family: var(--display);
+  font-size: clamp(1.62rem, 1.1rem + 1.9vw, 2.36rem);
+  line-height: 1.05;
+  letter-spacing: 0.005em;
+  color: var(--bone);
+}
+
+.readout:hover .readout-num {
+  color: var(--brass);
+}
+
+.readout-go {
+  flex: none;
+  margin-left: auto;
+  color: var(--copper);
+  transition: transform 0.16s ease;
+}
+
+.readout:hover .readout-go {
+  color: var(--brass);
+  transform: translateX(3px);
+}
+
+/* narrow phones: keep the number on one line beside the dial */
+@media (max-width: 479px) {
+  .readout {
+    gap: 12px;
+    padding: 12px 14px 12px 12px;
+  }
+
+  .readout .dial--xs {
+    --gd: 66px;
+  }
+
+  .readout-num {
+    font-size: clamp(1.3rem, 0.95rem + 2vw, 1.55rem);
+  }
+}
+
+@media (max-width: 359px) {
+  .readout-go {
+    display: none;
+  }
+}
+
+.hero-figure {
+  position: relative;
+}
+
+.hero-figure .plate img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: 42% 52%;
+  width: 100%;
+}
+
+.hero-figure .plate-caption {
+  max-width: 40ch;
+}
+
+/* 7  Trust strip ---------------------------------------------------------- */
+
+.trust {
+  padding-block: 26px;
+  background: var(--espresso-deep);
+  border-top: 1px solid var(--hair);
+  border-bottom: 1px solid var(--hair);
+}
+
+.trust-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 26px;
+  justify-content: space-between;
+}
+
+.trust-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 56px;
+  padding: 8px 18px 8px 10px;
+  border: 1px solid var(--hair);
+  border-radius: 2px;
+  text-decoration: none;
+  background: rgba(36, 26, 20, 0.55);
+}
+
+.trust-chip:hover {
+  border-color: var(--copper);
+}
+
+.trust-score {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding-right: 14px;
+  border-right: 1px solid var(--hair);
+}
+
+.trust-score b {
+  font-family: var(--display);
+  font-size: 1.7rem;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--bone);
+}
+
+.trust-score .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--verdigris);
+}
+
+.trust-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.trust-meta strong {
+  font-size: 0.94rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.trust-meta span {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+.trust-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.trust-phone:hover {
+  color: var(--brass);
+}
+
+/* 8  Services ------------------------------------------------------------- */
+
+.svc {
+  border-top: 1px solid var(--hair);
+}
+
+.svc-row {
+  display: grid;
+  gap: 12px;
+  padding-block: 30px;
+  border-bottom: 1px solid var(--hair);
+}
+
+.svc-key {
+  min-width: 0;
+}
+
+.svc-num {
+  display: block;
+  font-family: var(--display);
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--copper);
+  margin-bottom: 8px;
+}
+
+.svc-key h3 {
+  font-size: clamp(1.35rem, 1.1rem + 1.1vw, 1.95rem);
+  line-height: 1.1;
+}
+
+.svc-desc {
+  max-width: 48ch;
+  color: var(--dim-on-dark);
+}
+
+@media (min-width: 720px) {
+  .svc-row {
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+    gap: 14px 40px;
+    align-items: start;
+    padding-block: 34px;
+  }
+}
+
+/* 9  Process -------------------------------------------------------------- */
+
+/* A single copper spine with the three steps hung off it, so the block reads
+   as one timeline instead of three loose columns. Vertical on small screens,
+   horizontal from 700px up. */
+.band-process {
+  padding-block: 48px 52px;
+}
+
+.steps {
+  position: relative;
+  display: grid;
+  gap: 0;
+  margin: 6px 0 0;
+}
+
+.step {
+  position: relative;
+  padding: 0 0 26px 34px;
+}
+
+.step::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    var(--copper) 0,
+    rgba(143, 70, 32, 0.14) 34px,
+    rgba(143, 70, 32, 0.14) 100%
+  );
+}
+
+.step:last-child::before {
+  bottom: auto;
+  height: 26px;
+}
+
+.step::after {
+  content: "";
+  position: absolute;
+  left: -3px;
+  top: 6px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--copper);
+}
+
+.step-num {
+  display: block;
+  font-family: var(--display);
+  font-size: 1.06rem;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: var(--copper-ink);
+}
+
+.step h3 {
+  font-size: 1.32rem;
+  margin: 10px 0 8px;
+}
+
+.step p {
+  font-size: 0.98rem;
+  max-width: 42ch;
+  color: var(--muted-ink);
+}
+
+@media (min-width: 700px) {
+  .band-process {
+    padding-block: 58px 62px;
+  }
+
+  .band-process .section-head {
+    margin-bottom: 34px;
+  }
+
+  .steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .steps::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      var(--copper-deep) 0%,
+      var(--copper) 22%,
+      rgba(143, 70, 32, 0.12) 100%
+    );
+  }
+
+  .step {
+    padding: 32px 44px 0 0;
+  }
+
+  .step::before {
+    left: 0;
+    top: 0;
+    bottom: auto;
+    width: 1px;
+    height: 22px;
+    background: linear-gradient(180deg, var(--copper), rgba(143, 70, 32, 0.3));
+  }
+
+  .step:last-child::before {
+    height: 22px;
+  }
+
+  .step::after {
+    display: none;
+  }
+
+  .step + .step {
+    padding-left: 44px;
+    border-left: 1px solid var(--hair-dark);
+  }
+
+  .step + .step::before {
+    left: 44px;
+  }
+
+  .step:last-child {
+    padding-right: 0;
+  }
+
+  .step p {
+    max-width: 31ch;
+  }
+}
+
+/* 10 Work / gallery ------------------------------------------------------- */
+
+/* One considered set: below 1180px it stacks as a vertical plate essay, and
+   from 1180px it becomes an editorial spread — a tall anchor plate on the left
+   running the full height of the right column, one wide plate above a matched
+   pair of circular gauge frames. Same bezel, same caption plate throughout,
+   no orphaned space at any width. */
+.gallery {
+  display: grid;
+  gap: 32px;
+}
+
+.gal-stack,
+.gal-pair {
+  display: grid;
+  gap: 32px;
+}
+
+.gal-pair {
+  gap: 26px;
+}
+
+/* inside the spread the circles simply take the width of their column */
+.gal-pair .gauge {
+  --gd: 100%;
+  width: 100%;
+}
+
+.gallery .plate--tall img {
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: 50% 46%;
+  width: 100%;
+}
+
+.gallery .plate--wide img {
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* the boiler room is framed on the pumps; the bathroom on the tub and tile */
+.gal-c .gauge-photo img {
+  object-position: 50% 56%;
+}
+
+.gal-d .gauge-photo img {
+  object-position: 50% 42%;
+}
+
+@media (min-width: 560px) {
+  /* stacked bands, each the full measure, so nothing is orphaned */
+  .gallery .plate--wide img {
+    aspect-ratio: 2 / 1;
+  }
+
+  .gal-pair {
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+  }
+}
+
+@media (min-width: 760px) {
+  /* the derived water-heater crop is 1200 x 1105, so cap the plate at 900px
+     (880px of image at 4:5) or object-fit: cover would have to scale it up */
+  .gal-a {
+    max-width: 900px;
+  }
+
+  .gallery .plate--tall img {
+    aspect-ratio: 4 / 5;
+  }
+}
+
+@media (min-width: 1180px) {
+  .gallery {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+    gap: 44px;
+    align-items: stretch;
+  }
+
+  /* back to a 3:2 frame once there is room for it, so the right column
+     carries its full height and the anchor plate does not tower */
+  .gallery .plate--wide img {
+    aspect-ratio: 3 / 2;
+  }
+
+  .gal-a {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* the anchor plate fills whatever height the right column settles at */
+  .gal-a .plate {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+  }
+
+  .gal-a .plate img {
+    height: 100%;
+    width: 100%;
+    aspect-ratio: auto;
+  }
+}
+
+/* 11 Service area --------------------------------------------------------- */
+
+.area {
+  display: grid;
+  gap: 28px;
+  align-items: center;
+}
+
+.area h2 {
+  font-size: clamp(1.85rem, 1.3rem + 2.3vw, 3rem);
+  line-height: 1.06;
+}
+
+.area-place {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 18px 0 0;
+  padding: 10px 18px 10px 12px;
+  border: 1px solid var(--hair);
+  border-radius: 2px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+.area-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 22px;
+  color: var(--dim-on-dark);
+}
+
+.area-list li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.area-list li::before {
+  content: "";
+  flex: none;
+  width: 18px;
+  height: 1px;
+  margin-top: 0.72em;
+  background: var(--copper);
+}
+
+.area-actions {
+  margin-top: 24px;
+}
+
+.area .dial {
+  justify-self: end;
+}
+
+@media (min-width: 860px) {
+  .area {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 54px;
+  }
+}
+
+/* 12 Questions ------------------------------------------------------------ */
+
+.faq {
+  border-top: 1px solid var(--hair);
+}
+
+.faq-item {
+  padding-block: 26px;
+  border-bottom: 1px solid var(--hair);
+}
+
+.faq-item h3 {
+  font-size: clamp(1.2rem, 1.05rem + 0.7vw, 1.6rem);
+  line-height: 1.16;
+  margin-bottom: 10px;
+  display: flex;
+  gap: 14px;
+}
+
+.faq-item h3::before {
+  content: "Q";
+  flex: none;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  color: var(--copper);
+  margin-top: 0.34em;
+}
+
+.faq-item p {
+  padding-left: 0;
+  max-width: 62ch;
+  color: var(--dim-on-dark);
+}
+
+@media (min-width: 720px) {
+  .faq-item p {
+    padding-left: 1.9rem;
+  }
+}
+
+/* 13 Contact + form ------------------------------------------------------- */
+
+.contact {
+  display: grid;
+  gap: 34px;
+}
+
+.contact-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.contact-line {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 48px;
+  text-decoration: none;
+  color: var(--bone);
+}
+
+.contact-line .ico {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--hair);
+  display: grid;
+  place-items: center;
+  color: var(--brass);
+}
+
+.contact-line .line-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-line .line-label {
+  font-size: var(--fs-min);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.contact-line .line-value {
+  font-family: var(--display);
+  font-size: 1.2rem;
+}
+
+.contact-line:hover .line-value {
+  color: var(--brass);
+}
+
+.req-form {
+  padding: 24px 20px 26px;
+  border: 1px solid var(--hair);
+  border-radius: 2px;
+  background: rgba(21, 15, 12, 0.6);
+}
+
+.req-form h3 {
+  font-size: 1.28rem;
+  margin-bottom: 6px;
+}
+
+.req-form > p {
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-top: 16px;
+}
+
+.field label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  background: var(--espresso-deep);
+  color: var(--bone);
+  border: 1px solid var(--hair);
+  border-radius: 2px;
+  font-family: var(--body);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.field textarea {
+  min-height: 116px;
+  resize: vertical;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: #8d7c6d;
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-color: var(--copper);
+}
+
+.req-form .btn {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.form-note {
+  margin-top: 14px;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+@media (min-width: 900px) {
+  .contact {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 56px;
+    align-items: start;
+  }
+}
+
+/* 14 Footer --------------------------------------------------------------- */
+
+.site-foot {
+  background: var(--espresso-deep);
+  border-top: 1px solid var(--hair);
+  padding-top: 46px;
+}
+
+.foot-grid {
+  display: grid;
+  gap: 30px;
+  padding-bottom: 34px;
+}
+
+.foot-brand .mark {
+  margin-bottom: 12px;
+}
+
+.foot-brand p {
+  font-size: 0.88rem;
+  color: var(--muted);
+  max-width: 34ch;
+}
+
+.foot-col .foot-label {
+  font-family: var(--body);
+  font-size: var(--fs-min);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin: 0 0 6px;
+}
+
+.foot-col ul {
+  display: flex;
+  flex-direction: column;
+}
+
+.foot-col a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 0.94rem;
+  text-decoration: none;
+  color: var(--muted);
+}
+
+.foot-col a:hover {
+  color: var(--brass);
+}
+
+.foot-base {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 22px;
+  justify-content: space-between;
+  padding-block: 4px 14px;
+  border-top: 1px solid var(--hair);
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  color: #9d8d7d;
+}
+
+.foot-base span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.foot-base a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #9d8d7d;
+  text-decoration: none;
+}
+
+.foot-base a:hover {
+  color: var(--brass);
+}
+
+@media (min-width: 760px) {
+  .foot-grid {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr);
+    gap: 40px;
+  }
+}
+
+/* 15 Mobile bottom bar --------------------------------------------------- */
+
+.dock {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 55;
+  display: flex;
+  gap: 1px;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  background: rgba(217, 165, 102, 0.28);
+}
+
+.dock a {
+  flex: 1 1 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 60px;
+  padding: 10px 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.dock .dock-call {
+  background-color: var(--copper);
+  background-image: linear-gradient(170deg, var(--brass), var(--copper) 45%, var(--copper-deep));
+  color: var(--espresso-deep);
+}
+
+.dock .dock-text {
+  background: var(--espresso-deep);
+  color: var(--bone);
+}
+
+.dock a:hover {
+  filter: brightness(1.06);
+}
+
+@media (min-width: 1024px) and (min-height: 641px) {
+  .dock {
+    display: none;
+  }
+}
+
+/* 16 Legal pages --------------------------------------------------------- */
+
+.legal-head {
+  padding-block: 40px 30px;
+}
+
+.legal-head .wrap {
+  max-width: 780px;
+}
+
+.legal-head h1 {
+  font-size: clamp(2rem, 1.4rem + 2.6vw, 3.1rem);
+  line-height: 1.06;
+}
+
+.legal-head .lede {
+  margin-top: 14px;
+  max-width: 52ch;
+  color: var(--dim-on-dark);
+}
+
+.legal-body {
+  padding-block: 12px 60px;
+}
+
+.legal-body h2 {
+  font-size: 1.32rem;
+  margin: 30px 0 8px;
+  color: var(--brass);
+}
+
+.legal-body h2:first-of-type {
+  margin-top: 18px;
+}
+
+.legal-body p,
+.legal-body li {
+  color: var(--dim-on-dark);
+}
+
+.legal-body ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.legal-body li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+.legal-body li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 9px;
+  height: 1px;
+  background: var(--copper);
+}
+
+.legal-body strong {
+  color: var(--bone);
+  font-weight: 700;
+}
+
+.legal-body a {
+  color: var(--brass);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.legal-body a:hover {
+  color: var(--copper);
+}
+
+.legal-rule {
+  margin-top: 24px;
+}
+
+.legal-jumps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 28px;
+  margin-top: 30px;
+  padding-top: 6px;
+}
+
+.backlink {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  margin-top: 26px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--brass);
+}
+
+.backlink:hover {
+  color: var(--copper);
+}
+
+/* 17 404 ----------------------------------------------------------------- */
+
+.gone {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+  padding-block: 60px;
+}
+
+.gone-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.gone-code {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.gone-code .dial {
+  --gd: 92px;
+}
+
+.gone-code p {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(3.4rem, 2rem + 8vw, 7rem);
+  line-height: 0.9;
+  color: var(--copper);
+}
+
+.gone h1 {
+  font-size: clamp(2.2rem, 1.4rem + 4vw, 4rem);
+  line-height: 1.02;
+  max-width: 16ch;
+}
+
+.gone p.lede {
+  margin-top: 16px;
+  max-width: 48ch;
+  color: var(--dim-on-dark);
+}
+
+.gone-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.gone-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 24px;
+  padding-top: 22px;
+  border-top: 1px solid var(--hair);
+}
+
+.gone-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-inline: 6px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--muted);
+}
+
+.gone-links a:hover {
+  color: var(--brass);
+}
+
+/* 18 Motion --------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .has-js .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .has-js .reveal.is-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .btn-copper:hover {
+    box-shadow: 0 6px 18px rgba(201, 119, 63, 0.32);
+  }
+
+  .rail-list a:hover {
+    transform: translateX(2px);
+  }
+
+  .trust-chip:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* 19  Bone-section overrides (declared last so they win on specificity) --- */
+
+.tone-bone .lede,
+.tone-bone .section-head .lede,
+.tone-bone .svc-desc,
+.tone-bone .faq-item p {
+  color: var(--muted-ink);
+}
+
+.tone-bone .faq,
+.tone-bone .faq-item {
+  border-color: var(--hair-dark);
+}
+
+.tone-bone .faq-item h3::before {
+  color: var(--copper-ink);
+}
+
+.tone-bone .trust-chip,
+.tone-bone .step,
+.tone-bone .area-place {
+  border-color: var(--hair-dark);
+}

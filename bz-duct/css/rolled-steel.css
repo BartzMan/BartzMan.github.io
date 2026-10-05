@@ -1,0 +1,1140 @@
+/* ==========================================================================
+   BZ DUCT SHOP — "SHEET METAL"
+   css/rolled-steel.css
+   Graphite base · steel/white type · safety orange accent.
+   Chivo 900 display · Archivo Narrow body.
+   Hard edges only (0 / 2px radius), 1px steel rules, no soft shadows.
+   Mobile first. No purple, no glass, no pills.
+   ========================================================================== */
+
+/* --- 1. self-hosted faces ------------------------------------------------ */
+@font-face {
+  font-family: "Chivo";
+  src: url("../fonts/chivo-normal-latin.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Archivo Narrow";
+  src: url("../fonts/archivo-narrow-normal-latin.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --- 2. tokens ----------------------------------------------------------- */
+:root {
+  --steel: #dde1e5;
+  --graphite: #23262b;
+  --orange: #ff6a13;
+  --white: #ffffff;
+  --mid: #5c636b;       /* decorative rules only — fails AA as body text */
+  --deep: #17191c;      /* one step below graphite, for alternating bands */
+  --panel: #101216;     /* photo mats */
+
+  --line: rgba(221, 225, 229, 0.24);
+  --line-2: rgba(221, 225, 229, 0.55);
+  --label: #8a929b;     /* lifted from --mid to pass AA on graphite (4.8:1) */
+  --lead: #c6ccd3;
+  --ink: #1b1e22;
+  --orange-ink: #c2410c;/* darkened for AA on steel panels (4.3:1) */
+
+  --fold: clamp(44px, 7vw, 96px);
+  --pad: clamp(1.125rem, 4.4vw, 3rem);
+  --shell: 1240px;
+  --gap: clamp(1.125rem, 3vw, 2rem);
+  --hair: 1px;
+}
+
+/* --- 3. reset ------------------------------------------------------------ */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--graphite);
+  color: var(--steel);
+  font-family: "Archivo Narrow", "Arial Narrow", Arial, sans-serif;
+  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+  line-height: 1.62;
+  font-weight: 400;
+  overflow-wrap: break-word;
+}
+
+img { max-width: 100%; }
+
+h1, h2, h3, h4, p, dl, dd, ul, ol, figure, blockquote { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+
+a { color: var(--steel); }
+
+button, input, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 2px;
+}
+
+::selection { background: var(--orange); color: var(--graphite); }
+
+/* --- 4. layout shell ----------------------------------------------------- */
+.sm-shell {
+  width: 100%;
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+
+.sm-flow > * + * { margin-top: var(--gap); }
+
+/* one step below graphite, so alternating bands read as separate sheets */
+.sm-deep { background-color: var(--deep); }
+
+/* punched-hole dot pattern */
+.sm-dots {
+  background-color: var(--graphite);
+  background-image: radial-gradient(circle at 1px 1px, rgba(221, 225, 229, 0.1) 0 1.35px, rgba(0, 0, 0, 0) 1.5px);
+  background-size: 15px 15px;
+  background-position: 0 0;
+}
+
+/* --- 5. fold lines (the signature) --------------------------------------- */
+/* An angled sheet edge cut with clip-path, plus a crease rule offset from
+   the fold so the edge reads as folded metal rather than a slanted border. */
+.sm-fold-top { clip-path: polygon(0 var(--fold), 100% 0, 100% 100%, 0 100%); }
+.sm-fold-bottom { clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--fold)), 0 100%); }
+.sm-fold-both { clip-path: polygon(0 var(--fold), 100% 0, 100% calc(100% - var(--fold)), 0 100%); }
+
+.sm-fold-top, .sm-fold-bottom, .sm-fold-both { position: relative; }
+
+/* keep page content above the crease rules */
+.sm-fold-top > .sm-shell,
+.sm-fold-bottom > .sm-shell,
+.sm-fold-both > .sm-shell { position: relative; z-index: 1; }
+
+/* room for the diagonal, so the crease never runs through content */
+.sm-fold-top,
+.sm-fold-both { padding-top: calc(var(--pad) + var(--fold)); }
+.sm-fold-bottom,
+.sm-fold-both { padding-bottom: calc(var(--pad) + var(--fold)); }
+.sm-block.sm-fold-top,
+.sm-fold-top.sm-fold-both { padding-top: calc(var(--pad) + var(--fold)); }
+.sm-block.sm-fold-bottom,
+.sm-fold-both.sm-fold-both { padding-bottom: calc(var(--pad) + var(--fold)); }
+
+.sm-fold-top::before,
+.sm-fold-both::before,
+.sm-fold-bottom::after,
+.sm-fold-both::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(96deg, var(--line-2) 0 7px, rgba(0, 0, 0, 0) 7px 13px);
+}
+.sm-fold-top::before,
+.sm-fold-both::before {
+  clip-path: polygon(0 calc(var(--fold) + 12px), 100% 12px, 100% 13px, 0 calc(var(--fold) + 13px));
+}
+.sm-fold-bottom::after,
+.sm-fold-both::after {
+  clip-path: polygon(
+    0 calc(100% - 12px),
+    100% calc(100% - var(--fold) - 12px),
+    100% calc(100% - var(--fold) - 13px),
+    0 calc(100% - 13px)
+  );
+}
+
+/* --- 6. ruler / dimension lines ------------------------------------------ */
+/* The rule sits on top of the strip, the ticks hang below it, the numbers sit
+   under the ticks. The three orange MAJOR ticks are pinned to the same anchors
+   the numbers use (left edge / centre / right edge), so a number can never end
+   up sitting off its tick at any viewport width. The minor ticks are pure
+   texture and are free to fall wherever the 19px pitch lands. */
+.sm-dim {
+  position: relative;
+  height: 30px;
+  border-top: var(--hair) solid var(--line-2);
+}
+.sm-dim::before,
+.sm-dim::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+}
+.sm-dim::before {
+  right: 0;
+  height: 8px;
+  background-image: repeating-linear-gradient(to right, var(--line-2) 0 1px, rgba(0, 0, 0, 0) 1px 19px);
+}
+.sm-dim::after {
+  right: 0;
+  height: 16px;
+  background:
+    linear-gradient(var(--orange), var(--orange)) left top / 1px 16px no-repeat,
+    linear-gradient(var(--orange), var(--orange)) left center / 1px 16px no-repeat,
+    linear-gradient(var(--orange), var(--orange)) right top / 1px 16px no-repeat;
+}
+.sm-dim > span {
+  position: absolute;
+  top: 17px;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--label);
+  white-space: nowrap;
+}
+.sm-dim > span:nth-child(1) { left: 0; }
+.sm-dim > span:nth-child(2) { left: 50%; transform: translateX(-50%); }
+.sm-dim > span:nth-child(3) { right: 0; }
+
+/* vertical dimension line — the rule runs down the right, ticks reach left */
+.sm-dim--v {
+  width: 34px;
+  height: auto;
+  align-self: stretch;
+  border-top: 0;
+  border-right: var(--hair) solid var(--line-2);
+}
+.sm-dim--v::before {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 8px;
+  height: auto;
+  background-image: repeating-linear-gradient(to bottom, var(--line-2) 0 1px, rgba(0, 0, 0, 0) 1px 19px);
+}
+.sm-dim--v::after {
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 16px;
+  height: auto;
+  background:
+    linear-gradient(var(--orange), var(--orange)) left top / 1px 16px no-repeat,
+    linear-gradient(var(--orange), var(--orange)) left center / 1px 16px no-repeat,
+    linear-gradient(var(--orange), var(--orange)) left bottom / 1px 16px no-repeat;
+}
+.sm-dim--v > span {
+  top: auto;
+  left: 19px;
+  writing-mode: vertical-rl;
+}
+.sm-dim--v > span:nth-child(1) { top: 0; bottom: auto; left: 19px; transform: none; }
+.sm-dim--v > span:nth-child(2) { top: 50%; bottom: auto; left: 19px; transform: translateY(-50%) rotate(180deg); }
+.sm-dim--v > span:nth-child(3) { top: auto; bottom: 0; left: 19px; transform: none; }
+
+/* --- 7. type ------------------------------------------------------------- */
+.sm-h1 {
+  font-family: "Chivo", "Arial Black", Arial, sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.0625rem, 1.35rem + 4.4vw, 4.25rem);
+  line-height: 0.94;
+  letter-spacing: -0.018em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-wrap: balance;
+}
+.sm-h2 {
+  font-family: "Chivo", "Arial Black", Arial, sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.5rem, 1.16rem + 2.1vw, 2.375rem);
+  line-height: 1.02;
+  letter-spacing: -0.012em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+.sm-h3 {
+  font-family: "Chivo", "Arial Black", Arial, sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.0625rem, 1rem + 0.42vw, 1.3125rem);
+  line-height: 1.14;
+  letter-spacing: -0.004em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+.sm-lede {
+  font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.1875rem);
+  line-height: 1.55;
+  color: var(--lead);
+  max-width: 46ch;
+}
+.sm-lede--wide { max-width: 62ch; }
+
+.sm-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--label);
+}
+.sm-eyebrow::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 22px;
+  height: 3px;
+  background: var(--orange);
+}
+
+/* orange hairline the headline sits hard against */
+.sm-rule {
+  display: block;
+  width: 100%;
+  height: 5px;
+  margin-top: 0;
+  background: linear-gradient(to right, var(--orange) 0 34%, var(--line-2) 34% 100%);
+  clip-path: polygon(0 100%, 100% 0, 100% 62%, 0 100%);
+}
+
+.sm-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 0 11px;
+  border: var(--hair) solid var(--line-2);
+  border-radius: 2px;
+  background: rgba(221, 225, 229, 0.06);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--steel);
+}
+
+/* --- 8. buttons ---------------------------------------------------------- */
+.sm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 50px;
+  padding: 0 18px;
+  border: var(--hair) solid var(--line-2);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--steel);
+  font-family: "Archivo Narrow", Arial, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+}
+.sm-btn--key {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: var(--graphite);
+}
+.sm-btn--dark {
+  background: var(--graphite);
+  border-color: var(--graphite);
+  color: var(--steel);
+}
+.sm-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.sm-actions .sm-btn { flex: 1 1 190px; }
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .sm-btn--key:hover { background: var(--white); border-color: var(--white); }
+  .sm-btn--dark:hover { background: var(--steel); border-color: var(--steel); color: var(--graphite); }
+  .sm-btn--ghost:hover,
+  .sm-btn:not(.sm-btn--key):not(.sm-btn--dark):hover {
+    border-color: var(--orange);
+    color: var(--orange);
+  }
+}
+
+/* --- 9. skip link + header ----------------------------------------------- */
+.sm-skip {
+  position: absolute;
+  left: 10px;
+  top: -120px;
+  z-index: 60;
+  display: inline-block;
+  padding: 14px 18px;
+  border-radius: 2px;
+  background: var(--orange);
+  color: var(--graphite);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.sm-skip:focus { top: 10px; }
+
+.sm-head {
+  border-bottom: var(--hair) solid var(--line);
+  background: var(--graphite);
+}
+.sm-head__in {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+  padding-block: 14px;
+}
+.sm-mark {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1 1 auto;
+  min-height: 44px;
+  text-decoration: none;
+}
+.sm-mark svg { flex: 0 0 auto; display: block; }
+.sm-mark__t {
+  font-family: "Chivo", "Arial Black", Arial, sans-serif;
+  font-weight: 900;
+  font-size: 1.0625rem;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+.sm-mark__s {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--label);
+}
+.sm-nav { order: 3; flex: 1 1 100%; }
+.sm-nav ul { display: flex; flex-wrap: wrap; gap: 2px 6px; }
+.sm-nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 10px;
+  border-bottom: 3px solid rgba(0, 0, 0, 0);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--steel);
+}
+.sm-head__call { order: 2; flex: 0 0 auto; }
+
+@media (min-width: 940px) {
+  .sm-head__in { padding-block: 18px; }
+  .sm-nav { order: 2; flex: 0 1 auto; margin-inline: auto; }
+  .sm-head__call { order: 3; }
+}
+
+/* keep the phone row on one line on small phones */
+@media (max-width: 519px) {
+  .sm-head__in { padding-block: 10px; gap: 8px 10px; }
+  .sm-mark { gap: 10px; }
+  .sm-mark svg { width: 30px; height: 30px; }
+  .sm-mark__t { font-size: 0.9375rem; }
+  /* 11px is the smallest label this site ships. At this width the row is the
+     wordmark + the call button, which leaves 142px for the text block, so the
+     sub-label's tracking is dropped to 0.06em (the same value the call button
+     uses here) to keep "Sunset Park · Brooklyn" on one line at 11px. */
+  .sm-mark__s { font-size: 0.6875rem; letter-spacing: 0.06em; }
+  .sm-head__call { padding: 0 10px; font-size: 0.75rem; letter-spacing: 0.06em; }
+  .sm-nav { margin-top: 2px; }
+  .sm-nav ul { gap: 0 2px; }
+  .sm-nav a { padding: 0 8px; font-size: 0.6875rem; letter-spacing: 0.1em; }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .sm-nav a:hover { color: var(--orange); border-bottom-color: var(--orange); }
+  .sm-nav a[aria-current="location"] { color: var(--orange); border-bottom-color: var(--orange); }
+}
+
+/* --- 10. hero ------------------------------------------------------------ */
+.sm-hero { padding-top: clamp(1.75rem, 4vw, 3.25rem); }
+.sm-hero__in { display: grid; gap: 26px; grid-template-columns: 1fr; }
+.sm-hero__copy { display: grid; gap: 18px; align-content: start; }
+.sm-hero__title { display: grid; gap: 14px; }
+.sm-hero__spec { grid-column: 1 / -1; --cells: 1; }
+
+/* The spec strip is a ruled drawing table, not a stack of loose tags.
+   `--cells` drives both the grid tracks and the divider background, so the
+   vertical rules are painted from the same fraction as the tracks and cannot
+   drift out of step with them at any width. */
+.sm-spec {
+  display: grid;
+  grid-template-columns: repeat(var(--cells, 1), minmax(0, 1fr));
+  border-top: var(--hair) solid var(--line-2);
+}
+.sm-spec__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 14px;
+  padding-block: 10px;
+  border-bottom: var(--hair) solid var(--line);
+}
+.sm-spec dt {
+  flex: 0 0 84px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--label);
+}
+.sm-spec dd { flex: 1 1 150px; font-size: 0.9375rem; color: var(--steel); }
+
+@media (min-width: 640px) {
+  .sm-hero__spec {
+    --cells: 2;
+    background-image: repeating-linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0) 0 calc(100% / 2 - 1px),
+      var(--line) calc(100% / 2 - 1px) 50%
+    );
+  }
+  .sm-spec__row {
+    display: grid;
+    gap: 5px;
+    align-content: start;
+    padding: 13px 18px;
+  }
+  .sm-spec dd { display: flex; align-items: center; }
+}
+/* four cells only once the shell is at its widest, so no value ever wraps */
+@media (min-width: 1200px) {
+  .sm-hero__spec {
+    --cells: 4;
+    background-image: repeating-linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0) 0 calc(100% / 4 - 1px),
+      var(--line) calc(100% / 4 - 1px) 25%
+    );
+  }
+}
+
+@media (min-width: 1000px) {
+  .sm-hero__in {
+    grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+    gap: 22px 46px;
+    align-items: end;
+  }
+  .sm-hero__copy { padding-bottom: 6px; }
+  .sm-hero__shot { margin-top: calc(-1 * var(--fold)); }
+  .sm-hero__spec { padding-top: 4px; }
+}
+
+/* the shot: photo plate with a heavy orange bend line cutting across it */
+.sm-shot { margin: 0; }
+.sm-shot__frame {
+  position: relative;
+  background: var(--panel);
+  border: var(--hair) solid var(--line-2);
+  border-radius: 2px;
+  overflow: hidden;
+  clip-path: polygon(0 34px, 100% 0, 100% 100%, 0 100%);
+}
+.sm-shot__frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: 42% 55%;
+}
+/* the big orange bend line */
+.sm-shot__fold {
+  position: absolute;
+  inset: 0;
+  background: var(--orange);
+  clip-path: polygon(0 78%, 100% 63%, 100% 72.4%, 0 87.4%);
+  pointer-events: none;
+}
+/* crease rule offset below the fold */
+.sm-shot__crease {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(96deg, var(--line-2) 0 9px, rgba(0, 0, 0, 0) 9px 16px);
+  clip-path: polygon(0 91.6%, 100% 76.6%, 100% 77.6%, 0 92.6%);
+}
+.sm-shot__tag {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  z-index: 2;
+  padding: 5px 9px;
+  border: var(--hair) solid var(--orange);
+  background: rgba(23, 25, 28, 0.82);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--orange);
+}
+/* the ruler rule sits on the photo's bottom border — one line, not two */
+.sm-shot .sm-dim { margin-top: -1px; }
+.sm-shot figcaption {
+  padding-top: 2px;
+  font-size: 0.8125rem;
+  color: var(--label);
+  max-width: 44ch;
+}
+
+/* --- 11. light steel sheet sections -------------------------------------- */
+.sm-sheet {
+  background: var(--steel);
+  color: var(--ink);
+  --line: rgba(27, 30, 34, 0.28);
+  --line-2: rgba(27, 30, 34, 0.62);
+  --label: #4a5158;
+  --lead: #2a2e34;
+  --ink: #1b1e22;
+}
+.sm-sheet .sm-h1,
+.sm-sheet .sm-h2,
+.sm-sheet .sm-h3 { color: var(--ink); }
+.sm-sheet .sm-lede,
+.sm-sheet p { color: var(--lead); }
+.sm-sheet .sm-eyebrow { color: var(--label); }
+.sm-sheet .sm-ticket__t { color: var(--steel); }
+.sm-sheet .sm-ticket__t span:last-child { color: var(--orange); }
+.sm-sheet a { color: var(--ink); }
+.sm-sheet .sm-btn--dark { color: var(--steel); }
+.sm-sheet .sm-chip--key { color: var(--steel); }
+
+/* --- 12. trust strip ----------------------------------------------------- */
+.sm-trust { display: grid; gap: 20px; grid-template-columns: 1fr; align-items: center; }
+.sm-rating { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
+.sm-rating__num {
+  font-family: "Chivo", "Arial Black", Arial, sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.5rem, 1.8rem + 4vw, 4rem);
+  line-height: 0.9;
+  color: var(--orange-ink);
+}
+.sm-rating__stars { font-size: 1.25rem; letter-spacing: 0.12em; color: var(--ink); }
+.sm-rating__txt { font-size: 1rem; font-weight: 700; letter-spacing: 0.04em; color: var(--ink); }
+.sm-trust__note { font-size: 0.875rem; color: var(--lead); max-width: 40ch; }
+
+@media (min-width: 860px) {
+  .sm-trust { grid-template-columns: minmax(0, 1fr) auto; gap: 16px 40px; }
+  .sm-trust__cta { justify-self: end; }
+}
+
+/* --- 13. section blocks -------------------------------------------------- */
+.sm-block { padding-block: clamp(2.5rem, 6vw, 5rem); }
+.sm-head__block { display: grid; gap: 14px; margin-bottom: clamp(1.75rem, 4vw, 3rem); }
+.sm-head__block .sm-rule { max-width: 260px; }
+
+/* services — a cut list */
+.sm-list { border-top: var(--hair) solid var(--line-2); }
+.sm-item {
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr);
+  gap: 4px 16px;
+  padding-block: 20px;
+  border-bottom: var(--hair) solid var(--line);
+}
+.sm-item__no {
+  font-family: "Chivo", "Arial Black", Arial, sans-serif;
+  font-weight: 900;
+  font-size: 1.25rem;
+  line-height: 1;
+  color: var(--orange);
+  padding-top: 3px;
+}
+.sm-item h3 { margin-bottom: 6px; }
+.sm-item p { color: var(--lead); max-width: 58ch; }
+
+@media (min-width: 760px) {
+  .sm-item { grid-template-columns: 72px minmax(0, 1fr); gap: 4px 24px; padding-block: 24px; }
+  .sm-item__no { font-size: 1.75rem; }
+}
+
+/* how it works */
+.sm-steps { display: grid; gap: 0; border-top: var(--hair) solid var(--line-2); }
+.sm-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr);
+  grid-template-areas:
+    "no title"
+    ". body";
+  gap: 4px 16px;
+  padding-block: 22px;
+  border-bottom: var(--hair) solid var(--line);
+}
+.sm-step::after {
+  content: "";
+  position: absolute;
+  left: 22px;
+  top: 44px;
+  bottom: -1px;
+  width: 1px;
+  background: var(--line);
+}
+.sm-step:last-child::after { display: none; }
+.sm-step__no {
+  grid-area: no;
+  font-family: "Chivo", "Arial Black", Arial, sans-serif;
+  font-weight: 900;
+  font-size: 1.125rem;
+  line-height: 1;
+  color: var(--orange);
+  padding-top: 3px;
+}
+.sm-step h3 { grid-area: title; margin-bottom: 6px; }
+.sm-step p { grid-area: body; color: var(--lead); max-width: 58ch; }
+
+@media (min-width: 900px) {
+  .sm-steps { grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 0; }
+  .sm-step {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "no"
+      "title"
+      "body";
+    gap: 10px;
+    padding: 22px 22px 22px 0;
+    border-bottom: 0;
+    border-top: var(--hair) solid var(--line-2);
+  }
+  .sm-step::after {
+    left: auto; right: 22px; top: 0; bottom: auto; width: auto;
+    height: 100%;
+    background: none;
+    border-top: 1px dashed var(--line-2);
+  }
+  .sm-step h3 { margin-bottom: 0; }
+}
+
+/* --- 14. gallery --------------------------------------------------------- */
+/* A strict 2 x 2 plate block. The cells share grid rows, so both columns
+   always end on the same baseline — the old two-column masonry left a dead
+   gap under the shorter column. A vertical dimension rule runs down the left
+   of the whole block. */
+.sm-gallery { display: grid; gap: 22px; grid-template-columns: minmax(0, 1fr); }
+.sm-gallery__rail { display: none; }
+
+@media (min-width: 720px) {
+  .sm-gallery {
+    grid-template-columns: 34px repeat(2, minmax(0, 1fr));
+    column-gap: 26px;
+    row-gap: 26px;
+  }
+  .sm-gallery__rail { display: block; grid-column: 1; grid-row: 1 / span 2; }
+  .sm-gallery__rail .sm-dim--v { height: 100%; }
+}
+
+.sm-plate {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  border: var(--hair) solid var(--line);
+  border-radius: 2px;
+  background: var(--panel);
+  overflow: hidden;
+}
+.sm-plate__mat {
+  position: relative;
+  background: var(--panel);
+  clip-path: polygon(0 22px, 100% 0, 100% 100%, 0 100%);
+}
+.sm-plate--flat .sm-plate__mat { clip-path: none; }
+.sm-plate--a .sm-plate__mat { aspect-ratio: 3 / 4; }
+.sm-plate--c .sm-plate__mat { aspect-ratio: 1 / 1; }
+.sm-plate--b .sm-plate__mat,
+.sm-plate--d .sm-plate__mat { aspect-ratio: 4 / 3; }
+.sm-plate__mat img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.sm-plate--a .sm-plate__mat img { object-position: 50% 42%; }
+.sm-plate--b .sm-plate__mat img { object-position: 50% 66%; }
+.sm-plate--c .sm-plate__mat img { object-position: 62% 50%; }
+.sm-plate--d .sm-plate__mat img { object-position: 66% 42%; }
+
+@media (min-width: 720px) {
+  /* in the 2 x 2 block, row one's shorter cell matches its taller neighbour so
+     both cells in the row — and both columns — end on the same rule */
+  .sm-plate--c .sm-plate__mat { aspect-ratio: 3 / 4; }
+}
+/* one fixed caption plate height, so all four caption bands start and end
+   on the same rule whatever the caption length */
+.sm-plate figcaption {
+  display: flex;
+  align-items: flex-end;
+  min-height: 61px;
+  margin-top: auto;
+  padding: 12px 13px;
+  border-top: var(--hair) solid var(--line);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--label);
+}
+
+/* --- 15. service area + hours ticket ------------------------------------- */
+.sm-spec__in { display: grid; gap: 26px; grid-template-columns: 1fr; align-items: start; }
+@media (min-width: 900px) {
+  .sm-spec__in { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 30px 48px; }
+}
+.sm-area__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+.sm-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 14px;
+  border: var(--hair) solid var(--line-2);
+  border-radius: 2px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.sm-chip--key { background: var(--graphite); border-color: var(--graphite); color: var(--steel); }
+
+.sm-ticket { border: var(--hair) solid var(--ink); border-radius: 2px; background: rgba(255, 255, 255, 0.32); }
+.sm-ticket__t {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 14px;
+  background: var(--graphite);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--steel);
+}
+.sm-ticket__t span:last-child { color: var(--orange); }
+.sm-ticket dl { padding: 4px 14px 10px; }
+.sm-ticket__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2px 16px;
+  padding-block: 10px;
+  border-bottom: var(--hair) solid var(--line);
+}
+.sm-ticket__row:last-child { border-bottom: 0; }
+.sm-ticket dt {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--label);
+}
+.sm-ticket dd {
+  font-family: "Chivo", "Arial Black", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--ink);
+}
+.sm-ticket__foot { padding: 0 14px 14px; }
+.sm-ticket__foot .sm-btn { width: 100%; }
+
+/* --- 16. faq ------------------------------------------------------------- */
+/* Two columns of hanging-index notes from 900px. The index hangs in its own
+   ruled column and spans both the question and the answer, so the block reads
+   as a note table rather than four paragraphs of prose. */
+.sm-qas {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  border-top: var(--hair) solid var(--line-2);
+}
+.sm-qa {
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  column-gap: 18px;
+  row-gap: 8px;
+  align-content: start;
+  padding-block: 22px 30px;
+  border-bottom: var(--hair) solid var(--line);
+}
+.sm-qa__no {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  border-right: var(--hair) solid var(--line);
+  padding-right: 14px;
+  font-family: "Chivo", "Arial Black", Arial, sans-serif;
+  font-weight: 900;
+  font-size: 1.25rem;
+  line-height: 1.1;
+  color: var(--orange);
+}
+.sm-qa h3 { grid-column: 2; grid-row: 1; }
+.sm-qa p {
+  grid-column: 2;
+  grid-row: 2;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--lead);
+  max-width: 62ch;
+}
+
+@media (min-width: 900px) {
+  .sm-qas { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 44px; }
+  .sm-qa p { max-width: none; }
+}
+
+/* --- 17. contact --------------------------------------------------------- */
+.sm-contact__in { display: grid; gap: 28px; grid-template-columns: 1fr; }
+@media (min-width: 940px) {
+  .sm-contact__in { grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr); gap: 34px 52px; align-items: start; }
+}
+.sm-contact__head { display: grid; gap: 14px; margin-bottom: 22px; }
+.sm-contact__head .sm-rule { max-width: 220px; }
+
+.sm-dirlist { border-top: var(--hair) solid var(--line); }
+.sm-dirlist__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 16px;
+  padding-block: 12px;
+  border-bottom: var(--hair) solid var(--line);
+}
+.sm-dirlist dt {
+  flex: 0 0 82px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--label);
+}
+.sm-dirlist dd { flex: 1 1 200px; font-size: 1.0625rem; color: var(--steel); }
+.sm-dirlist dd a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  text-decoration: none;
+  border-bottom: var(--hair) solid var(--line-2);
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .sm-dirlist dd a:hover { color: var(--orange); border-bottom-color: var(--orange); }
+}
+
+/* form — a blank job ticket */
+.sm-form {
+  border: var(--hair) solid var(--line-2);
+  border-radius: 2px;
+  background: rgba(16, 18, 22, 0.72);
+  padding: clamp(1rem, 3vw, 1.75rem);
+  display: grid;
+  gap: 14px;
+}
+.sm-form__t {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 12px;
+  border-bottom: var(--hair) solid var(--line);
+  font-family: "Chivo", "Arial Black", Arial, sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+.sm-form__t::before { content: ""; width: 16px; height: 3px; background: var(--orange); flex: 0 0 auto; }
+.sm-field { display: grid; gap: 6px; }
+.sm-field > label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--label);
+}
+.sm-field input,
+.sm-field textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 13px;
+  border: var(--hair) solid var(--line-2);
+  border-radius: 0;
+  background: #0c0e11;
+  color: var(--steel);
+  font-family: "Archivo Narrow", Arial, sans-serif;
+  font-size: 1rem;
+}
+.sm-field textarea { min-height: 116px; resize: vertical; line-height: 1.5; }
+.sm-field input::placeholder,
+.sm-field textarea::placeholder { color: #737a83; }
+.sm-field input:focus,
+.sm-field textarea:focus { outline: 3px solid var(--orange); outline-offset: 1px; border-color: var(--orange); }
+.sm-form .sm-btn { width: 100%; }
+.sm-form__note { font-size: 0.8125rem; color: var(--label); }
+.sm-form__note code {
+  font-family: "Archivo Narrow", Arial, sans-serif;
+  color: var(--steel);
+}
+
+/* --- 18. footer ---------------------------------------------------------- */
+.sm-foot { background: var(--deep); border-top: var(--hair) solid var(--line); padding-top: 34px; }
+.sm-foot__in { display: grid; gap: 22px; grid-template-columns: 1fr; padding-bottom: 26px; }
+@media (min-width: 860px) {
+  .sm-foot__in { grid-template-columns: minmax(0, 1fr) minmax(0, auto) minmax(0, auto); gap: 26px 48px; align-items: start; }
+}
+.sm-foot__brand .sm-mark__t { font-size: 1.25rem; }
+.sm-foot__sub {
+  margin-top: 8px;
+  font-size: 0.8125rem;
+  color: var(--label);
+}
+.sm-foot__nav ul { display: grid; gap: 2px; }
+.sm-foot__nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  min-width: 46px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--steel);
+  border-bottom: var(--hair) solid transparent;
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .sm-foot__nav a:hover { color: var(--orange); border-bottom-color: var(--orange); }
+}
+.sm-foot__call { display: grid; gap: 4px; }
+.sm-foot__tel {
+  font-family: "Chivo", "Arial Black", Arial, sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.25rem, 1rem + 1.4vw, 1.75rem);
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  color: var(--white);
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.sm-foot__mail {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  color: var(--label);
+  word-break: break-word;
+}
+.sm-foot__legal {
+  border-top: var(--hair) solid var(--line);
+  padding-block: 16px 22px;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--label);
+}
+
+/* --- 19. sticky phone bar (phones) --------------------------------------- */
+.sm-bar {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  gap: 8px;
+  padding: 8px max(10px, env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+  background: rgba(23, 25, 28, 0.97);
+  border-top: 3px solid var(--orange);
+}
+.sm-bar__b { flex: 1 1 0; min-height: 48px; padding-inline: 10px; }
+@media (max-width: 719px) {
+  .sm-bar { display: flex; }
+  .sm-foot { padding-bottom: 74px; }
+}
+
+/* --- 20. legal prose ----------------------------------------------------- */
+.sm-prose { max-width: 72ch; }
+.sm-prose p { margin-bottom: 14px; color: var(--lead); }
+.sm-prose h2 {
+  font-family: "Chivo", "Arial Black", Arial, sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.125rem, 1rem + 0.8vw, 1.375rem);
+  line-height: 1.12;
+  text-transform: uppercase;
+  color: var(--white);
+  padding-top: 22px;
+  margin-bottom: 8px;
+  border-top: var(--hair) solid var(--line);
+}
+.sm-prose ul { margin: 0 0 14px; display: grid; gap: 8px; }
+.sm-prose li { position: relative; padding-left: 20px; color: var(--lead); }
+.sm-prose li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 10px;
+  height: 3px;
+  background: var(--orange);
+}
+.sm-prose strong { color: var(--white); font-weight: 700; }
+.sm-prose a {
+  color: var(--orange);
+  text-underline-offset: 3px;
+  /* vertical padding grows the tap target without changing line spacing */
+  padding-block: 12px;
+  margin-block: -12px;
+}
+.sm-prose a:hover { color: var(--white); }
+
+/* --- 21. 404 ------------------------------------------------------------- */
+.sm-404 { display: grid; gap: 18px; justify-items: start; padding-block: clamp(2.5rem, 8vw, 5.5rem); }
+.sm-404__code {
+  font-family: "Chivo", "Arial Black", Arial, sans-serif;
+  font-weight: 900;
+  font-size: clamp(4rem, 16vw, 9rem);
+  line-height: 0.82;
+  color: var(--orange);
+  letter-spacing: -0.03em;
+}
+.sm-404 .sm-actions { margin-top: 6px; }
+
+/* --- 22. motion (opt-in only) -------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+  .sm-js .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .sm-js .reveal.is-in { opacity: 1; transform: none; }
+  section[id] { scroll-margin-top: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* --- 23. print ----------------------------------------------------------- */
+@media print {
+  /* the crease is a hairline hatch — it turns to mud on paper, so drop it */
+  .sm-bar, .sm-skip, .sm-nav, .sm-shot__crease { display: none !important; }
+  body { background: #fff; color: #000; }
+}

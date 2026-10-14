@@ -45,6 +45,62 @@
   ]
 }
 </script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Do you do commercial work or homes?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Both. Light Up Electric does commercial electrical installation for San Antonio businesses and electrical repairs for homes."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is a single outlet or switch too small a job?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. Small or big projects are both welcome, and outlet and switch repairs are one of the five services."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Where do you work?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Light Up Electric is based in San Antonio, Texas, and works on homes and commercial sites across the city."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What should I put in a text?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Your name, the part of San Antonio you are in, the type of work, and a photo of the outlet, switch, panel or fixture."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "When can I call?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The hours listed on Google are Monday to Friday, 8 AM to 5 PM. A text can be sent any time."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Do you put in new lighting?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. Lighting is one of the services: interior, exterior and commercial lighting."
+   }
+  }
+ ]
+}
+</script>
 </head>
 <body>
 <svg class="defs" aria-hidden="true" focusable="false">
@@ -59,6 +115,9 @@
   <symbol id="i-building" viewBox="0 0 24 24"><path d="M3 21V9l6-3v15M9 21V3l12 4v14M2 21h20M12.5 8.5h1.5M16.5 9.5H18M12.5 12.5h1.5M16.5 13.5H18M12.5 16.5h1.5M16.5 17.5H18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11 12 3l9 8M5.5 9v12h13V9M10 21v-6h4v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-power" viewBox="0 0 48 48"><path d="M15.2 10.6A17 17 0 1 0 32.8 10.6" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><path d="M26.5 2.5 18 22h6.5L21 35l10-19h-6.6z" fill="#D7263D"/></symbol>
+  <symbol id="i-outlet" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 7v2.6M14 7v2.6M10 14v2.6M14 14v2.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-panel" viewBox="0 0 24 24"><rect x="4" y="2.5" width="16" height="19" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 6.5h3M13 6.5h3M8 10h3M13 10h3M8 13.5h3M13 13.5h3M8 17h3M13 17h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 17.5h6M10 21h4M8.2 14.2A6.5 6.5 0 1 1 15.8 14.2c-.8.7-.8 1.6-.8 2.3H9c0-.7 0-1.6-.8-2.3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/></symbol>
 </svg>
 <a class="skip" href="#main">Skip to content</a>
 
@@ -72,6 +131,7 @@
       <a href="#services">Services</a>
       <a href="#on-site">On site</a>
       <a href="#reviews">Reviews</a>
+      <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
     </nav>
     <a class="pill pill-red top-call" href="tel:+19562421244"><svg aria-hidden="true"><use href="#i-phone"/></svg>(956) 242-1244</a>
@@ -86,9 +146,11 @@
   </div>
   <nav class="sheet-links" aria-label="Menu">
     <a href="#services"><span class="screw" aria-hidden="true"></span>Services</a>
+    <a href="#small-jobs"><span class="screw" aria-hidden="true"></span>Small jobs</a>
     <a href="#on-site"><span class="screw" aria-hidden="true"></span>On site</a>
     <a href="#san-antonio"><span class="screw" aria-hidden="true"></span>San Antonio</a>
     <a href="#reviews"><span class="screw" aria-hidden="true"></span>Google reviews</a>
+    <a href="#faq"><span class="screw" aria-hidden="true"></span>Questions</a>
     <a href="#contact"><span class="screw" aria-hidden="true"></span>Contact</a>
   </nav>
   <div class="sheet-act">
@@ -129,33 +191,43 @@
     </div>
   </section>
 
-  <!-- BIG AND SMALL: two 1-gang plates -->
+  <!-- BIG AND SMALL: two circuits -->
   <section class="pair" aria-label="Commercial and residential">
     <div class="wrap pair-grid">
       <article class="plate pair-plate">
-        <div class="window pair-photo"><img src="images/stock-commercial-pendants-720.webp" srcset="images/stock-commercial-pendants-720.webp 720w, images/stock-commercial-pendants.webp 1600w" sizes="(min-width: 900px) 46vw, 92vw" width="720" height="504" alt="Copper pendant lights lit under a slatted ceiling beside an exposed duct" loading="lazy" decoding="async"></div>
-        <div class="pair-row">
-          <span class="screw" aria-hidden="true"></span>
-          <div class="pair-text">
-            <p class="kicker kicker-ink"><svg aria-hidden="true"><use href="#i-building"/></svg>Commercial</p>
-            <h2>Electrical <br><span class="live">installation.</span></h2>
-            <p class="caps">Small or big projects for <br>San Antonio businesses.</p>
-          </div>
-          <span class="rocker" aria-hidden="true"><span class="rocker-paddle"></span></span>
-          <span class="screw" aria-hidden="true"></span>
+        <span class="screw screw-tl" aria-hidden="true"></span><span class="screw screw-tr" aria-hidden="true"></span>
+        <div class="window pair-photo">
+          <img src="images/stock-commercial-pendants-720.webp" srcset="images/stock-commercial-pendants-720.webp 720w, images/stock-commercial-pendants.webp 1600w" sizes="(min-width: 900px) 46vw, 92vw" width="720" height="504" alt="Copper pendant lights lit under a slatted ceiling beside an exposed duct" loading="lazy" decoding="async">
+          <span class="circuit"><span class="led" aria-hidden="true"></span>Circuit 01 · Commercial</span>
+        </div>
+        <div class="pair-body">
+          <p class="kicker kicker-ink"><svg aria-hidden="true"><use href="#i-building"/></svg>For businesses</p>
+          <h2>Electrical <span class="live">installation.</span></h2>
+          <p class="pair-lede">Commercial electrical installation in San Antonio, on small projects or big ones: new spaces, build-outs and the wiring and lighting that go in them.</p>
+          <ul class="ticks">
+            <li><span class="tick tick-red" aria-hidden="true"></span>New work and build-outs</li>
+            <li><span class="tick tick-red" aria-hidden="true"></span>Panels, circuits and wiring</li>
+            <li><span class="tick tick-red" aria-hidden="true"></span>Interior and exterior lighting</li>
+          </ul>
+          <a class="pill pill-red" href="tel:+19562421244"><svg aria-hidden="true"><use href="#i-phone"/></svg>Call about a project</a>
         </div>
       </article>
       <article class="plate pair-plate">
-        <div class="window pair-photo"><img src="images/stock-house-porch-night-720.webp" srcset="images/stock-house-porch-night-720.webp 720w, images/stock-house-porch-night.webp 1600w" sizes="(min-width: 900px) 46vw, 92vw" width="720" height="536" alt="Small yellow house at night with its porch lit and a large tree in the front yard" loading="lazy" decoding="async"></div>
-        <div class="pair-row">
-          <span class="screw" aria-hidden="true"></span>
-          <div class="pair-text">
-            <p class="kicker kicker-ink"><svg aria-hidden="true"><use href="#i-home"/></svg>Residential</p>
-            <h2>Electrical <br><span class="neutral">repairs.</span></h2>
-            <p class="caps">Outlets, switches, panels and <br>lighting for San Antonio homes.</p>
-          </div>
-          <span class="rocker" aria-hidden="true"><span class="rocker-paddle"></span></span>
-          <span class="screw" aria-hidden="true"></span>
+        <span class="screw screw-tl" aria-hidden="true"></span><span class="screw screw-tr" aria-hidden="true"></span>
+        <div class="window pair-photo">
+          <img src="images/stock-house-porch-night-720.webp" srcset="images/stock-house-porch-night-720.webp 720w, images/stock-house-porch-night.webp 1600w" sizes="(min-width: 900px) 46vw, 92vw" width="720" height="536" alt="Small yellow house at night with its porch lit and a large tree in the front yard" loading="lazy" decoding="async">
+          <span class="circuit circuit-blue"><span class="led led-blue" aria-hidden="true"></span>Circuit 02 · Residential</span>
+        </div>
+        <div class="pair-body">
+          <p class="kicker kicker-ink"><svg aria-hidden="true"><use href="#i-home"/></svg>For homes</p>
+          <h2>Electrical <span class="neutral">repairs.</span></h2>
+          <p class="pair-lede">Residential electrical repairs for San Antonio homes, from one outlet that stopped working to a panel, a circuit or the lights.</p>
+          <ul class="ticks">
+            <li><span class="tick tick-blue" aria-hidden="true"></span>Outlets and switches</li>
+            <li><span class="tick tick-blue" aria-hidden="true"></span>Panels and wiring</li>
+            <li><span class="tick tick-blue" aria-hidden="true"></span>Light fixtures, inside and out</li>
+          </ul>
+          <a class="pill pill-ink" href="sms:+19562421244?&amp;body=Hi%20Light%20Up%20Electric%2C%20I%20need%20an%20electrical%20repair%20at%20home."><svg aria-hidden="true"><use href="#i-text"/></svg>Text a photo of it</a>
         </div>
       </article>
     </div>
@@ -174,7 +246,7 @@
           <span class="screw" aria-hidden="true"></span>
           <div class="window svc-photo"><img src="images/stock-ceiling-wiring-720.webp" width="720" height="341" alt="Person on a stepladder reaching up to a ceiling with loose wires and work lights hanging down" loading="lazy" decoding="async"></div>
           <h3>Commercial installation</h3>
-          <span class="rocker rocker-sm" aria-hidden="true"><span class="rocker-paddle"></span></span>
+          <span class="svc-ico" aria-hidden="true"><svg><use href="#i-building"/></svg></span>
           <p class="caps">New work and build-outs <br>for businesses.</p>
           <span class="screw" aria-hidden="true"></span>
         </li>
@@ -182,7 +254,7 @@
           <span class="screw" aria-hidden="true"></span>
           <div class="window svc-photo"><img src="images/stock-outlet-720.webp" width="720" height="568" alt="White duplex wall outlet on a grey-blue painted wall" loading="lazy" decoding="async"></div>
           <h3>Residential repairs</h3>
-          <span class="rocker rocker-sm" aria-hidden="true"><span class="rocker-paddle"></span></span>
+          <span class="svc-ico" aria-hidden="true"><svg><use href="#i-home"/></svg></span>
           <p class="caps">Electrical repairs <br>in your home.</p>
           <span class="screw" aria-hidden="true"></span>
         </li>
@@ -190,7 +262,7 @@
           <span class="screw" aria-hidden="true"></span>
           <div class="window svc-photo"><img src="images/stock-rocker-switch-720.webp" width="720" height="657" alt="Two white rocker light switches on a dark wall" loading="lazy" decoding="async"></div>
           <h3>Outlets and switches</h3>
-          <span class="rocker rocker-sm" aria-hidden="true"><span class="rocker-paddle"></span></span>
+          <span class="svc-ico" aria-hidden="true"><svg><use href="#i-outlet"/></svg></span>
           <p class="caps">Repair, replacement <br>and new ones.</p>
           <span class="screw" aria-hidden="true"></span>
         </li>
@@ -198,7 +270,7 @@
           <span class="screw" aria-hidden="true"></span>
           <div class="window svc-photo"><img src="images/stock-breaker-panel.webp" width="642" height="1081" alt="Open home breaker panel with rows of black breakers and red, white and black wires" loading="lazy" decoding="async"></div>
           <h3>Panels and wiring</h3>
-          <span class="rocker rocker-sm" aria-hidden="true"><span class="rocker-paddle"></span></span>
+          <span class="svc-ico" aria-hidden="true"><svg><use href="#i-panel"/></svg></span>
           <p class="caps">Service panels, circuits <br>and wiring.</p>
           <span class="screw" aria-hidden="true"></span>
         </li>
@@ -206,11 +278,86 @@
           <span class="screw" aria-hidden="true"></span>
           <div class="window svc-photo"><img src="images/stock-kitchen-pendants-720.webp" width="720" height="480" alt="Bright white kitchen with two brass pendant lights over an island and recessed ceiling lights" loading="lazy" decoding="async"></div>
           <h3>Lighting</h3>
-          <span class="rocker rocker-sm" aria-hidden="true"><span class="rocker-paddle"></span></span>
+          <span class="svc-ico" aria-hidden="true"><svg><use href="#i-bulb"/></svg></span>
           <p class="caps">Interior, exterior <br>and commercial lighting.</p>
           <span class="screw" aria-hidden="true"></span>
         </li>
       </ol>
+    </div>
+  </section>
+
+  <!-- SMALL JOBS -->
+  <section class="smalls" id="small-jobs" aria-labelledby="small-h">
+    <div class="wrap smalls-in">
+      <div class="smalls-text">
+        <p class="kicker kicker-brass"><svg aria-hidden="true"><use href="#i-outlet"/></svg>Small or big projects</p>
+        <h2 id="small-h">One outlet <span class="live-lit">counts too.</span></h2>
+        <p>Light Up Electric's Facebook page puts it plainly: any electrical need, small or big. A dead outlet or a switch that needs replacing is a job worth a call.</p>
+        <ul class="smalls-list">
+          <li><span class="tick tick-red" aria-hidden="true"></span>An outlet that stopped working</li>
+          <li><span class="tick tick-blue" aria-hidden="true"></span>A switch or dimmer to replace</li>
+          <li><span class="tick tick-red" aria-hidden="true"></span>A light fixture to swap or add</li>
+          <li><span class="tick tick-blue" aria-hidden="true"></span>A circuit that keeps tripping</li>
+        </ul>
+        <div class="smalls-act">
+          <a class="pill pill-red" href="tel:+19562421244"><svg aria-hidden="true"><use href="#i-phone"/></svg>Call (956) 242-1244</a>
+          <a class="pill pill-glass" href="sms:+19562421244?&amp;body=Hi%20Light%20Up%20Electric%2C%20I%20have%20a%20small%20electrical%20job."><svg aria-hidden="true"><use href="#i-text"/></svg>Text a photo</a>
+        </div>
+      </div>
+      <figure class="plate plate-smoke smalls-photo">
+        <span class="screw screw-tl" aria-hidden="true"></span><span class="screw screw-tr" aria-hidden="true"></span><span class="screw screw-bl" aria-hidden="true"></span><span class="screw screw-br" aria-hidden="true"></span>
+        <div class="window window-dark"><img src="images/stock-gloved-outlet.webp" srcset="images/stock-gloved-outlet-720.webp 720w, images/stock-gloved-outlet.webp 1600w" sizes="(min-width: 1000px) 50vw, 92vw" width="1600" height="900" alt="Gloved hands holding a white duplex outlet and a green-handled screwdriver against a brick wall" loading="lazy" decoding="async"></div>
+        <figcaption><span class="led" aria-hidden="true"></span>Gloved hands with an outlet and a screwdriver</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- INSIDE THE PANEL -->
+  <section class="panelx" aria-labelledby="panel-h">
+    <div class="wrap">
+      <div class="head">
+        <h2 id="panel-h">Inside the <span class="live">panel</span></h2>
+        <p class="caps">Where every circuit in a home <br>or business starts.</p>
+        <span class="wires" aria-hidden="true"><span></span><span></span><span></span></span>
+      </div>
+      <div class="panelx-grid">
+        <figure class="plate panelx-dwg">
+          <span class="screw screw-tl" aria-hidden="true"></span><span class="screw screw-tr" aria-hidden="true"></span><span class="screw screw-bl" aria-hidden="true"></span><span class="screw screw-br" aria-hidden="true"></span>
+          <svg viewBox="0 0 680 420" role="img" aria-labelledby="pdw-t">
+            <title id="pdw-t">Simplified drawing of a breaker panel: the main breaker at the top, two columns of branch breakers, a neutral bar and a ground bar, with black, red and white wires running out to the circuits.</title>
+            <rect x="220" y="20" width="240" height="380" rx="10" fill="#E9E8E3" stroke="#1B1B1B" stroke-width="3"/>
+            <rect x="234" y="34" width="212" height="352" rx="6" fill="#FDFDFB" stroke="#B9B7B0" stroke-width="2"/>
+            <rect x="302" y="48" width="76" height="44" rx="4" fill="#1B1B1B"/><rect x="320" y="58" width="40" height="24" rx="3" fill="#D7263D"/>
+            <g fill="#1B1B1B">
+              <rect x="270" y="112" width="58" height="22" rx="3"/><rect x="352" y="112" width="58" height="22" rx="3"/>
+              <rect x="270" y="142" width="58" height="22" rx="3"/><rect x="352" y="142" width="58" height="22" rx="3"/>
+              <rect x="270" y="172" width="58" height="22" rx="3"/><rect x="352" y="172" width="58" height="22" rx="3"/>
+              <rect x="270" y="202" width="58" height="22" rx="3"/><rect x="352" y="202" width="58" height="22" rx="3"/>
+              <rect x="270" y="232" width="58" height="22" rx="3"/><rect x="352" y="232" width="58" height="22" rx="3"/>
+              <rect x="270" y="262" width="58" height="22" rx="3"/><rect x="352" y="262" width="58" height="22" rx="3"/>
+            </g>
+            <g fill="#6a6a6a"><rect x="306" y="118" width="16" height="10" rx="2"/><rect x="358" y="118" width="16" height="10" rx="2"/><rect x="306" y="148" width="16" height="10" rx="2"/><rect x="358" y="148" width="16" height="10" rx="2"/><rect x="306" y="178" width="16" height="10" rx="2"/><rect x="358" y="178" width="16" height="10" rx="2"/><rect x="306" y="208" width="16" height="10" rx="2"/><rect x="358" y="208" width="16" height="10" rx="2"/><rect x="306" y="238" width="16" height="10" rx="2"/><rect x="358" y="238" width="16" height="10" rx="2"/><rect x="306" y="268" width="16" height="10" rx="2"/><rect x="358" y="268" width="16" height="10" rx="2"/></g>
+            <rect x="256" y="306" width="168" height="12" rx="3" fill="#C2A35A"/><rect x="256" y="336" width="168" height="12" rx="3" fill="#6E8F4E"/>
+            <path d="M460 123H520M460 153H540M460 183H560" stroke="#1B1B1B" stroke-width="4" fill="none"/>
+            <path d="M460 213H520M460 243H540" stroke="#D7263D" stroke-width="4" fill="none"/>
+            <path d="M460 312H560" stroke="#B9B7B0" stroke-width="4" fill="none"/>
+            <g font-family="Archivo, Arial Narrow, sans-serif" font-weight="800" font-size="15" letter-spacing="1.5" fill="#1B1B1B">
+              <path d="M302 70H160" stroke="#1F6FEB" stroke-width="2"/><circle cx="302" cy="70" r="4" fill="#1F6FEB"/><text x="150" y="66" text-anchor="end">MAIN</text><text x="150" y="84" text-anchor="end">BREAKER</text>
+              <path d="M270 190H160" stroke="#1F6FEB" stroke-width="2"/><circle cx="270" cy="190" r="4" fill="#1F6FEB"/><text x="150" y="186" text-anchor="end">BRANCH</text><text x="150" y="204" text-anchor="end">BREAKERS</text>
+              <path d="M256 312H160" stroke="#1F6FEB" stroke-width="2"/><circle cx="256" cy="312" r="4" fill="#1F6FEB"/><text x="150" y="317" text-anchor="end">NEUTRAL BAR</text>
+              <path d="M256 342H160" stroke="#1F6FEB" stroke-width="2"/><circle cx="256" cy="342" r="4" fill="#1F6FEB"/><text x="150" y="347" text-anchor="end">GROUND BAR</text>
+              <text x="572" y="178">TO THE</text><text x="572" y="196">CIRCUITS</text>
+            </g>
+          </svg>
+          <figcaption><span class="led" aria-hidden="true"></span>Simplified drawing of a breaker panel</figcaption>
+        </figure>
+        <div class="panelx-notes">
+          <div class="plate note"><span class="note-n">01</span><div><h3>Main breaker</h3><p>Shuts off power to the whole panel at once.</p></div></div>
+          <div class="plate note"><span class="note-n note-n-blue">02</span><div><h3>Branch breakers</h3><p>One for each circuit: a room, a run of outlets, the lights.</p></div></div>
+          <div class="plate note"><span class="note-n">03</span><div><h3>Neutral and ground</h3><p>The return path and the safety path for every circuit.</p></div></div>
+          <div class="plate note note-cta"><p>Panels and wiring are one of Light Up Electric's five services, for homes and for businesses.</p><a class="pill pill-red" href="tel:+19562421244"><svg aria-hidden="true"><use href="#i-phone"/></svg>Ask about a panel</a></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -239,6 +386,10 @@
           <div class="window"><img src="images/vans-warehouse-720.webp" srcset="images/vans-warehouse-720.webp 720w, images/vans-warehouse.webp 1560w" sizes="(min-width: 900px) 62vw, 92vw" width="720" height="254" alt="Two white work vans with ladder racks and a dark pickup parked beside a large warehouse" loading="lazy" decoding="async"></div>
           <figcaption><span class="led" aria-hidden="true"></span>Vans and a pickup at a warehouse job</figcaption>
         </figure>
+        <figure class="plate tile tile-e">
+          <div class="window"><img src="images/stock-linear-lights.webp" srcset="images/stock-linear-lights-720.webp 720w, images/stock-linear-lights.webp 1600w" sizes="92vw" width="1600" height="900" alt="Two long rows of linear LED lights glowing along a dark open ceiling" loading="lazy" decoding="async"></div>
+          <figcaption><span class="led" aria-hidden="true"></span>Rows of linear lights along an open ceiling</figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -265,6 +416,23 @@
     </div>
   </section>
 
+  <!-- HOW A JOB RUNS -->
+  <section class="steps" aria-labelledby="steps-h">
+    <div class="wrap">
+      <div class="head">
+        <h2 id="steps-h">How a job <span class="live">runs</span></h2>
+        <p class="caps">From the first call or text <br>to the lights coming on.</p>
+        <span class="wires" aria-hidden="true"><span></span><span></span><span></span></span>
+      </div>
+      <ol class="run">
+        <li class="plate step"><span class="screw" aria-hidden="true"></span><span class="step-n">01</span><h3>Call or text</h3><p>Say what is going on and where in San Antonio. A photo of the outlet, panel or fixture helps.</p></li>
+        <li class="plate step"><span class="screw" aria-hidden="true"></span><span class="step-n">02</span><h3>Talk it through</h3><p>What you need, home or business, and a time that works for a look.</p></li>
+        <li class="plate step"><span class="screw" aria-hidden="true"></span><span class="step-n">03</span><h3>The work</h3><p>Installation or repair: outlets, switches, panels, wiring or lighting.</p></li>
+        <li class="plate step step-on"><span class="screw" aria-hidden="true"></span><span class="step-n">04</span><h3>Lights on</h3><p>Power back on, and the job walked through with you at the end.</p></li>
+      </ol>
+    </div>
+  </section>
+
   <!-- GOOGLE REVIEWS -->
   <section class="reviews" id="reviews" aria-labelledby="reviews-h">
     <div class="wrap">
@@ -283,6 +451,25 @@
         </div>
         <a class="rating-link" href="https://maps.google.com/?cid=5133604768917426312" target="_blank" rel="noopener">Read the reviews on Google<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
         <span class="screw" aria-hidden="true"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq" aria-labelledby="faq-h">
+    <div class="wrap">
+      <div class="head">
+        <h2 id="faq-h">Common <span class="live">questions</span></h2>
+        <p class="caps">Quick answers <br>before you call.</p>
+        <span class="wires" aria-hidden="true"><span></span><span></span><span></span></span>
+      </div>
+      <div class="faq-grid">
+        <details class="plate" open><summary><span class="led" aria-hidden="true"></span>Do you do commercial work or homes?</summary><p>Both. Light Up Electric does commercial electrical installation for San Antonio businesses and electrical repairs for homes.</p></details>
+        <details class="plate"><summary><span class="led" aria-hidden="true"></span>Is a single outlet or switch too small a job?</summary><p>No. Small or big projects are both welcome, and outlet and switch repairs are one of the five services.</p></details>
+        <details class="plate"><summary><span class="led" aria-hidden="true"></span>Where do you work?</summary><p>Light Up Electric is based in San Antonio, Texas, and works on homes and commercial sites across the city.</p></details>
+        <details class="plate"><summary><span class="led" aria-hidden="true"></span>What should I put in a text?</summary><p>Your name, the part of San Antonio you are in, the type of work, and a photo of the outlet, switch, panel or fixture.</p></details>
+        <details class="plate"><summary><span class="led" aria-hidden="true"></span>When can I call?</summary><p>The hours listed on Google are Monday to Friday, 8 AM to 5 PM. A text can be sent any time.</p></details>
+        <details class="plate"><summary><span class="led" aria-hidden="true"></span>Do you put in new lighting?</summary><p>Yes. Lighting is one of the services: interior, exterior and commercial lighting.</p></details>
       </div>
     </div>
   </section>
@@ -381,6 +568,7 @@
       <ul class="foot-l">
         <li><a href="#on-site">On site</a></li>
         <li><a href="#reviews">Google reviews</a></li>
+        <li><a href="#faq">Questions</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a href="privacy/">Privacy Policy</a></li>
         <li><a href="terms/">Terms of Use</a></li>

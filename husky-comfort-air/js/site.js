@@ -1,6 +1,6 @@
 (function () {
   // phone menu
-  var btn = document.querySelector('.mast-menu');
+  var btn = document.querySelector('.hdr-menu');
   var drop = document.getElementById('drop');
   if (btn && drop) {
     var hide = function (back) {

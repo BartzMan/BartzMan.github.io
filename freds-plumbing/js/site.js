@@ -1,33 +1,23 @@
 (function () {
-  var btn = document.querySelector("[data-bp-open]");
-  var sheet = document.getElementById("bpSheet");
-  var closeBtn = document.querySelector("[data-bp-close]");
-  function openSheet() {
-    sheet.hidden = false;
-    btn.setAttribute("aria-expanded", "true");
-    document.body.classList.add("bp-lock");
-    var first = sheet.querySelector("button, a");
-    if (first) first.focus();
+  var d = document;
+  var b = d.querySelector('.burger'), s = d.getElementById('sheet');
+  function setOpen(o) {
+    if (!b || !s) return;
+    b.setAttribute('aria-expanded', o ? 'true' : 'false');
+    b.setAttribute('aria-label', o ? 'Close menu' : 'Open menu');
+    s.hidden = !o; d.body.style.overflow = o ? 'hidden' : '';
   }
-  function closeSheet() {
-    sheet.hidden = true;
-    btn.setAttribute("aria-expanded", "false");
-    document.body.classList.remove("bp-lock");
-    btn.focus();
+  if (b && s) {
+    b.addEventListener('click', function () { setOpen(b.getAttribute('aria-expanded') !== 'true'); });
+    s.addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false); });
+    d.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
   }
-  if (btn && sheet) {
-    btn.addEventListener("click", function () { if (sheet.hidden) openSheet(); else closeSheet(); });
-    if (closeBtn) closeBtn.addEventListener("click", closeSheet);
-    sheet.addEventListener("click", function (e) { if (e.target.closest("a")) closeSheet(); });
-    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !sheet.hidden) closeSheet(); });
-  }
-  var form = document.querySelector("[data-bp-form]");
-  if (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var d = new FormData(form);
-      var body = ["Fred's Plumbing & Heating", "Name: " + (d.get("name") || ""), "Phone: " + (d.get("phone") || ""), "Town: " + (d.get("town") || ""), "Need: " + (d.get("need") || ""), String(d.get("message") || "")].join("\n");
-      window.location.href = "mailto:fcianfrone@live.com?subject=" + encodeURIComponent("Message for Fred's Plumbing & Heating") + "&body=" + encodeURIComponent(body);
-    });
-  }
+  var f = d.getElementById('jobform');
+  if (f) f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var g = function (n) { var el = f.elements[n]; return el ? el.value.trim() : ''; };
+    var subject = 'Website request: ' + g('job') + (g('town') ? ' in ' + g('town') : '');
+    var body = 'Name: ' + g('name') + '\nPhone: ' + g('phone') + '\nTown: ' + g('town') + '\nJob: ' + g('job') + '\n\n' + g('msg') + '\n\n(Photos attached if any.)';
+    window.location.href = 'mailto:fcianfrone@live.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  });
 })();

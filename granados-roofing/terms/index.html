@@ -20,8 +20,8 @@
 <link rel="preload" href="../fonts/commissioner-400-650.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../css/site.css">
 </head>
-<body class="roof-sub">
-<svg class="shingle-defs" aria-hidden="true" focusable="false">
+<body class="sub">
+<svg class="defs" aria-hidden="true" focusable="false">
   <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z" fill="currentColor"/></symbol>
   <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 4h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H9l-5 4v-4H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
@@ -36,6 +36,8 @@
   <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 7h4l2-3h4l2 3h4a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
   <symbol id="i-noladder" viewBox="0 0 24 24"><path d="M8 3v18M16 3v18M8 8h8M8 13h8M8 18h8" stroke="currentColor" stroke-width="2"/><path d="m3 3 18 18" stroke="currentColor" stroke-width="2.4"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-hail" viewBox="0 0 24 24"><path d="M7 15a4.5 4.5 0 0 1-.4-9 6 6 0 0 1 11.3 1.6A3.8 3.8 0 0 1 17.5 15z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="8" cy="19" r="1.3" fill="currentColor"/><circle cx="12.5" cy="21" r="1.3" fill="currentColor"/><circle cx="16" cy="18.5" r="1.3" fill="currentColor"/></symbol>
   <symbol id="logo-mark" viewBox="0 0 96 64">
     <path d="M70 6h11v20l-11-8z" style="fill:var(--lm-body,#3E4650)"/>
     <path d="M4 40 48 6l44 34" fill="none" style="stroke:var(--lm-roof,#B5652B)" stroke-width="7"/>
@@ -43,49 +45,57 @@
     <path d="M18 47.5h60M18 55h60M30 40v7.5M42 40v7.5M54 40v7.5M66 40v7.5M24 47.5V55M36 47.5V55M48 47.5V55M60 47.5V55M72 47.5V55M30 55v7M42 55v7M54 55v7M66 55v7" fill="none" style="stroke:var(--lm-line,#F5F2EC)" stroke-width="1.8"/>
   </symbol>
 </svg>
-
 <a class="skip" href="#main">Skip to content</a>
-
+<div class="strap">
+  <div class="wrap strap-in">
+    <p class="strap-l"><svg aria-hidden="true"><use href="#i-repair"/></svg>Roof repair <i>&middot;</i> Replacement <i>&middot;</i> Inspections <i>&middot;</i> Gutters</p>
+    <p class="strap-r"><span><svg aria-hidden="true"><use href="#i-pin"/></svg>Lewisville, TX &amp; DFW</span><a href="https://www.facebook.com/107356667705147" target="_blank" rel="noopener" aria-label="Granados Roofing on Facebook"><svg aria-hidden="true"><use href="#i-fb"/></svg><span>Facebook</span></a></p>
+  </div>
+</div>
 <header class="top">
-  <div class="top-in">
+  <div class="wrap top-in">
     <a class="logo" href="../" aria-label="Granados Roofing, home">
-      <svg class="logo-mark" width="64" height="43" aria-hidden="true"><use href="../#logo-mark"/></svg>
-      <span class="logo-type"><span class="logo-name">GRANADOS</span><span class="logo-sub">Roofing <i>&middot;</i> Lewisville TX</span></span>
+      <svg class="logo-mark" width="62" height="42" aria-hidden="true"><use href="#logo-mark"/></svg>
+      <span class="logo-type"><span class="logo-name">GRANADOS</span><span class="logo-tag">Roofing &amp; Gutters <i>&middot;</i> Lewisville TX</span></span>
     </a>
     <nav class="nav" aria-label="Main">
-      <a href="../#services">Services</a>
+      <a href="../#courses">Services</a>
       <a href="../#check">Roof check</a>
-      <a href="../#storm">Storm damage</a>
+      <a href="../#layers">Roof layers</a>
+      <a href="../#storm">Storms</a>
       <a href="../#work">Our roofs</a>
       <a href="../#contact">Contact</a>
     </nav>
-    <a class="top-phone" href="tel:+19405954894"><svg aria-hidden="true"><use href="../#i-phone"/></svg>(940) 595-4894</a>
-    <a class="pill" href="sms:+19405954894?&amp;body=Hi%2C%20I%27d%20like%20my%20roof%20looked%20at."><svg aria-hidden="true"><use href="../#i-chat"/></svg>Call / Text</a>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="sheet"><span class="menu-lines" aria-hidden="true"></span>Menu</button>
+    <a class="top-phone" href="tel:+19405954894"><svg aria-hidden="true"><use href="#i-phone"/></svg><span>(940) 595-4894</span></a>
+    <a class="pill pill--sm" href="tel:+19405954894"><svg aria-hidden="true"><use href="#i-phone"/></svg>Call / Text</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="sheet"><span class="menu-lines" aria-hidden="true"></span><span class="menu-txt">Menu</span></button>
   </div>
+  <div class="nails" aria-hidden="true"></div>
 </header>
-
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Menu" hidden>
   <div class="sheet-head">
-    <span class="logo-name">GRANADOS</span>
+    <a class="logo logo--light" href="../" aria-label="Granados Roofing, home">
+      <svg class="logo-mark" width="62" height="42" aria-hidden="true"><use href="#logo-mark"/></svg>
+      <span class="logo-type"><span class="logo-name">GRANADOS</span><span class="logo-tag">Roofing &amp; Gutters <i>&middot;</i> Lewisville TX</span></span>
+    </a>
     <button class="sheet-close" type="button">Close</button>
   </div>
   <nav class="sheet-nav" aria-label="Menu links">
-    <a href="../#services">Services</a>
+    <a href="../#courses">Services</a>
     <a href="../#check">The roof check</a>
-    <a href="../#storm">Storm damage</a>
+    <a href="../#layers">Ridge to gutter</a>
+    <a href="../#storm">After a storm</a>
     <a href="../#work">Our roofs</a>
     <a href="../#area">Where we work</a>
     <a href="../#contact">Contact</a>
   </nav>
   <div class="sheet-act">
-    <a class="btn btn-cedar" href="tel:+19405954894"><svg aria-hidden="true"><use href="../#i-phone"/></svg>Call (940) 595-4894</a>
-    <a class="btn btn-ghost" href="sms:+19405954894?&amp;body=Hi%2C%20I%27d%20like%20my%20roof%20looked%20at."><svg aria-hidden="true"><use href="../#i-chat"/></svg>Send a text</a>
+    <a class="pill" href="tel:+19405954894"><svg aria-hidden="true"><use href="#i-phone"/></svg>Call (940) 595-4894</a>
+    <a class="pill pill--ghost" href="sms:+19405954894?&amp;body=Hi%2C%20I%27d%20like%20my%20roof%20looked%20at."><svg aria-hidden="true"><use href="#i-chat"/></svg>Send a text</a>
   </div>
 </div>
-
 <main id="main">
-<section class="page-course" aria-labelledby="page-h">
+<section class="legal" aria-labelledby="page-h">
   <div class="wrap legal-body">
     <p class="legal-kicker">Granados Roofing</p>
     <h1 id="page-h">Terms of Use</h1>
@@ -122,43 +132,54 @@
   </div>
 </section>
 </main>
-
-<div class="course-strip" aria-hidden="true"></div>
 <footer class="foot">
-  <div class="wrap foot-in">
+  <div class="tabs-edge tabs-edge--top" aria-hidden="true"></div>
+  <div class="wrap foot-grid">
     <div class="foot-brand">
-      <a class="logo logo-light" href="../" aria-label="Granados Roofing, home">
-        <svg class="logo-mark" width="64" height="43" aria-hidden="true"><use href="../#logo-mark"/></svg>
-        <span class="logo-type"><span class="logo-name">GRANADOS</span><span class="logo-sub">Roofing <i>&middot;</i> Lewisville TX</span></span>
-      </a>
-      <p>Roof repair, replacement, inspections and gutters for Lewisville and the Dallas-Fort Worth area.</p>
+      <a class="logo logo--light" href="../" aria-label="Granados Roofing, home">
+      <svg class="logo-mark" width="62" height="42" aria-hidden="true"><use href="#logo-mark"/></svg>
+      <span class="logo-type"><span class="logo-name">GRANADOS</span><span class="logo-tag">Roofing &amp; Gutters <i>&middot;</i> Lewisville TX</span></span>
+    </a>
+      <p>Roof repair, roof replacement, roof inspections and gutters for homes in Lewisville and across the Dallas-Fort Worth area.</p>
+      <a class="pill" href="tel:+19405954894"><svg aria-hidden="true"><use href="#i-phone"/></svg>Call / Text (940) 595-4894</a>
     </div>
-    <ul class="foot-links">
-      <li><a href="../#services">Services</a></li>
-      <li><a href="../#check">Roof check</a></li>
-      <li><a href="../#storm">Storm damage</a></li>
-      <li><a href="../#work">Our roofs</a></li>
-    </ul>
-    <ul class="foot-links">
-      <li><a href="tel:+19405954894">(940) 595-4894</a></li>
-      <li><a href="mailto:agranados@granadoscontractors.com">Email</a></li>
-      <li><a href="https://www.facebook.com/107356667705147" target="_blank" rel="noopener">Facebook</a></li>
-      <li><a href="../privacy/">Privacy Policy</a></li>
-      <li><a href="../terms/">Terms of Use</a></li>
-    </ul>
+    <div>
+      <h2 class="foot-h">Roof work</h2>
+      <ul class="foot-list">
+        <li><a href="../#courses">Roof repair</a></li>
+        <li><a href="../#courses">Roof replacement</a></li>
+        <li><a href="../#courses">Roof inspections</a></li>
+        <li><a href="../#courses">Gutters</a></li>
+        <li><a href="../#storm">After hail or wind</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="foot-h">Where we work</h2>
+      <ul class="foot-list foot-list--cols">
+        <li>Lewisville</li><li>Dallas</li><li>Fort Worth</li><li>Arlington</li><li>Plano</li><li>Garland</li><li>Mesquite</li><li>Denton</li><li>McKinney</li><li>Allen</li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="foot-h">Get in touch</h2>
+      <ul class="foot-list foot-contact">
+        <li><a href="tel:+19405954894"><svg aria-hidden="true"><use href="#i-phone"/></svg>(940) 595-4894</a></li>
+        <li><a href="sms:+19405954894?&amp;body=Hi%2C%20I%27d%20like%20my%20roof%20looked%20at."><svg aria-hidden="true"><use href="#i-chat"/></svg>Text us photos</a></li>
+        <li><a href="mailto:agranados@granadoscontractors.com"><svg aria-hidden="true"><use href="#i-mail"/></svg>agranados@granadoscontractors.com</a></li>
+        <li><a href="https://www.facebook.com/107356667705147" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-fb"/></svg>Facebook</a></li>
+        <li><span><svg aria-hidden="true"><use href="#i-pin"/></svg>Lewisville, TX</span></li>
+      </ul>
+    </div>
   </div>
   <div class="wrap foot-base">
-    <p>&copy; 2026 Granados Roofing</p>
+    <p>&copy; 2026 Granados Roofing <i>&middot;</i> <a href="../privacy/">Privacy Policy</a> <i>&middot;</i> <a href="../terms/">Terms of Use</a></p>
     <p class="foot-motto">We build for the future, with lasting value.</p>
   </div>
-  <p class="wrap foot-photo-note">The roof photos under &ldquo;The roof check&rdquo; and &ldquo;Our roofs&rdquo; are Granados Roofing's own. The remaining photos are illustrative stock images.</p>
+  <p class="wrap foot-note">The roof photos marked &ldquo;Granados photo&rdquo; are Granados Roofing's own. The other photos on this site are illustrative stock images.</p>
 </footer>
-
 <nav class="callbar" aria-label="Call or text">
-  <a href="tel:+19405954894"><svg aria-hidden="true"><use href="../#i-phone"/></svg>Call now</a>
-  <a href="sms:+19405954894?&amp;body=Hi%2C%20I%27d%20like%20my%20roof%20looked%20at."><svg aria-hidden="true"><use href="../#i-chat"/></svg>Text us</a>
+  <a href="tel:+19405954894"><svg aria-hidden="true"><use href="#i-phone"/></svg>Call now</a>
+  <a href="sms:+19405954894?&amp;body=Hi%2C%20I%27d%20like%20my%20roof%20looked%20at."><svg aria-hidden="true"><use href="#i-chat"/></svg>Text us</a>
 </nav>
-
 <script src="../js/site.js" defer></script>
 </body>
 </html>

@@ -49,7 +49,7 @@
 
   /* plates switch "on" as they come into view; gentle reveal */
   var plates = document.querySelectorAll(".pair-plate, .svc, .rating");
-  var reveal = document.querySelectorAll(".pair-plate, .svc, .tile, .rating, .jobform, .line, .head, .city-plate");
+  var reveal = document.querySelectorAll(".pair-plate, .svc, .tile, .rating, .jobform, .line, .head, .city-plate, .note, .step, .faq-grid details, .smalls-photo, .panelx-dwg");
   if (!("IntersectionObserver" in window) || reduce) {
     plates.forEach(function (p) { p.classList.add("on"); });
     return;

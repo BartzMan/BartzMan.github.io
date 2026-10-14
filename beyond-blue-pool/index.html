@@ -20,7 +20,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/sora-600-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/readex-pro-400-600.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" href="images/pool-dusk.jpg" imagesrcset="images/pool-dusk-720.jpg 720w, images/pool-dusk.jpg 1200w" imagesizes="100vw">
+<link rel="preload" as="image" href="images/stock-desert-pool-dusk.jpg" imagesrcset="images/stock-desert-pool-dusk-720.jpg 720w, images/stock-desert-pool-dusk.jpg 1600w" imagesizes="100vw">
 <link rel="stylesheet" href="css/site.css">
 <script type="application/ld+json">
 {
@@ -63,7 +63,7 @@
 </script>
 </head>
 <body>
-<svg class="pad-defs" aria-hidden="true" focusable="false">
+<svg class="defs" aria-hidden="true" focusable="false">
   <symbol id="b-phone" viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z" fill="currentColor"/></symbol>
   <symbol id="b-chat" viewBox="0 0 24 24"><path d="M4 4h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H9l-5 4v-4H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
   <symbol id="b-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
@@ -78,89 +78,99 @@
   <symbol id="b-timer" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="10" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10 12l2.5-2.5M16.5 9h2M16.5 12h2M16.5 15h2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
   <symbol id="b-light" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
   <symbol id="b-valve" viewBox="0 0 24 24"><path d="M2 14h20" stroke="currentColor" stroke-width="4"/><circle cx="12" cy="14" r="4" fill="currentColor"/><path d="M6 6h12M12 6v4" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+  <symbol id="b-arrow" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="b-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="b-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9 7 7M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
 </svg>
-
 <a class="jump" href="#main">Skip to content</a>
-
+<div class="tidebar">
+  <div class="deck tidebar-in">
+    <p><svg aria-hidden="true"><use href="#b-pin"/></svg>Gilbert <i>&middot;</i> Mesa <i>&middot;</i> Chandler <i>&middot;</i> Queen Creek</p>
+    <p class="tidebar-r"><span><svg aria-hidden="true"><use href="#b-sun"/></svg>Open every day, Google hours</span><a href="https://www.facebook.com/100756261682508" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#b-fb"/></svg>Facebook</a></p>
+  </div>
+</div>
 <header class="hd">
-  <div class="hd-in">
-    <a class="brand" href="./" aria-label="Beyond Blue Pool Service, home">
-      <svg class="brand-badge" viewBox="0 0 48 52" width="44" height="48" aria-hidden="true" focusable="false"><circle cx="24" cy="30" r="21" fill="#063A5B"/><path d="M7 30q4.2-3.2 8.5 0t8.5 0 8.5 0 8.5 0" fill="none" stroke="#1FB6C9" stroke-width="2.8" stroke-linecap="round"/><path d="M9.5 37q3.6-2.8 7.3 0t7.2 0 7.3 0 7.2 0" fill="none" stroke="#9BE6F0" stroke-width="2.2" stroke-linecap="round"/><path d="M14 43.5q2.5-2 5 0t5 0 5 0 5 0" fill="none" stroke="#9BE6F0" stroke-width="1.8" stroke-linecap="round" opacity=".7"/><rect x="12" y="1" width="24" height="7" rx="3.5" fill="#C8372D"/><rect x="21.5" y="6" width="5" height="9" fill="#C8372D"/><circle cx="24" cy="18" r="4.5" fill="#F3FAFC" stroke="#C8372D" stroke-width="2"/></svg>
-      <span class="brand-name">Beyond Blue<span>Pool Service</span></span>
-    </a>
+  <div class="deck hd-in">
+    <a class="brand" href="./" aria-label="Beyond Blue Pool Service, home"><svg class="brand-badge" viewBox="0 0 48 52" width="46" height="50" aria-hidden="true" focusable="false"><circle cx="24" cy="30" r="21" fill="#063A5B"/><path d="M7 30q4.2-3.2 8.5 0t8.5 0 8.5 0 8.5 0" fill="none" stroke="#1FB6C9" stroke-width="2.8" stroke-linecap="round"/><path d="M9.5 37q3.6-2.8 7.3 0t7.2 0 7.3 0 7.2 0" fill="none" stroke="#9BE6F0" stroke-width="2.2" stroke-linecap="round"/><path d="M14 43.5q2.5-2 5 0t5 0 5 0 5 0" fill="none" stroke="#9BE6F0" stroke-width="1.8" stroke-linecap="round" opacity=".7"/><rect x="12" y="1" width="24" height="7" rx="3.5" fill="#C8372D"/><rect x="21.5" y="6" width="5" height="9" fill="#C8372D"/><circle cx="24" cy="18" r="4.5" fill="#F3FAFC" stroke="#C8372D" stroke-width="2"/></svg><span class="brand-name">Beyond Blue<span class="brand-tag">Pool Equipment Repairs <i>&middot;</i> Gilbert AZ</span></span></a>
     <nav class="hd-nav" aria-label="Main">
       <a href="#pad">The pad</a>
+      <a href="#parts">Repairs</a>
       <a href="#hours">Hours</a>
-      <a href="#equipment">Equipment</a>
       <a href="#faq">Questions</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a class="hd-call" href="tel:+14803693625"><svg aria-hidden="true"><use href="#b-phone"/></svg>(480) 369-3625</a>
+    <a class="hd-call" href="tel:+14803693625"><span class="hd-call-ico"><svg aria-hidden="true"><use href="#b-phone"/></svg></span><span><small>Call or text</small>(480) 369-3625</span></a>
     <button class="hd-menu" type="button" aria-expanded="false" aria-controls="menu">
-      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M3 7h18M3 12h18M3 17h18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
-      <span>Menu</span>
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M3 7h18M3 12h18M3 17h18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span class="hd-menu-t">Menu</span>
     </button>
   </div>
+  <div class="tileline" aria-hidden="true"></div>
 </header>
-
 <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
-  <div class="menu-top">
-    <span class="brand-name">Beyond Blue<span>Pool Service</span></span>
-    <button class="menu-close" type="button">Close</button>
-  </div>
+  <div class="menu-top"><a class="brand brand--light" href="./" aria-label="Beyond Blue Pool Service, home"><svg class="brand-badge" viewBox="0 0 48 52" width="46" height="50" aria-hidden="true" focusable="false"><circle cx="24" cy="30" r="21" fill="#063A5B"/><path d="M7 30q4.2-3.2 8.5 0t8.5 0 8.5 0 8.5 0" fill="none" stroke="#1FB6C9" stroke-width="2.8" stroke-linecap="round"/><path d="M9.5 37q3.6-2.8 7.3 0t7.2 0 7.3 0 7.2 0" fill="none" stroke="#9BE6F0" stroke-width="2.2" stroke-linecap="round"/><path d="M14 43.5q2.5-2 5 0t5 0 5 0 5 0" fill="none" stroke="#9BE6F0" stroke-width="1.8" stroke-linecap="round" opacity=".7"/><rect x="12" y="1" width="24" height="7" rx="3.5" fill="#C8372D"/><rect x="21.5" y="6" width="5" height="9" fill="#C8372D"/><circle cx="24" cy="18" r="4.5" fill="#F3FAFC" stroke="#C8372D" stroke-width="2"/></svg><span class="brand-name">Beyond Blue<span class="brand-tag">Pool Equipment Repairs <i>&middot;</i> Gilbert AZ</span></span></a><button class="menu-close" type="button">Close</button></div>
   <nav class="menu-links" aria-label="Menu links">
     <a href="#pad">The pad, part by part</a>
+    <a href="#parts">Repairs</a>
     <a href="#hours">Hours</a>
-    <a href="#equipment">Equipment photos</a>
     <a href="#rating">Google rating</a>
     <a href="#area">Where we work</a>
     <a href="#faq">Questions</a>
     <a href="#contact">Contact</a>
   </nav>
   <div class="menu-act">
-    <a class="fit fit-deep" href="tel:+14803693625"><svg aria-hidden="true"><use href="#b-phone"/></svg>Call (480) 369-3625</a>
-    <a class="fit fit-ghost-light" href="sms:+14803693625?&amp;body=Hi%2C%20my%20pool%20equipment%20needs%20a%20look.">Send a text</a>
+    <a class="fit fit-aqua" href="tel:+14803693625"><svg aria-hidden="true"><use href="#b-phone"/></svg>Call (480) 369-3625</a>
+    <a class="fit fit-line" href="sms:+14803693625?&amp;body=Hi%2C%20here%27s%20a%20photo%20of%20my%20pool%20equipment."><svg aria-hidden="true"><use href="#b-chat"/></svg>Text us a photo</a>
   </div>
 </div>
-
 <main id="main">
 
-  <section class="poolside" aria-labelledby="hero-h">
-    <div class="poolside-photo">
-      <img src="images/pool-dusk.jpg" srcset="images/pool-dusk-720.jpg 720w, images/pool-dusk.jpg 1200w" sizes="100vw" width="1200" height="1600" alt="Backyard pool with rock edging and palm trees at dusk" fetchpriority="high">
-      <p class="poolside-badge"><svg aria-hidden="true"><use href="#b-pin"/></svg>Gilbert, Arizona</p>
-    </div>
-    <div class="deck poolside-lift">
-      <div class="poolside-card">
-        <p class="kicker">Pool equipment repairs</p>
-        <h1 id="hero-h">Pool equipment repair in <span>Gilbert and the East Valley</span></h1>
-        <p>Pumps, filters, heaters, timers, lights and the plumbing that joins them. Call or text with what your equipment is doing.</p>
-        <div class="poolside-act">
-          <a class="fit fit-deep" href="tel:+14803693625"><svg aria-hidden="true"><use href="#b-phone"/></svg>Call (480) 369-3625</a>
-          <a class="fit fit-ghost" href="sms:+14803693625?&amp;body=Hi%2C%20my%20pool%20equipment%20needs%20a%20look."><svg aria-hidden="true"><use href="#b-camera"/></svg>Text us a photo</a>
+  <section class="hero" aria-labelledby="hero-h">
+    <img class="hero-bg" src="images/stock-desert-pool-dusk.jpg" srcset="images/stock-desert-pool-dusk-720.jpg 720w, images/stock-desert-pool-dusk.jpg 1600w" sizes="100vw" width="1600" height="1066" alt="Lit backyard pool with a spill-over water feature and a spa at dusk, mountains behind" fetchpriority="high">
+    <div class="hero-shade" aria-hidden="true"></div>
+    <div class="caustic" aria-hidden="true"></div>
+    <div class="deck hero-in">
+      <div class="hero-copy">
+        <p class="kicker kicker--light">Pool equipment repairs <i>&middot;</i> East Valley, Arizona</p>
+        <h1 id="hero-h">Pool equipment repair in Gilbert <span>and the East Valley.</span></h1>
+        <p class="hero-sub">Pumps, filters, heaters, timers, lights and the plumbing that joins them. Call or text with what your equipment is doing.</p>
+        <div class="hero-act">
+          <a class="fit fit-aqua fit-xl" href="tel:+14803693625"><span class="fit-ico"><svg aria-hidden="true"><use href="#b-phone"/></svg></span><span>Call / Text <b>(480) 369-3625</b></span></a>
+          <a class="fit fit-line" href="sms:+14803693625?&amp;body=Hi%2C%20here%27s%20a%20photo%20of%20my%20pool%20equipment."><svg aria-hidden="true"><use href="#b-camera"/></svg>Text us a photo</a>
         </div>
         <ul class="proof">
-          <li><span class="proof-stars" aria-hidden="true"><svg><use href="#b-star"/></svg><svg><use href="#b-star"/></svg><svg><use href="#b-star"/></svg><svg><use href="#b-star"/></svg><svg><use href="#b-star"/></svg></span><strong>5.0</strong> on Google</li>
-          <li><svg aria-hidden="true"><use href="#b-clock"/></svg>Open every day (Google hours)</li>
+          <li><span class="stars" aria-hidden="true"><svg aria-hidden="true"><use href="#b-star"/></svg><svg aria-hidden="true"><use href="#b-star"/></svg><svg aria-hidden="true"><use href="#b-star"/></svg><svg aria-hidden="true"><use href="#b-star"/></svg><svg aria-hidden="true"><use href="#b-star"/></svg></span><b>5.0</b> on Google</li>
+          <li><svg aria-hidden="true"><use href="#b-clock"/></svg>Open every day, 6 AM to 7 PM (Google hours)</li>
         </ul>
       </div>
-      <ul class="partbar" aria-label="What we work on">
-        <li><svg aria-hidden="true"><use href="#b-pump"/></svg>Pumps</li>
-        <li><svg aria-hidden="true"><use href="#b-filter"/></svg>Filters</li>
-        <li><svg aria-hidden="true"><use href="#b-heat"/></svg>Heaters</li>
-        <li><svg aria-hidden="true"><use href="#b-timer"/></svg>Timers</li>
-        <li><svg aria-hidden="true"><use href="#b-light"/></svg>Lights</li>
-        <li><svg aria-hidden="true"><use href="#b-valve"/></svg>Plumbing</li>
-      </ul>
+      <figure class="skimmer">
+        <div class="skimmer-photo"><img src="images/pool-dusk.jpg" srcset="images/pool-dusk-720.jpg 720w, images/pool-dusk.jpg 1200w" sizes="(min-width: 980px) 28vw, 80vw" width="1200" height="1600" alt="Backyard pool with rock edging and palm trees at dusk" fetchpriority="high"></div>
+        <figcaption><span class="own"><svg aria-hidden="true"><use href="#b-camera"/></svg>Beyond Blue photo</span>A backyard pool with rock edging, Gilbert area</figcaption>
+      </figure>
+    </div>
+    <div class="hero-foot">
+      <div class="tileline tileline--tall" aria-hidden="true"></div>
+      <div class="coping" aria-hidden="true"></div>
+      <div class="deck">
+        <ul class="pipe-run" aria-label="What we work on">
+          <li><svg aria-hidden="true"><use href="#b-pump"/></svg><span>Pumps</span></li>
+          <li><svg aria-hidden="true"><use href="#b-filter"/></svg><span>Filters</span></li>
+          <li><svg aria-hidden="true"><use href="#b-heat"/></svg><span>Heaters</span></li>
+          <li><svg aria-hidden="true"><use href="#b-timer"/></svg><span>Timers</span></li>
+          <li><svg aria-hidden="true"><use href="#b-light"/></svg><span>Lights</span></li>
+          <li><svg aria-hidden="true"><use href="#b-valve"/></svg><span>Plumbing</span></li>
+        </ul>
+      </div>
     </div>
   </section>
 
   <section class="pad" id="pad" aria-labelledby="pad-h">
     <div class="deck">
-      <div class="sec-head">
-        <p class="kicker">The pad</p>
-        <h2 id="pad-h">The equipment pad, part by part</h2>
-        <p>Your pool runs on the machines beside it. Pick a part to see what we do with it.</p>
+      <div class="sec-head sec-head--split">
+        <div>
+          <p class="kicker">The pad</p>
+          <h2 id="pad-h">The equipment pad, <span>part by part.</span></h2>
+        </div>
+        <p>Your pool runs on the machines beside it. Pick a part in the drawing or the keys to see what we do with it.</p>
       </div>
       <div class="pad-grid">
         <figure class="pad-fig">
@@ -258,9 +268,8 @@
             </g>
           </svg>
           </div>
-          <figcaption class="pad-hint">Flow runs pool, pump, filter, heater, and back to the pool. Dashed lines are electrical conduit.</figcaption>
+          <figcaption class="pad-hint">Flow runs pool, pump, filter, heater and back to the pool. Dashed lines are electrical conduit.</figcaption>
         </figure>
-
         <div class="pad-side">
           <ul class="keys" aria-label="Parts of the pad">
             <li><a class="key" href="#part-pump" data-part="pump">Pump</a></li>
@@ -302,7 +311,70 @@
               <p>Leaking valves, cracked PVC and the wiring at the equipment pad, repaired.</p>
             </article>
           </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <section class="parts-sec" id="parts" aria-labelledby="parts-h">
+    <div class="tileline" aria-hidden="true"></div>
+    <div class="deck">
+      <div class="sec-head sec-head--light sec-head--split">
+        <div>
+          <p class="kicker kicker--light">Repairs</p>
+          <h2 id="parts-h">Six parts. <span>One pad that runs right.</span></h2>
         </div>
+        <p>Everything on the pad, from the pump that pulls the water to the light at the bottom of the pool.</p>
+      </div>
+      <div class="pc-grid">
+        <article class="pc">
+          <div class="pc-photo"><img src="images/plumbing-pump-bottom.jpg" srcset="images/plumbing-pump-bottom-720.jpg 720w, images/plumbing-pump-bottom.jpg 1102w" sizes="(min-width: 980px) 30vw, (min-width: 640px) 46vw, 100vw" width="1102" height="768" alt="Pool pump with a clear basket lid, joined to PVC pipes and valves on a gravel pad" loading="lazy" decoding="async"><span class="own"><svg aria-hidden="true"><use href="#b-camera"/></svg>Beyond Blue photo</span><span class="pc-valve" aria-hidden="true"></span></div>
+          <div class="pc-body">
+            <p class="pc-k"><span class="pc-ico"><svg aria-hidden="true"><use href="#b-pump"/></svg></span>Part 01</p>
+            <h3>Pumps, including variable-speed</h3>
+            <p>Pumps that hum, trip the breaker or won't prime get repaired or replaced. Variable-speed pumps get installed and set up.</p>
+          </div>
+        </article>
+        <article class="pc">
+          <div class="pc-photo"><img src="images/pad-tan-filter.jpg" srcset="images/pad-tan-filter-720.jpg 720w, images/pad-tan-filter.jpg 744w" sizes="(min-width: 980px) 30vw, (min-width: 640px) 46vw, 100vw" width="744" height="1526" alt="Tan pool filter tank with its pump and plumbing on a gravel equipment pad" loading="lazy" decoding="async"><span class="own"><svg aria-hidden="true"><use href="#b-camera"/></svg>Beyond Blue photo</span><span class="pc-valve" aria-hidden="true"></span></div>
+          <div class="pc-body">
+            <p class="pc-k"><span class="pc-ico"><svg aria-hidden="true"><use href="#b-filter"/></svg></span>Part 02</p>
+            <h3>Filter changes</h3>
+            <p>Dirty or worn filter media swapped out so water moves through the system freely again.</p>
+          </div>
+        </article>
+        <article class="pc">
+          <div class="pc-photo"><img src="images/stock-pool-spa-dusk.jpg" srcset="images/stock-pool-spa-dusk-720.jpg 720w, images/stock-pool-spa-dusk.jpg 1600w" sizes="(min-width: 980px) 30vw, (min-width: 640px) 46vw, 100vw" width="1600" height="1067" alt="Lit pool and round spa with stone coping at dusk" loading="lazy" decoding="async"><span class="pc-valve" aria-hidden="true"></span></div>
+          <div class="pc-body">
+            <p class="pc-k"><span class="pc-ico"><svg aria-hidden="true"><use href="#b-heat"/></svg></span>Part 03</p>
+            <h3>Heaters and heat pumps</h3>
+            <p>Repairs for heaters and heat pumps that won't fire or won't warm the water, and new heat pump installs.</p>
+          </div>
+        </article>
+        <article class="pc">
+          <div class="pc-photo"><img src="images/stock-rock-edge-pool.jpg" srcset="images/stock-rock-edge-pool-720.jpg 720w, images/stock-rock-edge-pool.jpg 1600w" sizes="(min-width: 980px) 30vw, (min-width: 640px) 46vw, 100vw" width="1600" height="1067" alt="Backyard pool with rock edging, palm trees and a spa" loading="lazy" decoding="async"><span class="pc-valve" aria-hidden="true"></span></div>
+          <div class="pc-body">
+            <p class="pc-k"><span class="pc-ico"><svg aria-hidden="true"><use href="#b-timer"/></svg></span>Part 04</p>
+            <h3>Timers, automation, controls</h3>
+            <p>Pump timers set up or replaced, and automation and control systems repaired or reprogrammed.</p>
+          </div>
+        </article>
+        <article class="pc">
+          <div class="pc-photo"><img src="images/stock-pool-night-palms.jpg" srcset="images/stock-pool-night-palms-720.jpg 720w, images/stock-pool-night-palms.jpg 1600w" sizes="(min-width: 980px) 30vw, (min-width: 640px) 46vw, 100vw" width="1600" height="1067" alt="Long glowing pool at night between lit palm trees" loading="lazy" decoding="async"><span class="pc-valve" aria-hidden="true"></span></div>
+          <div class="pc-body">
+            <p class="pc-k"><span class="pc-ico"><svg aria-hidden="true"><use href="#b-light"/></svg></span>Part 05</p>
+            <h3>Pool lights</h3>
+            <p>Pool light repairs, and upgrades to newer lights.</p>
+          </div>
+        </article>
+        <article class="pc">
+          <div class="pc-photo"><img src="images/plumbing-valves-top.jpg" srcset="images/plumbing-valves-top-720.jpg 720w, images/plumbing-valves-top.jpg 1102w" sizes="(min-width: 980px) 30vw, (min-width: 640px) 46vw, 100vw" width="1102" height="768" alt="PVC pipes and valves around a pool pump on an equipment pad" loading="lazy" decoding="async"><span class="own"><svg aria-hidden="true"><use href="#b-camera"/></svg>Beyond Blue photo</span><span class="pc-valve" aria-hidden="true"></span></div>
+          <div class="pc-body">
+            <p class="pc-k"><span class="pc-ico"><svg aria-hidden="true"><use href="#b-valve"/></svg></span>Part 06</p>
+            <h3>Pad plumbing and electrical</h3>
+            <p>Leaking valves, cracked PVC and the wiring at the equipment pad, repaired.</p>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -311,11 +383,10 @@
     <img class="timer-bg" src="images/stock-superstition-dusk.jpg" srcset="images/stock-superstition-dusk-720.jpg 720w, images/stock-superstition-dusk.jpg 1600w" sizes="100vw" width="1600" height="1067" alt="" loading="lazy" decoding="async">
     <div class="deck timer-in">
       <div class="timer-text">
-        <p class="kicker kicker-light">Hours</p>
-        <h2 id="hours-h">Open every day</h2>
-        <p class="timer-big">6 AM to 7 PM, seven days a week</p>
-        <p class="timer-note">Hours as listed on Google.</p>
-        <a class="fit fit-sun" href="tel:+14803693625"><svg aria-hidden="true"><use href="#b-phone"/></svg>Call (480) 369-3625</a>
+        <p class="kicker kicker--light">Hours</p>
+        <h2 id="hours-h">Open every day. <span>6 AM to 7 PM.</span></h2>
+        <p class="timer-note">Seven days a week, as listed on Google. Call or text with a photo of the pad.</p>
+        <a class="fit fit-aqua" href="tel:+14803693625"><svg aria-hidden="true"><use href="#b-phone"/></svg>Call (480) 369-3625</a>
       </div>
       <figure class="dial" aria-hidden="true">
         <svg viewBox="-20 -20 340 340" width="300" height="300" focusable="false">
@@ -332,98 +403,79 @@
     </div>
   </section>
 
-  <section class="equip" id="equipment" aria-labelledby="equip-h">
+  <section class="yard" id="equipment" aria-labelledby="yard-h">
     <div class="deck">
-      <div class="sec-head">
-        <p class="kicker">Real equipment</p>
-        <h2 id="equip-h">From the equipment pad</h2>
-        <p>Filters, pumps and the pipe that joins them, from Beyond Blue's photos on Google.</p>
+      <div class="sec-head sec-head--split">
+        <div>
+          <p class="kicker">From the pad</p>
+          <h2 id="yard-h">Real pads. <span>Real East Valley yards.</span></h2>
+        </div>
+        <p>Equipment and the van from Beyond Blue's own photos, next to the kind of backyard pool all that machinery keeps running.</p>
       </div>
-      <div class="equip-grid">
-        <figure class="frame frame-a">
-          <img src="images/filter-pump-pad.jpg" width="735" height="1520" alt="Black filter tank, pump and tan PVC pipes with valves on a gravel equipment pad against a stucco wall" loading="lazy" decoding="async">
-          <figcaption>Filter, pump and valves on a pad</figcaption>
-        </figure>
-        <figure class="frame frame-b">
-          <img src="images/valves-plumbing.jpg" srcset="images/valves-plumbing-720.jpg 720w, images/valves-plumbing.jpg 1118w" sizes="(min-width: 900px) 30vw, 92vw" width="1118" height="1560" alt="Two photos of white PVC plumbing and valves running from a pump to the equipment" loading="lazy" decoding="async">
-          <figcaption>PVC plumbing and valves at a pump</figcaption>
-        </figure>
-        <div class="equip-side">
-          <figure class="frame frame-van">
-            <img src="images/van.jpg" srcset="images/van-720.jpg 720w, images/van.jpg 1180w" sizes="(min-width: 900px) 24vw, 92vw" width="1180" height="730" alt="Blue and black Beyond Blue Pool Equipment Repairs van parked on a street" loading="lazy" decoding="async">
-            <figcaption>The Beyond Blue van</figcaption>
-          </figure>
-          <figure class="frame frame-lights">
-            <img src="images/stock-pool-night-palms.jpg" srcset="images/stock-pool-night-palms-720.jpg 720w, images/stock-pool-night-palms.jpg 1600w" sizes="(min-width: 900px) 24vw, 92vw" width="1600" height="1067" alt="Lit pool at night between palm trees and lounge chairs" loading="lazy" decoding="async">
-            <figcaption>Pool lights at night</figcaption>
-          </figure>
+      <div class="yard-grid">
+        <figure class="yf yf-tall"><img src="images/pad-black-filter.jpg" srcset="images/pad-black-filter-720.jpg 720w, images/pad-black-filter.jpg 742w" sizes="(min-width: 980px) 30vw, 100vw" width="742" height="1526" alt="Black pool filter tank, pump and tan PVC valves on a gravel pad against a stucco wall" loading="lazy" decoding="async"><figcaption><span class="own"><svg aria-hidden="true"><use href="#b-camera"/></svg>Beyond Blue photo</span>Filter, pump and valves on a pad</figcaption></figure>
+        <figure class="yf yf-wide"><img src="images/van-logo.jpg" srcset="images/van-logo-720.jpg 720w, images/van-logo.jpg 886w" sizes="(min-width: 980px) 44vw, 100vw" width="886" height="378" alt="Side of the Beyond Blue van with its cartoon mascot and Pool Equipment Repairs logo" loading="lazy" decoding="async"><figcaption><span class="own"><svg aria-hidden="true"><use href="#b-camera"/></svg>Beyond Blue photo</span>The Beyond Blue van</figcaption></figure>
+        <figure class="yf yf-pool"><img src="images/stock-desert-backyard-pool.jpg" srcset="images/stock-desert-backyard-pool-720.jpg 720w, images/stock-desert-backyard-pool.jpg 1600w" sizes="(min-width: 980px) 26vw, 100vw" width="1600" height="1066" alt="Desert backyard with a long pool, spa and lawn under mountains" loading="lazy" decoding="async"><figcaption>A desert backyard pool and spa</figcaption></figure>
+        <div class="yf yf-card">
+          <svg class="yf-ico" aria-hidden="true"><use href="#b-camera"/></svg>
+          <h3>Send the label first</h3>
+          <p>A photo of the equipment label shows the make and model. Text it with a line about what it's doing.</p>
+          <a class="fit fit-aqua" href="sms:+14803693625?&amp;body=Hi%2C%20here%27s%20a%20photo%20of%20my%20pool%20equipment."><svg aria-hidden="true"><use href="#b-chat"/></svg>Text (480) 369-3625</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="score" id="rating" aria-labelledby="rating-h">
-    <img class="score-bg" src="images/stock-pool-water.jpg" srcset="images/stock-pool-water-720.jpg 720w, images/stock-pool-water.jpg 1200w" sizes="100vw" width="1200" height="1600" alt="" loading="lazy" decoding="async">
-    <div class="deck score-in">
-      <div class="score-box">
-        <p class="score-num">5.0</p>
-        <p class="score-stars"><span aria-hidden="true"><svg><use href="#b-star"/></svg><svg><use href="#b-star"/></svg><svg><use href="#b-star"/></svg><svg><use href="#b-star"/></svg><svg><use href="#b-star"/></svg></span>on Google</p>
+  <section class="rating" id="rating" aria-labelledby="rating-h">
+    <img class="rating-bg" src="images/stock-pool-water.jpg" srcset="images/stock-pool-water-720.jpg 720w, images/stock-pool-water.jpg 1200w" sizes="100vw" width="1200" height="1600" alt="" loading="lazy" decoding="async">
+    <div class="deck rating-in">
+      <div class="rate-card">
+        <span class="rate-valve" aria-hidden="true"></span>
+        <p class="rate-num">5.0</p>
+        <p class="rate-stars"><span class="stars" aria-hidden="true"><svg aria-hidden="true"><use href="#b-star"/></svg><svg aria-hidden="true"><use href="#b-star"/></svg><svg aria-hidden="true"><use href="#b-star"/></svg><svg aria-hidden="true"><use href="#b-star"/></svg><svg aria-hidden="true"><use href="#b-star"/></svg></span></p>
+        <p>on Google</p>
       </div>
-      <div class="score-body">
-        <p class="kicker kicker-light">On Google</p>
-        <h2 id="rating-h">Rated 5.0 on Google</h2>
-        <p>The jobs reviewers mention, tagged like parts:</p>
+      <div class="rate-copy">
+        <p class="kicker kicker--light">On Google</p>
+        <h2 id="rating-h">Rated 5.0 on Google.</h2>
+        <p>The jobs reviewers mention, tagged like parts on the pad:</p>
         <ul class="tags">
-          <li>pool pump replacement</li>
-          <li>pool equipment repair</li>
-          <li>quick response</li>
-          <li>pool heater repair</li>
-          <li>pool pump installation</li>
-          <li>filter change</li>
-          <li>variable speed pump</li>
-          <li>pool pump timer setup</li>
-          <li>lights upgrade</li>
-          <li>heat pump installation</li>
+          <li>pool pump replacement</li><li>pool equipment repair</li><li>quick response</li><li>pool heater repair</li><li>pool pump installation</li><li>filter change</li><li>variable speed pump</li><li>pool pump timer setup</li><li>lights upgrade</li><li>heat pump installation</li>
         </ul>
-        <a class="text-link" href="https://maps.google.com/?cid=10409797712553721984" target="_blank" rel="noopener">Read the reviews on Google</a>
+        <a class="line-link" href="https://maps.google.com/?cid=10409797712553721984" target="_blank" rel="noopener">Read the reviews on Google <svg aria-hidden="true"><use href="#b-arrow"/></svg></a>
       </div>
     </div>
   </section>
 
-  <section class="towns" id="area" aria-labelledby="area-h">
-    <img class="towns-bg" src="images/stock-superstition-day.jpg" srcset="images/stock-superstition-day-720.jpg 720w, images/stock-superstition-day.jpg 1600w" sizes="100vw" width="1600" height="1067" alt="" loading="lazy" decoding="async">
-    <div class="deck towns-in">
+  <section class="area" id="area" aria-labelledby="area-h">
+    <img class="area-bg" src="images/stock-superstition-day.jpg" srcset="images/stock-superstition-day-720.jpg 720w, images/stock-superstition-day.jpg 1600w" sizes="100vw" width="1600" height="1067" alt="" loading="lazy" decoding="async">
+    <div class="deck area-in">
       <p class="kicker">Service area</p>
-      <h2 id="area-h">Where we work</h2>
-      <p class="towns-lede">Equipment repairs across the East Valley.</p>
-      <ul class="run">
-        <li>Gilbert</li>
-        <li>Mesa</li>
-        <li>Chandler</li>
-        <li>Queen Creek</li>
-      </ul>
+      <h2 id="area-h">Where we work, <span>on one pipe run.</span></h2>
+      <p>Equipment repairs across the East Valley.</p>
+      <ol class="run">
+        <li><span class="run-v" aria-hidden="true"></span>Gilbert</li>
+        <li><span class="run-v" aria-hidden="true"></span>Mesa</li>
+        <li><span class="run-v" aria-hidden="true"></span>Chandler</li>
+        <li><span class="run-v" aria-hidden="true"></span>Queen Creek</li>
+      </ol>
     </div>
   </section>
 
-  <section class="symptoms" id="faq" aria-labelledby="faq-h">
-    <div class="deck symptoms-in">
-      <aside class="symptoms-side">
-        <figure>
-          <img src="images/stock-rock-edge-pool.jpg" srcset="images/stock-rock-edge-pool-720.jpg 720w, images/stock-rock-edge-pool.jpg 1600w" sizes="(min-width: 900px) 30vw, 92vw" width="1600" height="1067" alt="Backyard pool with rock edging, palm trees and landscaping" loading="lazy" decoding="async">
-        </figure>
-        <div class="send-card">
-          <svg aria-hidden="true"><use href="#b-camera"/></svg>
+  <section class="faq" id="faq" aria-labelledby="faq-h">
+    <div class="deck faq-grid">
+      <div class="faq-side">
+        <figure class="faq-photo"><img src="images/stock-desert-pool-night.jpg" srcset="images/stock-desert-pool-night-720.jpg 720w, images/stock-desert-pool-night.jpg 1100w" sizes="(min-width: 980px) 34vw, 100vw" width="1100" height="1231" alt="Kidney-shaped backyard pool at night under a starry sky and a desert mountain" loading="lazy" decoding="async"></figure>
+        <div class="faq-card">
+          <svg class="yf-ico" aria-hidden="true"><use href="#b-camera"/></svg>
           <p><strong>Quickest way to start:</strong> text a photo of the equipment label and a line about the problem.</p>
-          <a class="fit fit-deep" href="sms:+14803693625?&amp;body=Hi%2C%20here%27s%20a%20photo%20of%20my%20equipment%20label."><svg aria-hidden="true"><use href="#b-chat"/></svg>Text (480) 369-3625</a>
+          <a class="fit fit-deep" href="sms:+14803693625?&amp;body=Hi%2C%20here%27s%20a%20photo%20of%20my%20pool%20equipment."><svg aria-hidden="true"><use href="#b-chat"/></svg>Text (480) 369-3625</a>
         </div>
-      </aside>
-      <div class="symptoms-main">
-      <div class="sec-head">
-        <p class="kicker">Questions</p>
-        <h2 id="faq-h">Common pad problems</h2>
-        <p>What a few of the usual symptoms tend to mean, and what helps us before a visit.</p>
       </div>
-      <dl class="trouble">
+      <div class="faq-main">
+        <p class="kicker">Questions</p>
+        <h2 id="faq-h">Common pad problems, <span>what they tend to mean.</span></h2>
+        <dl class="trouble">
         <div class="trouble-row">
           <dt>My pool pump runs but won't prime. What's going on?</dt>
           <dd>Usually air is getting in on the suction side: a low water level, a loose or cracked pump lid, a clogged skimmer or pump basket, or a leaking valve. Check the water level and empty both baskets first. If it still won't catch, call or text and tell us what you see through the pump lid.</dd>
@@ -445,90 +497,99 @@
     </div>
   </section>
 
-  <section class="talk" id="contact" aria-labelledby="contact-h">
-    <div class="deck talk-in">
-      <div class="reach">
-        <p class="kicker kicker-light">Get in touch</p>
-        <h2 id="contact-h">Tell us what the equipment is doing</h2>
-        <p>A photo of the label and a sentence about the problem is the quickest way to get the right part on the van.</p>
-        <a class="call-big" href="tel:+14803693625"><svg aria-hidden="true"><use href="#b-phone"/></svg>(480) 369-3625</a>
-        <dl class="contact-dl">
-          <div><dt><svg aria-hidden="true"><use href="#b-chat"/></svg>Call or text</dt><dd><a href="sms:+14803693625">(480) 369-3625</a></dd></div>
-          <div><dt><svg aria-hidden="true"><use href="#b-mail"/></svg>Email</dt><dd><a href="mailto:beyondbluepoolservice@gmail.com">beyondbluepoolservice@gmail.com</a></dd></div>
-          <div><dt><svg aria-hidden="true"><use href="#b-fb"/></svg>Facebook</dt><dd><a href="https://www.facebook.com/100756261682508" target="_blank" rel="noopener">Beyond Blue Pool Service</a></dd></div>
-          <div><dt><svg aria-hidden="true"><use href="#b-clock"/></svg>Hours</dt><dd>Every day, 6 AM to 7 PM (Google listing)</dd></div>
-          <div><dt><svg aria-hidden="true"><use href="#b-pin"/></svg>Area</dt><dd>Gilbert, Mesa, Chandler and Queen Creek</dd></div>
-        </dl>
+  <section class="contact" id="contact" aria-labelledby="contact-h">
+    <div class="caustic" aria-hidden="true"></div>
+    <div class="deck">
+      <div class="sec-head sec-head--light sec-head--split">
+        <div>
+          <p class="kicker kicker--light">Get in touch</p>
+          <h2 id="contact-h">Tell us what the <span>equipment is doing.</span></h2>
+        </div>
+        <p>A photo of the label and a sentence about the problem is the quickest way to get the right part sorted.</p>
       </div>
-      <form class="intake" id="pool-form" action="mailto:beyondbluepoolservice@gmail.com" method="post" enctype="text/plain" novalidate>
-        <h3>Email us the details</h3>
-        <div class="f">
-          <label for="f-name">Name</label>
-          <input id="f-name" name="name" type="text" autocomplete="name" required>
+      <div class="contact-grid">
+        <div class="lines-card">
+          <a class="big-call" href="tel:+14803693625"><span class="big-call-ico"><svg aria-hidden="true"><use href="#b-phone"/></svg></span><span><small>Call or text</small>(480) 369-3625</span></a>
+          <ul class="lines">
+            <li><svg aria-hidden="true"><use href="#b-chat"/></svg><span><small>Text</small><a href="sms:+14803693625?&amp;body=Hi%2C%20here%27s%20a%20photo%20of%20my%20pool%20equipment.">Send a photo to (480) 369-3625</a></span></li>
+            <li><svg aria-hidden="true"><use href="#b-mail"/></svg><span><small>Email</small><a href="mailto:beyondbluepoolservice@gmail.com">beyondbluepoolservice@gmail.com</a></span></li>
+            <li><svg aria-hidden="true"><use href="#b-fb"/></svg><span><small>Facebook</small><a href="https://www.facebook.com/100756261682508" target="_blank" rel="noopener">Beyond Blue Pool Service</a></span></li>
+            <li><svg aria-hidden="true"><use href="#b-clock"/></svg><span><small>Hours, as listed on Google</small>Every day, 6 AM to 7 PM</span></li>
+            <li><svg aria-hidden="true"><use href="#b-pin"/></svg><span><small>Area</small>Gilbert, Mesa, Chandler and Queen Creek</span></li>
+          </ul>
+          <div class="mini-rate"><span class="stars" aria-hidden="true"><svg aria-hidden="true"><use href="#b-star"/></svg><svg aria-hidden="true"><use href="#b-star"/></svg><svg aria-hidden="true"><use href="#b-star"/></svg><svg aria-hidden="true"><use href="#b-star"/></svg><svg aria-hidden="true"><use href="#b-star"/></svg></span><b>5.0</b> on Google <a href="https://maps.google.com/?cid=10409797712553721984" target="_blank" rel="noopener">Read the reviews</a></div>
         </div>
-        <div class="f-2">
-          <div class="f">
-            <label for="f-phone">Phone</label>
-            <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel">
+        <form class="form" id="pool-form" action="mailto:beyondbluepoolservice@gmail.com" method="post" enctype="text/plain" novalidate>
+          <h3>Email us the details</h3>
+          <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+          <div class="field-row">
+            <div class="field"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel"></div>
+            <div class="field"><label for="f-city">City</label><select id="f-city" name="city"><option>Gilbert</option><option>Mesa</option><option>Chandler</option><option>Queen Creek</option></select></div>
           </div>
-          <div class="f">
-            <label for="f-city">City</label>
-            <select id="f-city" name="city">
-              <option>Gilbert</option>
-              <option>Mesa</option>
-              <option>Chandler</option>
-              <option>Queen Creek</option>
-            </select>
-          </div>
-        </div>
-        <fieldset class="f-parts">
-          <legend>Which part is giving trouble?</legend>
-          <label><input type="checkbox" name="part" value="Pump"> Pump</label>
-          <label><input type="checkbox" name="part" value="Filter"> Filter</label>
-          <label><input type="checkbox" name="part" value="Heater or heat pump"> Heater</label>
-          <label><input type="checkbox" name="part" value="Timer or controls"> Timer</label>
-          <label><input type="checkbox" name="part" value="Pool light"> Light</label>
-          <label><input type="checkbox" name="part" value="Plumbing or wiring"> Plumbing</label>
-        </fieldset>
-        <div class="f">
-          <label for="f-msg">What is it doing?</label>
-          <textarea id="f-msg" name="message" rows="4"></textarea>
-        </div>
-        <p class="f-err" id="f-err" role="alert" hidden>Add your name so we know who to reply to.</p>
-        <button class="fit fit-deep" type="submit"><svg aria-hidden="true"><use href="#b-mail"/></svg>Open my email to send</button>
-        <p class="f-note">Your email app opens with this filled in. Attach a photo of the equipment label there, then press send.</p>
-      </form>
+          <fieldset class="checks"><legend>Which part is giving trouble?</legend>
+            <label><input type="checkbox" name="part" value="Pump"> Pump</label>
+            <label><input type="checkbox" name="part" value="Filter"> Filter</label>
+            <label><input type="checkbox" name="part" value="Heater or heat pump"> Heater</label>
+            <label><input type="checkbox" name="part" value="Timer or controls"> Timer</label>
+            <label><input type="checkbox" name="part" value="Pool light"> Light</label>
+            <label><input type="checkbox" name="part" value="Plumbing or wiring"> Plumbing</label>
+          </fieldset>
+          <div class="field"><label for="f-msg">What is it doing?</label><textarea id="f-msg" name="message" rows="3"></textarea></div>
+          <p class="f-err" id="f-err" role="alert" hidden>Please add your name so we know who to reply to.</p>
+          <button class="fit fit-deep fit-wide" type="submit"><svg aria-hidden="true"><use href="#b-mail"/></svg>Open my email to send</button>
+          <p class="f-note">Your email app opens with this filled in. Attach a photo of the equipment label there, then press send.</p>
+        </form>
+      </div>
     </div>
   </section>
 
 </main>
-
-<footer class="bottom">
-  <div class="deck bottom-in">
-    <div class="bottom-brand">
-      <svg class="brand-badge" viewBox="0 0 48 52" width="44" height="48" aria-hidden="true" focusable="false"><circle cx="24" cy="30" r="21" fill="#063A5B"/><path d="M7 30q4.2-3.2 8.5 0t8.5 0 8.5 0 8.5 0" fill="none" stroke="#1FB6C9" stroke-width="2.8" stroke-linecap="round"/><path d="M9.5 37q3.6-2.8 7.3 0t7.2 0 7.3 0 7.2 0" fill="none" stroke="#9BE6F0" stroke-width="2.2" stroke-linecap="round"/><path d="M14 43.5q2.5-2 5 0t5 0 5 0 5 0" fill="none" stroke="#9BE6F0" stroke-width="1.8" stroke-linecap="round" opacity=".7"/><rect x="12" y="1" width="24" height="7" rx="3.5" fill="#C8372D"/><rect x="21.5" y="6" width="5" height="9" fill="#C8372D"/><circle cx="24" cy="18" r="4.5" fill="#F3FAFC" stroke="#C8372D" stroke-width="2"/></svg>
-      <span class="brand-name">Beyond Blue<span>Pool Service</span></span>
-      <p>Pool equipment repair for Gilbert, Mesa, Chandler and Queen Creek, Arizona.</p>
+<footer class="ft">
+  <div class="coping" aria-hidden="true"></div>
+  <div class="tileline" aria-hidden="true"></div>
+  <div class="deck ft-grid">
+    <div class="ft-brand">
+      <a class="brand brand--light" href="./" aria-label="Beyond Blue Pool Service, home"><svg class="brand-badge" viewBox="0 0 48 52" width="46" height="50" aria-hidden="true" focusable="false"><circle cx="24" cy="30" r="21" fill="#063A5B"/><path d="M7 30q4.2-3.2 8.5 0t8.5 0 8.5 0 8.5 0" fill="none" stroke="#1FB6C9" stroke-width="2.8" stroke-linecap="round"/><path d="M9.5 37q3.6-2.8 7.3 0t7.2 0 7.3 0 7.2 0" fill="none" stroke="#9BE6F0" stroke-width="2.2" stroke-linecap="round"/><path d="M14 43.5q2.5-2 5 0t5 0 5 0 5 0" fill="none" stroke="#9BE6F0" stroke-width="1.8" stroke-linecap="round" opacity=".7"/><rect x="12" y="1" width="24" height="7" rx="3.5" fill="#C8372D"/><rect x="21.5" y="6" width="5" height="9" fill="#C8372D"/><circle cx="24" cy="18" r="4.5" fill="#F3FAFC" stroke="#C8372D" stroke-width="2"/></svg><span class="brand-name">Beyond Blue<span class="brand-tag">Pool Equipment Repairs <i>&middot;</i> Gilbert AZ</span></span></a>
+      <p>Pool pump, filter, heater, timer, light and pad plumbing repairs for homes in Gilbert, Mesa, Chandler and Queen Creek, Arizona.</p>
+      <a class="fit fit-aqua" href="tel:+14803693625"><svg aria-hidden="true"><use href="#b-phone"/></svg>Call / Text (480) 369-3625</a>
     </div>
-    <ul class="bottom-list">
-      <li><a href="tel:+14803693625">(480) 369-3625</a></li>
-      <li><a href="mailto:beyondbluepoolservice@gmail.com">Email</a></li>
-      <li><a href="https://www.facebook.com/100756261682508" target="_blank" rel="noopener">Facebook</a></li>
-    </ul>
-    <ul class="bottom-list">
-      <li><a href="privacy/">Privacy Policy</a></li>
-      <li><a href="terms/">Terms of Use</a></li>
-    </ul>
+    <div>
+      <h2 class="ft-h">Repairs</h2>
+      <ul class="ft-list">
+        <li><a href="#parts">Pumps and variable-speed pumps</a></li>
+        <li><a href="#parts">Heaters and heat pumps</a></li>
+        <li><a href="#parts">Filter changes</a></li>
+        <li><a href="#parts">Timers, automation, controls</a></li>
+        <li><a href="#parts">Pool lights</a></li>
+        <li><a href="#parts">Pad plumbing and electrical</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="ft-h">Where we work</h2>
+      <ul class="ft-list"><li>Gilbert</li><li>Mesa</li><li>Chandler</li><li>Queen Creek</li></ul>
+      <h2 class="ft-h ft-h--2">Hours</h2>
+      <p class="ft-small">Every day, 6 AM to 7 PM, as listed on Google</p>
+    </div>
+    <div>
+      <h2 class="ft-h">Get in touch</h2>
+      <ul class="ft-list ft-contact">
+        <li><a href="tel:+14803693625"><svg aria-hidden="true"><use href="#b-phone"/></svg>(480) 369-3625</a></li>
+        <li><a href="sms:+14803693625?&amp;body=Hi%2C%20here%27s%20a%20photo%20of%20my%20pool%20equipment."><svg aria-hidden="true"><use href="#b-chat"/></svg>Text a photo</a></li>
+        <li><a href="mailto:beyondbluepoolservice@gmail.com"><svg aria-hidden="true"><use href="#b-mail"/></svg>beyondbluepoolservice@gmail.com</a></li>
+        <li><a href="https://www.facebook.com/100756261682508" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#b-fb"/></svg>Facebook</a></li>
+      </ul>
+    </div>
   </div>
-  <p class="deck bottom-copy">&copy; 2026 Beyond Blue Pool Service</p>
-  <p class="deck bottom-note">The pool, equipment and van photos are Beyond Blue's own. The remaining photos are illustrative stock images.</p>
+  <div class="deck ft-base">
+    <p>&copy; 2026 Beyond Blue Pool Service <i>&middot;</i> <a href="privacy/">Privacy Policy</a> <i>&middot;</i> <a href="terms/">Terms of Use</a></p>
+    <p>Pool equipment repairs <i>&middot;</i> Gilbert, Arizona</p>
+  </div>
+  <p class="deck ft-note">The photos marked &ldquo;Beyond Blue photo&rdquo; (the pool, the equipment pads, the plumbing and the van) are Beyond Blue Pool Service's own. The other photos are illustrative stock images.</p>
 </footer>
-
-<nav class="dock" aria-label="Call or text">
+<nav class="callbar" aria-label="Call or text">
   <a href="tel:+14803693625"><svg aria-hidden="true"><use href="#b-phone"/></svg>Call now</a>
-  <a href="sms:+14803693625?&amp;body=Hi%2C%20my%20pool%20equipment%20needs%20a%20look."><svg aria-hidden="true"><use href="#b-chat"/></svg>Text us</a>
+  <a href="sms:+14803693625?&amp;body=Hi%2C%20here%27s%20a%20photo%20of%20my%20pool%20equipment."><svg aria-hidden="true"><use href="#b-camera"/></svg>Text a photo</a>
 </nav>
-
 <script src="js/site.js" defer></script>
 </body>
 </html>

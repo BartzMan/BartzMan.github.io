@@ -1,0 +1,564 @@
+/* Riverstone Landworks: RIVER STONE. One river, two banks, stacked stones. */
+@font-face{font-family:"Zilla Slab";src:url("../fonts/zilla-slab-normal-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Zilla Slab";src:url("../fonts/zilla-slab-normal-500.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Zilla Slab";src:url("../fonts/zilla-slab-normal-600.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:"Zilla Slab";src:url("../fonts/zilla-slab-normal-700.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"Zilla Slab";src:url("../fonts/zilla-slab-italic-500.woff2") format("woff2");font-weight:500;font-style:italic;font-display:swap}
+@font-face{font-family:"Manrope";src:url("../fonts/manrope-normal-300-800.woff2") format("woff2");font-weight:300 800;font-style:normal;font-display:swap}
+
+:root{
+  --slate:#33444C; --storm:#26343b; --deep:#1c2a31; --foot:#152027; --ink:#1E2A30;
+  --teal:#2F7F7A; --teal-d:#22625E; --teal-dd:#1F5F5B; --teal-l:#8FCFC6; --water:#3E9C94; --glint:#CFF1EC;
+  --amber:#F2A33A; --amber-d:#C46F0E; --pine:#2E4A32; --pine-dd:#1b2a22;
+  --sand:#E9DFCC; --sand-l:#F5EFE4; --wet:#8E9A9B; --mist:#DCE4E2;
+  --max:1320px; --ch:130px;
+  --disp:"Zilla Slab", Georgia, "Times New Roman", serif;
+  --body:"Manrope", "Segoe UI", sans-serif;
+  --tex-pebble:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='190' height='190' viewBox='0 0 190 190'><g fill='%2333444c' fill-opacity='.06' stroke='%2333444c' stroke-opacity='.16' stroke-width='1.3'><ellipse cx='30' cy='34' rx='19' ry='11' transform='rotate(-14 30 34)'/><ellipse cx='122' cy='22' rx='11' ry='7' transform='rotate(20 122 22)'/><ellipse cx='158' cy='98' rx='21' ry='12' transform='rotate(8 158 98)'/><ellipse cx='74' cy='108' rx='14' ry='8.5' transform='rotate(-30 74 108)'/><ellipse cx='26' cy='158' rx='10' ry='6'/><ellipse cx='114' cy='166' rx='17' ry='9' transform='rotate(12 114 166)'/><ellipse cx='90' cy='58' rx='7' ry='4.5' transform='rotate(40 90 58)'/><ellipse cx='176' cy='162' rx='6' ry='4'/></g></svg>");
+  --tex-ripple:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='56' viewBox='0 0 160 56'><g fill='none' stroke='%23cff1ec' stroke-opacity='.11' stroke-width='1.6' stroke-linecap='round'><path d='M0 14 q20 -9 40 0 t40 0 t40 0 t40 0'/><path d='M-20 42 q20 -9 40 0 t40 0 t40 0 t40 0 t40 0'/></g></svg>");
+  --tex-needle:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'><g stroke='%23e9dfcc' stroke-opacity='.09' stroke-width='1.4' stroke-linecap='round' fill='none'><path d='M24 46l-12-15M24 46l-4-19M24 46l5-18M24 46l13-13'/><path d='M100 30l-10-13M100 30l-2-16M100 30l6-15M100 30l12-9'/><path d='M74 104l-13-12M74 104l-6-17M74 104l3-18M74 104l12-14'/><path d='M126 118l-9-12M126 118l-1-15M126 118l7-12'/><path d='M14 120l-6-11M14 120l2-13M14 120l9-9'/></g></svg>");
+  --tex-contour:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='340' height='340' viewBox='0 0 340 340'><g fill='none' stroke='%238fcfc6' stroke-opacity='.075' stroke-width='1.4'><path d='M170 50c70-2 124 44 120 112s-58 128-126 124S44 230 48 160 100 52 170 50z'/><path d='M170 86c48-1 86 30 83 77s-40 88-87 85-82-38-79-86 35-75 83-76z'/><path d='M170 122c27-1 48 17 46 43s-22 49-48 47-46-21-44-48 20-41 46-42z'/><path d='M0 300c60-30 120-10 170 10s110 30 170-10'/><path d='M0 22c50 20 110 10 160-12'/></g></svg>");
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;position:relative;overflow-x:clip;font-family:var(--body);font-size:17px;line-height:1.6;color:var(--ink);background:var(--foot)}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{margin:0;font-family:var(--disp);font-weight:700;line-height:1.02;letter-spacing:-.01em}
+p{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:6px}
+.rs-sprite{position:absolute;width:0;height:0;overflow:hidden}
+.rs-skip{position:absolute;left:12px;top:-80px;z-index:200;background:var(--amber);color:var(--ink);padding:12px 18px;border-radius:999px;font-weight:800;text-decoration:none}
+.rs-skip:focus{top:12px}
+
+/* ---------- shared bits ---------- */
+.rs-wrap{position:relative;z-index:2;max-width:var(--max);margin-inline:auto;padding-inline:20px}
+.rs-bank-l .rs-wrap{padding-left:48px}
+.rs-bank-r .rs-wrap{padding-right:48px}
+.rs-ch{position:absolute;top:0;bottom:0;width:14px;pointer-events:none}
+.rs-bank-l .rs-ch{left:12px}
+.rs-bank-r .rs-ch{right:12px}
+.rs-ch i,.rs-mk{position:absolute;width:2px;height:2px;margin:-1px 0 0 -1px}
+.rs-ch i{left:var(--x);top:var(--y)}
+.rs-mk--mob{display:block}
+
+.rs-eyebrow{display:flex;align-items:center;gap:10px;font-family:var(--body);font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--teal-dd);margin-bottom:14px}
+.rs-eyebrow::before{content:"";flex:0 0 26px;height:16px;background:
+  radial-gradient(ellipse 5px 3.4px at 15px 3.5px,currentColor 98%,transparent 100%),
+  radial-gradient(ellipse 8px 4px at 12px 9px,currentColor 98%,transparent 100%),
+  radial-gradient(ellipse 12px 4.4px at 13px 14.6px,currentColor 98%,transparent 100%);opacity:.9}
+.rs-eyebrow--sun{color:var(--amber)}
+
+.rs-h2{font-size:clamp(2.35rem,8.4vw,4rem);color:var(--slate)}
+.rs-h2 span{display:block}
+.rs-h2__alt{color:var(--teal)}
+.rs-h2--light{color:var(--sand-l)}
+.rs-h2--light .rs-h2__alt{color:var(--amber)}
+.rs-h2--mid{font-size:clamp(2.2rem,7.4vw,3.3rem)}
+
+.rs-pill{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 24px 0 8px;border-radius:999px;font-weight:800;font-size:16px;text-decoration:none;border:2px solid transparent;white-space:nowrap;transition:transform .2s ease,box-shadow .2s ease,background-color .2s ease}
+.rs-pill svg{width:34px;height:34px;padding:8px;border-radius:50%;flex:0 0 34px}
+.rs-pill--amber{background:var(--amber);color:var(--ink);box-shadow:0 10px 22px -10px rgba(194,111,14,.9),inset 0 -3px 0 rgba(0,0,0,.14)}
+.rs-pill--amber svg{background:var(--ink);color:var(--amber)}
+.rs-pill--teal{background:var(--teal-d);color:#fff}
+.rs-pill--teal svg{background:rgba(255,255,255,.16)}
+.rs-pill--ghost{background:rgba(20,30,34,.45);color:#fff;border-color:rgba(245,239,228,.75)}
+.rs-pill--ghost svg{background:var(--teal-d)}
+.rs-pill--big{min-height:58px;font-size:17px}
+.rs-pill--big svg{width:40px;height:40px;flex-basis:40px;padding:10px}
+
+.rs-stars{display:inline-flex;gap:3px;align-items:center}
+.rs-stars svg{width:18px;height:18px;fill:var(--amber)}
+.rs-stars__part{position:relative;display:inline-block}
+.rs-stars__part > svg:first-child{fill:rgba(142,154,155,.55)}
+.rs-stars__part .rs-stars__fill{position:absolute;left:0;top:0;clip-path:inset(0 40% 0 0)}
+.rs-stars--lg svg{width:30px;height:30px;fill:#D98616;stroke:#7a4a0c;stroke-width:.6}
+.rs-stars--lg .rs-stars__part > svg:first-child{fill:#8e9a9b}
+
+/* pebbles: organic river-stone frames with a wet highlight */
+.rs-peb{position:relative;margin:0;aspect-ratio:4/3;overflow:hidden;background:#5d6a6c;
+  box-shadow:0 0 0 5px rgba(142,154,155,.95),0 0 0 7px rgba(51,68,76,.35),0 22px 34px -14px rgba(20,28,32,.6)}
+.rs-peb img{width:100%;height:100%;object-fit:cover}
+.rs-peb::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(ellipse 34% 22% at 30% 18%,rgba(255,255,255,.42),rgba(255,255,255,0) 72%),
+             radial-gradient(ellipse 12% 7% at 70% 12%,rgba(255,255,255,.35),rgba(255,255,255,0) 80%),
+             linear-gradient(165deg,rgba(255,255,255,.10),rgba(255,255,255,0) 40%,rgba(10,20,24,.28));
+  box-shadow:inset 0 -14px 26px rgba(10,20,24,.38),inset 0 8px 16px rgba(255,255,255,.22)}
+.rs-peb--a{border-radius:62% 38% 55% 45% / 48% 58% 42% 52%}
+.rs-peb--b{border-radius:44% 56% 40% 60% / 56% 44% 58% 42%}
+.rs-peb--c{border-radius:55% 45% 62% 38% / 42% 50% 50% 58%}
+.rs-peb--d{border-radius:38% 62% 47% 53% / 60% 40% 60% 40%}
+.rs-peb--e{border-radius:50% 50% 38% 62% / 46% 62% 38% 54%}
+.rs-peb--f{border-radius:58% 42% 44% 56% / 52% 38% 62% 48%}
+.rs-peb--g{border-radius:48% 52% 58% 42% / 55% 45% 55% 45%}
+.rs-peb--h{border-radius:60% 40% 45% 55% / 45% 55% 45% 55%}
+.rs-peb--tall{aspect-ratio:3/4;border-radius:46% 54% 42% 58% / 34% 30% 40% 36%}
+.rs-peb--a{aspect-ratio:1/1.05}
+
+.rs-tags__label{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px}
+.rs-tags ul{display:flex;flex-wrap:wrap;gap:8px}
+.rs-tags li{padding:7px 15px 8px;font-size:14px;font-weight:700;color:var(--ink);
+  background:radial-gradient(ellipse at 30% 25%,#f3f5f3,#c9d1cf 75%);border-radius:48% 52% 44% 56% / 60% 50% 50% 40%;
+  box-shadow:inset 0 -3px 6px rgba(51,68,76,.28),0 4px 8px -4px rgba(0,0,0,.5)}
+
+/* section edges: pine silhouettes against an amber dusk band */
+.rs-pines{background-image:var(--pine-img);background-repeat:repeat-x;background-position:left bottom;background-size:420px 130px}
+.rs-edge{position:relative;height:150px;--edge-x:0px;--sky:linear-gradient(180deg,var(--edge-from) 0%,#f2a33a 58%,#e2752d 100%);
+  background-image:var(--pine-img),var(--sky);background-repeat:repeat-x,no-repeat;background-position:var(--edge-x) bottom,0 0;background-size:420px 130px,100% 100%}
+.rs-edge--storm{--edge-from:#E9DFCC}
+.rs-edge--prune{--edge-from:#26343b;--edge-x:-140px}
+.rs-edge--ground{--edge-from:#2E4A32;--edge-x:-260px}
+.rs-edge--faq{--edge-from:#33444C;--edge-x:-90px;--sky:linear-gradient(180deg,#33444C 0%,#9a6235 62%,#b0602c 100%)}
+.rs-edge--foot{--edge-from:#1c2a31;--edge-x:-320px;--sky:linear-gradient(180deg,#1c2a31 0%,#5a4636 64%,#6d4a30 100%)}
+
+/* ---------- header ---------- */
+.rs-top{position:sticky;top:0;z-index:50;background:var(--sand-l);box-shadow:0 1px 0 rgba(51,68,76,.12),0 8px 20px -14px rgba(20,30,34,.6)}
+.rs-top::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:4px;background:linear-gradient(90deg,var(--teal) 0 33%,var(--amber) 33% 66%,var(--slate) 66%)}
+.rs-top__in{max-width:var(--max);margin:0 auto;display:flex;align-items:center;gap:8px;padding:9px 14px 9px 14px;min-height:66px}
+.rs-logo{display:flex;align-items:center;gap:9px;text-decoration:none;min-width:0;margin-right:auto;min-height:44px}
+.rs-logo__mark{width:38px;height:38px;flex:0 0 38px}
+.rs-logo__txt{display:flex;flex-direction:column;min-width:0}
+.rs-logo__name{font-family:var(--disp);font-weight:700;font-size:clamp(16px,4.7vw,23px);line-height:1.05;color:var(--slate);white-space:nowrap}
+.rs-logo__name span{color:var(--teal-dd)}
+.rs-logo__tag{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#4c5b61;white-space:nowrap;margin-top:3px}
+.rs-nav{display:none}
+.rs-top__call{display:none}
+.rs-top__ring{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--amber);color:var(--ink);flex:0 0 44px}
+.rs-top__ring svg{width:20px;height:20px}
+.rs-burger{display:grid;align-content:center;gap:5px;width:44px;height:44px;flex:0 0 44px;border:0;border-radius:50%;background:var(--slate);cursor:pointer;padding:0 12px}
+.rs-burger span{display:block;height:2.5px;border-radius:2px;background:var(--sand-l)}
+.rs-burger span:nth-child(2){width:70%}
+
+/* phone sheet */
+.rs-sheet{position:fixed;inset:0;z-index:100;background:var(--tex-contour) 0 0/340px,linear-gradient(170deg,#22303A,#152027);color:var(--sand-l);overflow-y:auto}
+.rs-sheet[hidden]{display:none}
+.rs-sheet__river{position:absolute;left:0;top:0;width:54px;height:100%}
+.rs-sheet__in{position:relative;padding:14px 20px 40px 70px;min-height:100%;display:flex;flex-direction:column;gap:26px}
+.rs-sheet__bar{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.rs-sheet__brand{display:flex;align-items:center;gap:8px;font-family:var(--disp);font-weight:700;font-size:21px}
+.rs-sheet__brand svg{width:34px;height:34px}
+.rs-sheet__brand span{color:var(--teal-l)}
+.rs-sheet__close{width:48px;height:48px;border-radius:50%;border:2px solid rgba(245,239,228,.5);background:transparent;color:var(--sand-l);display:grid;place-items:center;cursor:pointer}
+.rs-sheet__close svg{width:22px;height:22px}
+.rs-sheet__links a{display:flex;align-items:center;min-height:54px;font-family:var(--disp);font-size:30px;font-weight:600;text-decoration:none;border-bottom:1px solid rgba(143,207,198,.18)}
+.rs-sheet__links a::before{content:"";width:14px;height:9px;margin-right:14px;border-radius:50%;background:var(--wet);box-shadow:inset 0 -2px 3px rgba(0,0,0,.35)}
+.rs-sheet__acts{display:grid;gap:12px}
+.rs-sheet__mail a{display:inline-flex;align-items:center;min-height:44px;font-weight:700;color:var(--teal-l);overflow-wrap:anywhere}
+
+/* ---------- 2. hero ---------- */
+.rs-hero{position:relative;background:linear-gradient(180deg,#2a2226 0,#3a2a25 calc(100% - 170px),#c46a2c calc(100% - 70px),#f0a94f 100%);padding-bottom:128px;color:var(--sand-l)}
+.rs-hero__photo{position:relative;aspect-ratio:16/11;overflow:hidden}
+.rs-hero__photo img{width:100%;height:100%;object-fit:cover;object-position:64% 50%}
+.rs-hero__photo::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#2a2226 0%,rgba(42,34,38,0) 42%)}
+.rs-hero__in{position:relative;z-index:2;padding:0 20px;margin-top:-64px}
+.rs-hero__title{font-size:clamp(3.1rem,14.5vw,6.6rem);line-height:.92;color:#fff;letter-spacing:-.02em}
+.rs-hero__title span{display:block}
+.rs-hero__alt{color:var(--amber)}
+.rs-hero__area{display:flex;align-items:center;gap:8px;margin-top:16px;font-family:var(--disp);font-size:clamp(1.2rem,4.6vw,1.6rem);font-weight:600;color:var(--sand)}
+.rs-hero__area svg{width:22px;height:22px;flex:0 0 22px;color:var(--amber)}
+.rs-hero__lede{margin-top:10px;max-width:34em;color:#ebe4d8}
+.rs-hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.rs-hero__rate{display:inline-flex;align-items:center;gap:10px;margin-top:20px;min-height:44px;padding:6px 16px;border-radius:40px 52px 44px 50px / 50px 40px 50px 44px;background:rgba(245,239,228,.12);border:1px solid rgba(245,239,228,.3);text-decoration:none;font-weight:700;color:#fff}
+.rs-hero__rate strong{font-family:var(--disp);font-size:22px}
+.rs-hero__cap{display:none}
+.rs-hero__pines{position:absolute;left:0;right:0;bottom:0;height:130px;z-index:0}
+.rs-hero__pines::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:14px;background:var(--pine-dd)}
+.rs-hero__src{left:72%;bottom:16px}
+
+/* ---------- 3. the stones ---------- */
+.rs-stones{position:relative;padding:80px 0 96px;background:var(--tex-pebble) 0 0/190px,linear-gradient(180deg,#F0A94F 0%,#F4C683 16%,#EFDDBC 48%,#E9DFCC 100%)}
+.rs-stones::before{content:"";position:absolute;left:0;right:0;top:-1px;height:30px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 30' preserveAspectRatio='none'><path d='M0 0h1440v12c-120 14-240 18-360 8S840 4 720 14 480 28 360 20 120 4 0 16z' fill='%231b2a22'/></svg>") 0 0/100% 100% no-repeat}
+.rs-stones__grid{display:grid;gap:30px}
+.rs-stones__lede{margin-top:16px;max-width:34em;color:#33444C;font-size:17.5px}
+.rs-stones__note{padding:18px 20px;border-radius:30px 44px 34px 48px / 38px 30px 44px 34px;background:var(--slate);color:var(--sand-l);box-shadow:0 18px 30px -18px rgba(20,30,34,.8)}
+.rs-stones__note strong{color:var(--amber)}
+.rs-stones__note a{font-weight:800;color:#fff;white-space:nowrap}
+.rs-cairn{display:grid;gap:34px}
+.rs-stone{position:relative;display:grid;gap:16px}
+.rs-stone .rs-peb{width:86%}
+.rs-stone:nth-child(2) .rs-peb{width:76%}
+.rs-stone:nth-child(3) .rs-peb{width:92%}
+.rs-cairn--r .rs-stone:nth-child(odd) .rs-peb,.rs-cairn--l .rs-stone:nth-child(even) .rs-peb{justify-self:end}
+.rs-stone__txt h3{font-size:clamp(1.55rem,6vw,1.9rem);color:var(--slate)}
+.rs-stone__txt p{margin-top:6px;color:#2f3e45;font-size:16.5px;max-width:28em}
+
+/* ---------- 4. storm ---------- */
+.rs-storm{position:relative;padding:0 0 96px;color:var(--mist);
+  background:repeating-linear-gradient(104deg,rgba(207,241,236,.045) 0 1px,transparent 1px 13px),radial-gradient(ellipse 70% 50% at 80% 20%,rgba(143,207,198,.10),transparent 70%),var(--storm)}
+.rs-storm__grid{display:grid;gap:34px;margin-top:40px}
+.rs-storm__photo{margin:0}
+.rs-storm__frame{position:relative;overflow:hidden;aspect-ratio:1200/1070;border-radius:42% 58% 38% 62% / 12% 14% 10% 16%;box-shadow:0 0 0 6px #5b6a70,0 30px 50px -20px rgba(0,0,0,.8)}
+.rs-storm__frame img{width:100%;height:100%;object-fit:cover}
+.rs-storm__frame::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(ellipse 30% 14% at 28% 8%,rgba(255,255,255,.25),transparent 70%),linear-gradient(180deg,transparent 70%,rgba(15,22,26,.35));box-shadow:inset 0 -16px 30px rgba(0,0,0,.35)}
+.rs-storm figcaption,.rs-prune figcaption,.rs-ground figcaption{margin-top:14px;font-size:14px;color:#c4cfce;display:flex;gap:8px;align-items:center}
+.rs-storm figcaption::before,.rs-prune figcaption::before,.rs-ground figcaption::before{content:"";flex:0 0 12px;height:8px;border-radius:50%;background:var(--amber)}
+.rs-storm__lede{margin-top:16px;font-size:17.5px}
+.rs-storm__steps{margin-top:22px;display:grid;gap:12px}
+.rs-storm__steps li{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start;padding:14px 16px;border-radius:26px 34px 28px 36px / 30px 26px 34px 28px;background:rgba(245,239,228,.06);border:1px solid rgba(143,207,198,.16)}
+.rs-storm__n{display:grid;place-items:center;width:44px;height:36px;border-radius:55% 45% 50% 50% / 60% 55% 45% 40%;background:var(--amber);color:var(--ink);font-family:var(--disp);font-weight:700;font-size:20px;box-shadow:inset 0 -3px 5px rgba(0,0,0,.25)}
+.rs-storm__steps strong{color:#fff}
+.rs-storm__steps a{color:var(--amber);font-weight:800;white-space:nowrap}
+.rs-tags--storm{margin-top:24px}
+.rs-tags--storm .rs-tags__label,.rs-tags--rate .rs-tags__label{color:var(--amber)}
+
+/* ---------- 5. pruned ---------- */
+.rs-prune{position:relative;padding:0 0 96px;color:#e8e2d4;background:var(--tex-needle) 0 0/140px,radial-gradient(ellipse 60% 40% at 15% 30%,rgba(242,163,58,.10),transparent 70%),var(--pine)}
+.rs-prune__grid{display:grid;gap:34px;margin-top:40px}
+.rs-prune__photo{margin:0;justify-self:center;width:min(100%,440px)}
+.rs-prune__frame{position:relative;overflow:hidden;aspect-ratio:901/1600;border-radius:48% 52% 40% 44% / 16% 16% 10% 12%;box-shadow:0 0 0 6px #6f7b6c,0 0 0 9px rgba(20,30,22,.4),0 30px 50px -20px rgba(0,0,0,.8)}
+.rs-prune__frame img{width:100%;height:100%;object-fit:cover}
+.rs-prune__frame::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(ellipse 34% 10% at 32% 6%,rgba(255,255,255,.3),transparent 70%);box-shadow:inset 0 -18px 30px rgba(0,0,0,.35)}
+.rs-prune__lede{margin-top:16px;font-size:17.5px;max-width:32em}
+.rs-prune__notes{margin-top:24px;display:grid;gap:16px}
+.rs-prune__notes li{display:grid;grid-template-columns:56px 1fr;gap:16px;align-items:start}
+.rs-prune__notes svg{width:56px;height:50px;padding:10px 12px;border-radius:52% 48% 46% 54% / 58% 52% 48% 42%;background:var(--sand);color:var(--pine);box-shadow:inset 0 -4px 7px rgba(46,74,50,.35)}
+.rs-prune__notes h3{font-size:1.45rem;color:#fff}
+.rs-prune__notes p{margin-top:4px}
+.rs-prune__oak{margin:24px 0 24px;padding:14px 18px;border-left:4px solid var(--amber);background:rgba(0,0,0,.16);border-radius:0 24px 24px 0}
+.rs-prune__oak strong{color:var(--amber)}
+
+/* ---------- 6. on the ground ---------- */
+.rs-ground{position:relative;padding:0 0 110px;color:#e6f1ef;background:var(--tex-ripple) 0 0/160px 56px,linear-gradient(180deg,#22625E,#1d5753)}
+.rs-ground__grid{display:grid;gap:30px;margin-top:40px}
+.rs-ground__line{margin-top:16px;font-size:19px;max-width:26em;font-family:var(--disp);font-weight:500;line-height:1.35}
+.rs-ground__wide{margin:0;position:relative}
+.rs-ground__frame{position:relative;overflow:hidden;aspect-ratio:1260/675;border-radius:26% 32% 22% 34% / 40% 34% 44% 38%;box-shadow:0 0 0 6px #7f9896,0 30px 50px -22px rgba(0,0,0,.8)}
+.rs-ground__frame img{width:100%;height:100%;object-fit:cover}
+.rs-ground__frame::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(ellipse 26% 16% at 26% 14%,rgba(255,255,255,.3),transparent 70%);box-shadow:inset 0 -16px 28px rgba(0,0,0,.3)}
+.rs-ground__pebs{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.rs-ground__peb{margin:0}
+.rs-ground__peb:nth-child(2){margin-top:30px}
+.rs-ground figcaption{color:#cfe3e0}
+
+/* ---------- 7. pine country banner ---------- */
+.rs-pine{position:relative;overflow:hidden;padding:120px 0 170px;color:#fff;background:#3b3a2c}
+.rs-pine__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.rs-pine__shade{position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(21,32,39,.85) 0%,rgba(21,32,39,.72) 34%,rgba(21,32,39,.25) 62%,rgba(21,32,39,.35) 100%)}
+.rs-pine__wave{position:absolute;left:0;right:0;top:-1px;height:42px;z-index:0;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 42' preserveAspectRatio='none'><path d='M0 0h1440v16c-90 18-180 26-300 14S900 6 780 20 540 42 420 32 180 8 0 24z' fill='%231d5753'/></svg>") 0 0/100% 100% no-repeat}
+.rs-pine__grid{display:grid;gap:40px}
+.rs-pine__head{position:relative;padding-right:30px}
+.rs-pine__mkA{right:4px;top:0}
+.rs-pine__mkB{right:4px;bottom:0}
+.rs-pine__lede{margin-top:16px;max-width:30em;font-size:17.5px;color:#f1ebe0}
+.rs-pine__run{position:relative;padding-top:60px}
+.rs-ch--fixed{left:50%;width:56px;margin-left:-28px}
+.rs-towns{position:relative;display:grid;grid-template-columns:1fr 56px 1fr;grid-auto-rows:34px}
+.rs-towns li{display:inline-flex;align-items:center;gap:6px;padding:8px 14px 9px 10px;font-family:var(--disp);font-size:17px;font-weight:700;line-height:1.1;color:var(--ink);
+  background:radial-gradient(ellipse at 30% 25%,#fbf6ec,#e2d5bb 78%);border-radius:44% 56% 48% 52% / 62% 50% 50% 38%;box-shadow:inset 0 -4px 7px rgba(110,85,40,.3),0 10px 16px -8px rgba(0,0,0,.6);align-self:start;max-width:100%}
+.rs-towns li svg{width:16px;height:16px;flex:0 0 16px;color:var(--teal-dd)}
+.rs-towns li:nth-child(odd){grid-column:1;justify-self:end}
+.rs-towns li:nth-child(even){grid-column:3;justify-self:start}
+.rs-towns li:nth-child(1){grid-row:1/span 2}.rs-towns li:nth-child(2){grid-row:2/span 2}.rs-towns li:nth-child(3){grid-row:3/span 2}
+.rs-towns li:nth-child(4){grid-row:4/span 2}.rs-towns li:nth-child(5){grid-row:5/span 2}.rs-towns li:nth-child(6){grid-row:6/span 2}
+.rs-towns li:nth-child(7){grid-row:7/span 2}.rs-towns li:nth-child(8){grid-row:8/span 2}.rs-towns li:nth-child(9){grid-row:9/span 2}
+.rs-pine__pines{position:absolute;left:0;right:0;bottom:0;height:130px;z-index:0}
+
+/* ---------- 8. rating + contact ---------- */
+.rs-rate{position:relative;padding:64px 0 100px;color:var(--mist);background:var(--tex-contour) 0 0/340px,var(--slate)}
+.rs-rate__grid{display:grid;gap:44px}
+.rs-rate__peb{position:relative;width:min(100%,300px);aspect-ratio:1/1.02;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:20px;text-align:center;color:#22303A;
+  border-radius:52% 48% 45% 55% / 50% 56% 44% 50%;background:radial-gradient(circle at 34% 26%,#f6f8f6 0,#dbe1df 36%,#b3bebd 100%);
+  box-shadow:0 34px 50px -22px rgba(0,0,0,.7),inset 0 -20px 36px rgba(51,68,76,.35),inset 0 10px 22px rgba(255,255,255,.65)}
+.rs-rate__peb::before{content:"";position:absolute;left:18%;top:9%;width:30%;height:13%;border-radius:50%;background:radial-gradient(ellipse,rgba(255,255,255,.85),rgba(255,255,255,0) 70%);transform:rotate(-18deg)}
+.rs-rate__num{font-family:var(--disp);font-weight:700;font-size:96px;line-height:.9;letter-spacing:-.03em}
+.rs-rate__on{font-family:var(--disp);font-size:20px;font-weight:600}
+.rs-rate__link{display:inline-flex;align-items:center;gap:6px;min-height:44px;font-weight:800;font-size:15px;color:#1b3a40;text-underline-offset:3px}
+.rs-rate__link svg{width:18px;height:18px}
+.rs-tags--rate{margin-top:26px}
+.rs-rate__lede{margin-top:14px;font-size:17.5px;max-width:30em}
+.rs-lines{margin-top:22px;display:grid}
+.rs-lines li{display:grid;grid-template-columns:46px 1fr;gap:14px;align-items:center;padding:12px 0;border-bottom:1px dashed rgba(143,207,198,.26)}
+.rs-lines__ic{display:grid;place-items:center;width:46px;height:40px;border-radius:55% 45% 52% 48% / 62% 56% 44% 38%;background:var(--amber);color:var(--ink);box-shadow:inset 0 -3px 6px rgba(0,0,0,.25)}
+.rs-lines__ic svg{width:20px;height:20px}
+.rs-lines li:nth-child(2) .rs-lines__ic,.rs-lines li:nth-child(4) .rs-lines__ic{background:var(--teal-l)}
+.rs-lines__k{display:block;font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#b9c6c6}
+.rs-lines a,.rs-lines__v{display:inline-block;font-family:var(--disp);font-size:21px;font-weight:600;color:#fff;text-decoration-color:rgba(242,163,58,.7);text-underline-offset:4px;line-height:1.25;padding:3px 0;min-height:44px}
+.rs-lines a{display:inline-flex;align-items:center}
+.rs-lines a.rs-lines__mail{font-size:16px;overflow-wrap:anywhere}
+.rs-lines__v{font-size:18px;color:var(--mist)}
+.rs-form{position:relative;padding:26px 20px 24px;color:var(--ink);border-radius:30px 46px 30px 52px / 40px 34px 48px 36px;
+  background:var(--tex-pebble) 0 0/190px,linear-gradient(170deg,#F5EFE4,#E9DFCC);box-shadow:0 30px 50px -24px rgba(0,0,0,.75)}
+.rs-form__h{font-size:1.9rem;color:var(--slate)}
+.rs-form__sub{margin-top:6px;font-size:15px;color:#3e4d54}
+.rs-form__row{display:grid;gap:0 14px}
+.rs-field{display:block;margin-top:14px}
+.rs-field > span{display:block;font-size:13px;font-weight:800;color:var(--slate);margin-bottom:6px;letter-spacing:.02em}
+.rs-field input,.rs-field select,.rs-field textarea{width:100%;min-height:48px;padding:10px 14px;border:1.5px solid #6f7d80;border-radius:14px 18px 14px 20px;background:#fffdf8;font-size:16px}
+.rs-field textarea{resize:vertical;min-height:110px}
+.rs-field input:focus,.rs-field select:focus,.rs-field textarea:focus{outline:3px solid var(--teal);outline-offset:1px;border-color:var(--teal)}
+.rs-form__go{width:100%;margin-top:20px;border:0;cursor:pointer;min-height:54px}
+.rs-form__note{margin-top:12px;font-size:13.5px;color:#3e4d54;text-align:center}
+
+/* ---------- 9. faq ---------- */
+.rs-faq{position:relative;padding:0 0 100px;color:var(--mist);background:var(--tex-contour) 120px 60px/340px,var(--deep)}
+.rs-faq__grid{display:grid;gap:36px;margin-top:40px}
+.rs-faq__img{margin:0;justify-self:center;width:min(78%,380px)}
+.rs-qs{margin-top:26px;display:grid;gap:14px}
+.rs-q{position:relative;border-radius:40px 58px 40px 62px / 38px 44px 50px 44px;background:linear-gradient(160deg,#41545d,#2d3d45);box-shadow:0 16px 26px -16px rgba(0,0,0,.8),inset 0 -6px 12px rgba(0,0,0,.25),inset 0 4px 8px rgba(255,255,255,.08)}
+.rs-q::before{content:"";position:absolute;left:9%;top:7px;width:24%;height:8px;border-radius:50%;background:radial-gradient(ellipse,rgba(255,255,255,.22),transparent 70%);pointer-events:none}
+.rs-q summary{list-style:none;cursor:pointer;display:flex;align-items:center;min-height:60px;padding:16px 70px 16px 24px;font-family:var(--disp);font-size:1.3rem;font-weight:600;color:#fff;line-height:1.2;position:relative}
+.rs-q summary::-webkit-details-marker{display:none}
+.rs-q summary::after{content:"+";position:absolute;right:16px;top:50%;width:40px;height:34px;margin-top:-17px;display:grid;place-items:center;border-radius:55% 45% 50% 50% / 60% 55% 45% 40%;background:var(--amber);color:var(--ink);font-family:var(--body);font-weight:800;font-size:22px;transition:transform .25s ease}
+.rs-q[open] summary::after{transform:rotate(45deg)}
+.rs-q p{padding:0 24px 22px;color:#e1e8e6}
+
+/* ---------- 10. footer ---------- */
+.rs-foot{position:relative;color:#c9d4d3;background:var(--tex-contour) 40px 0/340px,var(--foot);padding-bottom:30px}
+.rs-foot__pool{position:relative;height:104px;--pool-x:96px}
+.rs-foot__pool svg{position:absolute;top:-8px;left:calc(var(--pool-x) - 130px);width:260px;height:96px}
+.rs-foot__end{position:absolute;width:2px;height:2px;left:var(--pool-x);top:38px}
+.rs-foot__grid{max-width:var(--max);margin:0 auto;padding:10px 20px 30px;display:grid;gap:34px}
+.rs-logo--foot{margin:0}
+.rs-logo--foot .rs-logo__name{color:#fff;font-size:24px}
+.rs-logo--foot .rs-logo__name span{color:var(--teal-l)}
+.rs-logo--foot .rs-logo__tag{color:#b9c6c6}
+.rs-foot__brand p{margin-top:14px;max-width:26em;font-size:15.5px}
+.rs-foot__rate{display:inline-flex;align-items:center;gap:8px;margin-top:16px;min-height:44px;padding:4px 14px;border-radius:30px;background:rgba(255,255,255,.07);text-decoration:none;color:#fff;font-weight:700}
+.rs-foot__rate strong{font-family:var(--disp);font-size:20px}
+.rs-foot__h{font-family:var(--body);font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-bottom:12px}
+.rs-foot__col li{font-size:15.5px}
+.rs-foot__col a{display:inline-flex;align-items:center;min-height:44px;text-decoration:none;color:#e4ebea}
+.rs-foot__col a:hover{color:var(--amber)}
+.rs-foot__towns{display:flex;flex-wrap:wrap;gap:6px 8px}
+.rs-foot__towns li{padding:4px 12px;border-radius:40% 60% 50% 50% / 60% 50% 50% 40%;background:rgba(143,207,198,.10);color:#e4ebea}
+.rs-foot__contact li{display:flex;align-items:center;gap:10px}
+.rs-foot__contact svg{width:18px;height:18px;flex:0 0 18px;color:var(--teal-l)}
+.rs-foot__contact a{overflow-wrap:anywhere}
+.rs-foot__base{max-width:var(--max);margin:0 auto;padding:22px 20px 0;border-top:1px solid rgba(143,207,198,.18);display:grid;gap:10px;font-size:14px}
+.rs-foot__legal{display:flex;gap:18px;flex-wrap:wrap}
+.rs-foot__legal a{display:inline-flex;align-items:center;min-height:44px;color:#fff;font-weight:700;text-underline-offset:3px}
+.rs-foot__credit{color:#b9c6c6;font-size:13.5px;max-width:70em}
+
+html.rs-lock{overflow:hidden}
+/* sticky phone bar */
+.rs-bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px 10px calc(8px + env(safe-area-inset-bottom));background:rgba(21,32,39,.96);box-shadow:0 -8px 20px rgba(0,0,0,.3)}
+.rs-bar a{display:flex;align-items:center;justify-content:center;gap:8px;min-height:50px;border-radius:999px;font-weight:800;font-size:17px;text-decoration:none}
+.rs-bar svg{width:20px;height:20px}
+.rs-bar__call{background:var(--amber);color:var(--ink)}
+.rs-bar__text{background:var(--teal-d);color:#fff}
+body{padding-bottom:66px}
+
+/* the river */
+.rs-riverlayer{position:absolute;left:0;top:0;width:100%;height:0;overflow:hidden;pointer-events:none;z-index:1}
+.rs-river{display:block;width:100%;height:100%}
+.rs-river path{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.rs-river__bank{stroke:#0f2b2a;stroke-opacity:.5;stroke-width:14}
+.rs-river__water{stroke:var(--water);stroke-width:8}
+.rs-river__glint{stroke:var(--glint);stroke-width:2;stroke-dasharray:3 22;stroke-opacity:.95}
+.rs-river__stones ellipse{stroke:rgba(15,43,42,.45);stroke-width:1}
+
+/* ---------- >= 560 ---------- */
+@media (min-width:560px){
+  .rs-form__row{grid-template-columns:1fr 1fr}
+  .rs-foot__grid{grid-template-columns:1fr 1fr}
+}
+
+/* ---------- >= 760: tablet ---------- */
+@media (min-width:760px){
+  body{padding-bottom:0}
+  .rs-bar{display:none}
+  .rs-top__in{padding:10px 24px;min-height:74px;gap:14px}
+  .rs-logo__mark{width:44px;height:44px;flex-basis:44px}
+  .rs-logo__tag{letter-spacing:.12em}
+  .rs-top__ring{display:none}
+  .rs-top__call{display:inline-flex}
+  .rs-bank-l .rs-wrap{padding-left:84px;padding-right:32px}
+  .rs-bank-r .rs-wrap{padding-right:84px;padding-left:32px}
+  .rs-bank-l .rs-ch{left:26px;width:22px}
+  .rs-bank-r .rs-ch{right:26px;width:22px}
+  .rs-wrap{padding-inline:32px}
+  .rs-river__bank{stroke-width:17}
+  .rs-river__water{stroke-width:10}
+  .rs-hero__photo{aspect-ratio:16/9}
+  .rs-hero__in{padding:0 40px;margin-top:-110px}
+  .rs-stone{grid-template-columns:44% 1fr;align-items:center;gap:26px}
+  .rs-stone .rs-peb,.rs-stone:nth-child(2) .rs-peb,.rs-stone:nth-child(3) .rs-peb{width:100%}
+  .rs-cairn--l .rs-stone:nth-child(even),.rs-cairn--r .rs-stone:nth-child(odd){grid-template-columns:1fr 44%}
+  .rs-cairn--l .rs-stone:nth-child(even) .rs-peb,.rs-cairn--r .rs-stone:nth-child(odd) .rs-peb{order:2}
+  .rs-storm__photo{max-width:620px}
+  .rs-ground__pebs{max-width:640px}
+  .rs-pine__head{padding-right:40px}
+  .rs-pine__mkA,.rs-pine__mkB{right:8px}
+  .rs-ch--fixed{width:110px;margin-left:-55px}
+  .rs-towns{grid-template-columns:1fr 110px 1fr;grid-auto-rows:38px;max-width:620px;margin:0 auto}
+  .rs-towns li{font-size:19px;padding:9px 18px 10px 12px}
+  .rs-rate__stone{display:grid;grid-template-columns:300px 1fr;gap:30px;align-items:center}
+  .rs-tags--rate{margin-top:0}
+  .rs-rate__stone .rs-eyebrow{grid-column:1/-1;margin-bottom:0}
+  .rs-form{padding:32px 30px 28px}
+  .rs-lines a.rs-lines__mail{font-size:18px}
+  .rs-foot__pool{--pool-x:150px}
+  .rs-foot__grid,.rs-foot__base{padding-inline:32px}
+  .rs-foot__base{grid-template-columns:1fr auto}
+  .rs-foot__credit{grid-column:1/-1}
+}
+
+/* ---------- >= 1100: desktop, the river gets its own channel column ---------- */
+@media (min-width:1100px){
+  .rs-top__in{padding:10px 40px}
+  .rs-nav{display:block;margin-left:auto}
+  .rs-nav ul{display:flex;gap:2px}
+  .rs-nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;border-radius:999px;font-weight:700;font-size:15px;text-decoration:none;color:var(--slate)}
+  .rs-nav a:hover{background:rgba(47,127,122,.12);color:var(--teal-dd)}
+  .rs-logo{margin-right:0}
+  .rs-burger{display:none}
+
+  .rs-wrap,.rs-bank-l .rs-wrap,.rs-bank-r .rs-wrap{padding-inline:40px}
+  .rs-ch,.rs-bank-l .rs-ch,.rs-bank-r .rs-ch{position:relative;left:auto;right:auto;top:auto;bottom:auto;width:auto;grid-area:ch}
+  .rs-ch--fixed{position:absolute;left:50%;top:0;bottom:0;width:110px;margin-left:-55px}
+  .rs-mk--mob{display:none}
+  .rs-river__bank{stroke-width:21}
+  .rs-river__water{stroke-width:12}
+  .rs-river__glint{stroke-width:2.4}
+
+  /* hero */
+  .rs-hero{display:flex;align-items:center;min-height:clamp(660px,86vh,840px);padding:0;background:linear-gradient(90deg,#3a2a25,#c9792f 50%,#3a2a25)}
+  .rs-hero__photo{position:absolute;inset:0;max-width:1760px;margin-inline:auto;aspect-ratio:auto}
+  .rs-hero__photo img{object-position:60% 50%}
+  .rs-hero__photo::after{background:linear-gradient(90deg,rgba(22,28,32,.93) 0%,rgba(22,28,32,.8) 30%,rgba(22,28,32,.2) 58%,rgba(22,28,32,0) 72%),linear-gradient(0deg,rgba(27,42,34,.55),rgba(27,42,34,0) 34%)}
+  .rs-hero__in{width:100%;max-width:var(--max);margin:0 auto;padding:100px 40px 190px}
+  .rs-hero__in > *{max-width:620px}
+  .rs-hero__title{font-size:clamp(5rem,7.4vw,7rem)}
+  .rs-hero__cap{display:flex;align-items:center;gap:8px;position:absolute;right:max(40px,calc((100vw - 1320px)/2 + 40px));bottom:150px;z-index:2;padding:7px 14px;border-radius:999px;background:rgba(21,32,39,.72);color:#f1ebe0;font-size:13px;font-weight:600}
+  .rs-hero__cap::before{content:"";width:10px;height:7px;border-radius:50%;background:var(--amber)}
+  .rs-hero__src{left:62%;bottom:22px}
+  .rs-hero__pines{height:150px;background-image:var(--pine-img),linear-gradient(180deg,rgba(240,169,79,0) 0%,rgba(240,169,79,.5) 55%,rgba(226,117,45,.9) 100%);background-repeat:repeat-x,no-repeat;background-size:420px 130px,100% 100%;background-position:left bottom,0 0}
+
+  /* stones: two cairns on either bank */
+  .rs-stones{padding:96px 0 110px}
+  .rs-stones__grid{grid-template-columns:1fr var(--ch) 1fr;grid-template-areas:"head ch note" "l ch r";gap:50px 0}
+  .rs-stones__head{grid-area:head;padding-right:24px}
+  .rs-stones__note{grid-area:note;align-self:end;margin-left:24px;max-width:470px}
+  .rs-cairn{gap:0}
+  .rs-cairn--l{grid-area:l;justify-items:end}
+  .rs-cairn--r{grid-area:r;justify-items:start;padding-top:130px}
+  .rs-stone,.rs-cairn--l .rs-stone:nth-child(even),.rs-cairn--r .rs-stone:nth-child(odd){display:flex;align-items:center;gap:22px;width:100%}
+  .rs-cairn--l .rs-stone{flex-direction:row-reverse}
+  .rs-cairn--r .rs-stone{flex-direction:row}
+  .rs-stone + .rs-stone{margin-top:-22px}
+  .rs-stone .rs-peb,.rs-stone:nth-child(2) .rs-peb,.rs-stone:nth-child(3) .rs-peb{flex:0 0 auto;order:0}
+  .rs-stone:nth-child(1) .rs-peb{width:43%}
+  .rs-stone:nth-child(2) .rs-peb{width:50%}
+  .rs-stone:nth-child(3) .rs-peb{width:57%}
+  .rs-stone:nth-child(1){z-index:3}.rs-stone:nth-child(2){z-index:2}.rs-stone:nth-child(3){z-index:1}
+  .rs-cairn--l .rs-stone:nth-child(2){transform:translateX(-30px)}
+  .rs-cairn--r .rs-stone:nth-child(2){transform:translateX(30px)}
+  .rs-cairn--l .rs-stone__txt{text-align:right}
+  .rs-stone__txt{flex:1 1 auto;min-width:0}
+  .rs-stone__txt h3{font-size:1.75rem}
+  .rs-stone__txt p{font-size:16px}
+  .rs-cairn--l .rs-stone__txt p{margin-left:auto}
+
+  /* storm */
+  .rs-storm{padding-bottom:120px}
+  .rs-storm__grid{grid-template-columns:7fr var(--ch) 5fr;grid-template-areas:"photo ch txt";gap:0;align-items:center;margin-top:60px}
+  .rs-storm__photo{grid-area:photo;max-width:none}
+  .rs-storm__txt{grid-area:txt}
+
+  /* pruned */
+  .rs-prune{padding-bottom:120px}
+  .rs-prune__grid{grid-template-columns:5fr var(--ch) 7fr;grid-template-areas:"photo ch txt";gap:0;align-items:center;margin-top:60px}
+  .rs-prune__photo{grid-area:photo;justify-self:end}
+  .rs-prune__txt{grid-area:txt}
+
+  /* ground */
+  .rs-ground{padding-bottom:130px}
+  .rs-ground__grid{grid-template-columns:4fr var(--ch) 8fr;grid-template-areas:"txt ch wide" "txt ch pebs";gap:0;margin-top:60px}
+  .rs-ground__txt{grid-area:txt;align-self:center}
+  .rs-ground__wide{grid-area:wide}
+  .rs-ground__wide figcaption{position:absolute;left:22px;top:6px;margin:0;padding:7px 14px;border-radius:999px;background:rgba(21,32,39,.82);color:#f1ebe0;font-size:13.5px;z-index:2}
+  .rs-ground__pebs{grid-area:pebs;max-width:none;width:84%;margin:-64px 0 0 auto;gap:28px}
+
+  /* banner */
+  .rs-pine{padding:150px 0 210px;min-height:760px}
+  .rs-pine__shade{background:linear-gradient(90deg,rgba(21,32,39,.88) 0%,rgba(21,32,39,.7) 34%,rgba(21,32,39,.18) 58%,rgba(21,32,39,.12) 100%),linear-gradient(0deg,rgba(21,32,39,.4),transparent 30%)}
+  .rs-pine__grid{grid-template-columns:5fr 7fr;gap:0;align-items:center}
+  .rs-pine__head{padding-right:40px}
+  .rs-pine__run{padding-top:40px;padding-bottom:20px}
+  .rs-towns{grid-auto-rows:42px;max-width:none}
+  .rs-towns li{font-size:21px}
+
+  /* rating + contact */
+  .rs-rate{padding:80px 0 120px}
+  .rs-rate__grid{grid-template-columns:300px 110px 1fr;grid-template-areas:"stone ch lines" "stone ch form";gap:40px 0}
+  .rs-rate__stone{grid-area:stone;display:block}
+  .rs-tags--rate{margin-top:26px}
+  .rs-rate__lines{grid-area:lines}
+  .rs-h2--mid{font-size:2.75rem}
+  .rs-form{grid-area:form}
+
+  /* faq */
+  .rs-faq{padding-bottom:110px}
+  .rs-faq__grid{grid-template-columns:4fr var(--ch) 8fr;grid-template-areas:"img ch body";gap:0;align-items:center;margin-top:60px}
+  .rs-faq__img{grid-area:img;width:100%;max-width:400px;justify-self:end}
+  .rs-faq__body{grid-area:body}
+  .rs-q:nth-child(even){margin-left:34px}
+
+  /* footer */
+  .rs-foot__pool{--pool-x:33%;height:110px}
+  .rs-foot__grid{grid-template-columns:1.5fr 1fr 1fr 1.25fr;gap:40px;padding-inline:40px}
+  .rs-foot__base{padding-inline:40px}
+}
+
+@media (min-width:900px) and (max-width:1099px){
+  .rs-rate__grid{grid-template-columns:1fr 1.1fr;column-gap:32px;align-items:start}
+  .rs-rate__stone{grid-column:1/-1}
+}
+@media (min-width:1280px){
+  .rs-rate__grid{grid-template-columns:300px 110px 1fr 1.15fr;grid-template-areas:"stone ch lines form";gap:0 0}
+  .rs-rate__lines{padding-right:40px}
+}
+@media (min-width:1761px){
+  .rs-hero__photo{-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+}
+
+/* ---------- motion (all of it off unless the visitor is fine with it) ---------- */
+@media (prefers-reduced-motion:no-preference){
+  html.js [data-reveal]{opacity:0;transform:translateY(26px);transition:opacity .55s ease,transform .55s ease}
+  html.js .rs-cairn--l .rs-stone:nth-child(2)[data-reveal]{transform:translate(-30px,26px)}
+  html.js .rs-cairn--r .rs-stone:nth-child(2)[data-reveal]{transform:translate(30px,26px)}
+  html.js [data-reveal="in"]{opacity:1;transform:none}
+  html.js .rs-cairn--l .rs-stone:nth-child(2)[data-reveal="in"]{transform:translateX(-30px)}
+  html.js .rs-cairn--r .rs-stone:nth-child(2)[data-reveal="in"]{transform:translateX(30px)}
+  @media (max-width:1099px){
+    html.js .rs-cairn .rs-stone:nth-child(2)[data-reveal]{transform:translateY(26px)}
+    html.js .rs-cairn .rs-stone:nth-child(2)[data-reveal="in"]{transform:none}
+  }
+  .rs-river__glint,.rs-sheet__glint{animation:rs-flow 10s linear infinite}
+  .rs-ripple{transform-origin:130px 48px;animation:rs-ripple 4.5s ease-out infinite}
+  .rs-ripple--2{animation-delay:2.2s}
+  .rs-peb img{transition:transform .6s ease}
+  .rs-stone:hover .rs-peb img{transform:scale(1.04)}
+  .rs-pill:hover{transform:translateY(-2px)}
+}
+@keyframes rs-flow{to{stroke-dashoffset:-250}}
+@keyframes rs-ripple{0%{transform:scale(.6);opacity:0}30%{opacity:1}100%{transform:scale(1.25);opacity:0}}
+
+/* ---- pine silhouette tiles (generated by rs_pines.py) ---- */
+.rs-pines--hero{--pine-img:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='130' viewBox='0 0 420 130'><g fill='%231b2a22'><path d='M7.0 130 L8.6 59.3 L11.4 59.3 L13.0 130Z'/><ellipse cx='10.0' cy='41.1' rx='16.4' ry='10.5'/><ellipse cx='0.9' cy='49.2' rx='12.6' ry='8.1'/><ellipse cx='20.1' cy='49.2' rx='13.9' ry='8.9'/><ellipse cx='7.0' cy='59.3' rx='11.4' ry='7.3'/><ellipse cx='16.1' cy='35.1' rx='10.1' ry='6.5'/><ellipse cx='-2.1' cy='71.4' rx='7.1' ry='4.0'/><path d='M46.0 78.0 L55.4 86.9 L50.7 84.9 L57.9 95.9 L51.9 93.8 L60.4 104.8 L53.2 102.8 L63.0 113.8 L54.5 111.7 L65.5 122.7 L49.0 130.0 L43.0 130.0 L26.5 122.7 L37.5 111.7 L29.0 113.8 L38.8 102.8 L31.6 104.8 L40.1 93.8 L34.1 95.9 L41.3 84.9 L36.6 86.9Z'/><path d='M69.0 130 L70.6 63.5 L73.4 63.5 L75.0 130Z'/><ellipse cx='72.0' cy='46.4' rx='15.4' ry='9.9'/><ellipse cx='63.5' cy='54.0' rx='11.9' ry='7.6'/><ellipse cx='81.5' cy='54.0' rx='13.1' ry='8.4'/><ellipse cx='69.2' cy='63.5' rx='10.7' ry='6.8'/><ellipse cx='77.7' cy='40.7' rx='9.5' ry='6.1'/><ellipse cx='60.6' cy='74.9' rx='6.7' ry='3.8'/><path d='M116.0 80.0 L122.5 88.6 L119.2 86.6 L124.2 97.2 L120.1 95.2 L126.0 105.8 L121.0 103.8 L127.7 114.4 L121.9 112.4 L129.5 123.0 L119.0 130.0 L113.0 130.0 L102.5 123.0 L110.1 112.4 L104.3 114.4 L111.0 103.8 L106.0 105.8 L111.9 95.2 L107.8 97.2 L112.8 86.6 L109.5 88.6Z'/><path d='M137.0 130 L138.6 55.1 L141.4 55.1 L143.0 130Z'/><ellipse cx='140.0' cy='35.8' rx='17.4' ry='11.1'/><ellipse cx='130.4' cy='44.4' rx='13.4' ry='8.6'/><ellipse cx='150.7' cy='44.4' rx='14.7' ry='9.4'/><ellipse cx='136.8' cy='55.1' rx='12.0' ry='7.7'/><ellipse cx='146.4' cy='29.4' rx='10.7' ry='6.8'/><ellipse cx='127.2' cy='67.9' rx='7.5' ry='4.3'/><path d='M171.0 79.0 L180.4 87.8 L175.7 85.7 L182.9 96.5 L176.9 94.5 L185.4 105.3 L178.2 103.3 L188.0 114.1 L179.5 112.0 L190.5 122.9 L174.0 130.0 L168.0 130.0 L151.5 122.9 L162.5 112.0 L154.0 114.1 L163.8 103.3 L156.6 105.3 L165.1 94.5 L159.1 96.5 L166.3 85.7 L161.6 87.8Z'/><path d='M195.0 130 L196.6 55.8 L199.4 55.8 L201.0 130Z'/><ellipse cx='198.0' cy='36.7' rx='17.2' ry='11.0'/><ellipse cx='188.5' cy='45.2' rx='13.3' ry='8.5'/><ellipse cx='208.6' cy='45.2' rx='14.6' ry='9.3'/><ellipse cx='194.8' cy='55.8' rx='11.9' ry='7.6'/><ellipse cx='204.4' cy='30.4' rx='10.6' ry='6.8'/><ellipse cx='185.3' cy='68.5' rx='7.4' ry='4.2'/><path d='M238.0 79.0 L246.4 87.8 L242.2 85.7 L248.7 96.5 L243.3 94.5 L250.9 105.3 L244.5 103.3 L253.2 114.1 L245.6 112.0 L255.5 122.9 L241.0 130.0 L235.0 130.0 L220.5 122.9 L230.4 112.0 L222.8 114.1 L231.5 103.3 L225.1 105.3 L232.7 94.5 L227.3 96.5 L233.8 85.7 L229.6 87.8Z'/><path d='M262.0 130 L263.6 55.8 L266.4 55.8 L268.0 130Z'/><ellipse cx='265.0' cy='36.7' rx='17.2' ry='11.0'/><ellipse cx='255.5' cy='45.2' rx='13.3' ry='8.5'/><ellipse cx='275.6' cy='45.2' rx='14.6' ry='9.3'/><ellipse cx='261.8' cy='55.8' rx='11.9' ry='7.6'/><ellipse cx='271.4' cy='30.4' rx='10.6' ry='6.8'/><ellipse cx='252.3' cy='68.5' rx='7.4' ry='4.2'/><path d='M295.0 74.0 L302.2 83.6 L298.6 81.4 L304.1 93.3 L299.6 91.0 L306.1 102.9 L300.6 100.7 L308.1 112.5 L301.5 110.3 L310.0 122.2 L298.0 130.0 L292.0 130.0 L280.0 122.2 L288.5 110.3 L281.9 112.5 L289.4 100.7 L283.9 102.9 L290.4 91.0 L285.9 93.3 L291.4 81.4 L287.8 83.6Z'/><path d='M316.0 130 L317.6 60.7 L320.4 60.7 L322.0 130Z'/><ellipse cx='319.0' cy='42.9' rx='16.1' ry='10.3'/><ellipse cx='310.1' cy='50.8' rx='12.4' ry='7.9'/><ellipse cx='328.9' cy='50.8' rx='13.6' ry='8.7'/><ellipse cx='316.0' cy='60.7' rx='11.1' ry='7.1'/><ellipse cx='324.9' cy='36.9' rx='9.9' ry='6.3'/><ellipse cx='307.1' cy='72.6' rx='6.9' ry='4.0'/><path d='M355.0 130 L356.6 57.9 L359.4 57.9 L361.0 130Z'/><ellipse cx='358.0' cy='39.4' rx='16.7' ry='10.7'/><ellipse cx='348.7' cy='47.6' rx='12.9' ry='8.2'/><ellipse cx='368.3' cy='47.6' rx='14.2' ry='9.1'/><ellipse cx='354.9' cy='57.9' rx='11.6' ry='7.4'/><ellipse cx='364.2' cy='33.2' rx='10.3' ry='6.6'/><ellipse cx='345.6' cy='70.3' rx='7.2' ry='4.1'/><path d='M389.0 42.0 L396.0 57.1 L392.5 53.6 L397.8 72.3 L393.4 68.8 L399.7 87.4 L394.4 83.9 L401.6 102.5 L395.3 99.0 L403.5 117.7 L392.0 130.0 L386.0 130.0 L374.5 117.7 L382.7 99.0 L376.4 102.5 L383.6 83.9 L378.3 87.4 L384.6 68.8 L380.2 72.3 L385.5 53.6 L382.0 57.1Z'/><path d='M409.0 130 L410.6 62.8 L413.4 62.8 L415.0 130Z'/><ellipse cx='412.0' cy='45.5' rx='15.6' ry='10.0'/><ellipse cx='403.4' cy='53.2' rx='12.0' ry='7.7'/><ellipse cx='421.6' cy='53.2' rx='13.2' ry='8.4'/><ellipse cx='409.1' cy='62.8' rx='10.8' ry='6.9'/><ellipse cx='417.8' cy='39.8' rx='9.6' ry='6.1'/><ellipse cx='400.5' cy='74.3' rx='6.7' ry='3.8'/><rect x='0' y='118' width='420' height='12'/></g></svg>")}
+.rs-pines--storm{--pine-img:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='130' viewBox='0 0 420 130'><g fill='%2326343b'><path d='M7.0 130 L8.6 59.3 L11.4 59.3 L13.0 130Z'/><ellipse cx='10.0' cy='41.1' rx='16.4' ry='10.5'/><ellipse cx='0.9' cy='49.2' rx='12.6' ry='8.1'/><ellipse cx='20.1' cy='49.2' rx='13.9' ry='8.9'/><ellipse cx='7.0' cy='59.3' rx='11.4' ry='7.3'/><ellipse cx='16.1' cy='35.1' rx='10.1' ry='6.5'/><ellipse cx='-2.1' cy='71.4' rx='7.1' ry='4.0'/><path d='M46.0 78.0 L55.4 86.9 L50.7 84.9 L57.9 95.9 L51.9 93.8 L60.4 104.8 L53.2 102.8 L63.0 113.8 L54.5 111.7 L65.5 122.7 L49.0 130.0 L43.0 130.0 L26.5 122.7 L37.5 111.7 L29.0 113.8 L38.8 102.8 L31.6 104.8 L40.1 93.8 L34.1 95.9 L41.3 84.9 L36.6 86.9Z'/><path d='M69.0 130 L70.6 63.5 L73.4 63.5 L75.0 130Z'/><ellipse cx='72.0' cy='46.4' rx='15.4' ry='9.9'/><ellipse cx='63.5' cy='54.0' rx='11.9' ry='7.6'/><ellipse cx='81.5' cy='54.0' rx='13.1' ry='8.4'/><ellipse cx='69.2' cy='63.5' rx='10.7' ry='6.8'/><ellipse cx='77.7' cy='40.7' rx='9.5' ry='6.1'/><ellipse cx='60.6' cy='74.9' rx='6.7' ry='3.8'/><path d='M116.0 80.0 L122.5 88.6 L119.2 86.6 L124.2 97.2 L120.1 95.2 L126.0 105.8 L121.0 103.8 L127.7 114.4 L121.9 112.4 L129.5 123.0 L119.0 130.0 L113.0 130.0 L102.5 123.0 L110.1 112.4 L104.3 114.4 L111.0 103.8 L106.0 105.8 L111.9 95.2 L107.8 97.2 L112.8 86.6 L109.5 88.6Z'/><path d='M137.0 130 L138.6 55.1 L141.4 55.1 L143.0 130Z'/><ellipse cx='140.0' cy='35.8' rx='17.4' ry='11.1'/><ellipse cx='130.4' cy='44.4' rx='13.4' ry='8.6'/><ellipse cx='150.7' cy='44.4' rx='14.7' ry='9.4'/><ellipse cx='136.8' cy='55.1' rx='12.0' ry='7.7'/><ellipse cx='146.4' cy='29.4' rx='10.7' ry='6.8'/><ellipse cx='127.2' cy='67.9' rx='7.5' ry='4.3'/><path d='M171.0 79.0 L180.4 87.8 L175.7 85.7 L182.9 96.5 L176.9 94.5 L185.4 105.3 L178.2 103.3 L188.0 114.1 L179.5 112.0 L190.5 122.9 L174.0 130.0 L168.0 130.0 L151.5 122.9 L162.5 112.0 L154.0 114.1 L163.8 103.3 L156.6 105.3 L165.1 94.5 L159.1 96.5 L166.3 85.7 L161.6 87.8Z'/><path d='M195.0 130 L196.6 55.8 L199.4 55.8 L201.0 130Z'/><ellipse cx='198.0' cy='36.7' rx='17.2' ry='11.0'/><ellipse cx='188.5' cy='45.2' rx='13.3' ry='8.5'/><ellipse cx='208.6' cy='45.2' rx='14.6' ry='9.3'/><ellipse cx='194.8' cy='55.8' rx='11.9' ry='7.6'/><ellipse cx='204.4' cy='30.4' rx='10.6' ry='6.8'/><ellipse cx='185.3' cy='68.5' rx='7.4' ry='4.2'/><path d='M238.0 79.0 L246.4 87.8 L242.2 85.7 L248.7 96.5 L243.3 94.5 L250.9 105.3 L244.5 103.3 L253.2 114.1 L245.6 112.0 L255.5 122.9 L241.0 130.0 L235.0 130.0 L220.5 122.9 L230.4 112.0 L222.8 114.1 L231.5 103.3 L225.1 105.3 L232.7 94.5 L227.3 96.5 L233.8 85.7 L229.6 87.8Z'/><path d='M262.0 130 L263.6 55.8 L266.4 55.8 L268.0 130Z'/><ellipse cx='265.0' cy='36.7' rx='17.2' ry='11.0'/><ellipse cx='255.5' cy='45.2' rx='13.3' ry='8.5'/><ellipse cx='275.6' cy='45.2' rx='14.6' ry='9.3'/><ellipse cx='261.8' cy='55.8' rx='11.9' ry='7.6'/><ellipse cx='271.4' cy='30.4' rx='10.6' ry='6.8'/><ellipse cx='252.3' cy='68.5' rx='7.4' ry='4.2'/><path d='M295.0 74.0 L302.2 83.6 L298.6 81.4 L304.1 93.3 L299.6 91.0 L306.1 102.9 L300.6 100.7 L308.1 112.5 L301.5 110.3 L310.0 122.2 L298.0 130.0 L292.0 130.0 L280.0 122.2 L288.5 110.3 L281.9 112.5 L289.4 100.7 L283.9 102.9 L290.4 91.0 L285.9 93.3 L291.4 81.4 L287.8 83.6Z'/><path d='M316.0 130 L317.6 60.7 L320.4 60.7 L322.0 130Z'/><ellipse cx='319.0' cy='42.9' rx='16.1' ry='10.3'/><ellipse cx='310.1' cy='50.8' rx='12.4' ry='7.9'/><ellipse cx='328.9' cy='50.8' rx='13.6' ry='8.7'/><ellipse cx='316.0' cy='60.7' rx='11.1' ry='7.1'/><ellipse cx='324.9' cy='36.9' rx='9.9' ry='6.3'/><ellipse cx='307.1' cy='72.6' rx='6.9' ry='4.0'/><path d='M355.0 130 L356.6 57.9 L359.4 57.9 L361.0 130Z'/><ellipse cx='358.0' cy='39.4' rx='16.7' ry='10.7'/><ellipse cx='348.7' cy='47.6' rx='12.9' ry='8.2'/><ellipse cx='368.3' cy='47.6' rx='14.2' ry='9.1'/><ellipse cx='354.9' cy='57.9' rx='11.6' ry='7.4'/><ellipse cx='364.2' cy='33.2' rx='10.3' ry='6.6'/><ellipse cx='345.6' cy='70.3' rx='7.2' ry='4.1'/><path d='M389.0 42.0 L396.0 57.1 L392.5 53.6 L397.8 72.3 L393.4 68.8 L399.7 87.4 L394.4 83.9 L401.6 102.5 L395.3 99.0 L403.5 117.7 L392.0 130.0 L386.0 130.0 L374.5 117.7 L382.7 99.0 L376.4 102.5 L383.6 83.9 L378.3 87.4 L384.6 68.8 L380.2 72.3 L385.5 53.6 L382.0 57.1Z'/><path d='M409.0 130 L410.6 62.8 L413.4 62.8 L415.0 130Z'/><ellipse cx='412.0' cy='45.5' rx='15.6' ry='10.0'/><ellipse cx='403.4' cy='53.2' rx='12.0' ry='7.7'/><ellipse cx='421.6' cy='53.2' rx='13.2' ry='8.4'/><ellipse cx='409.1' cy='62.8' rx='10.8' ry='6.9'/><ellipse cx='417.8' cy='39.8' rx='9.6' ry='6.1'/><ellipse cx='400.5' cy='74.3' rx='6.7' ry='3.8'/><rect x='0' y='118' width='420' height='12'/></g></svg>")}
+.rs-pines--pine{--pine-img:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='130' viewBox='0 0 420 130'><g fill='%232e4a32'><path d='M7.0 130 L8.6 59.3 L11.4 59.3 L13.0 130Z'/><ellipse cx='10.0' cy='41.1' rx='16.4' ry='10.5'/><ellipse cx='0.9' cy='49.2' rx='12.6' ry='8.1'/><ellipse cx='20.1' cy='49.2' rx='13.9' ry='8.9'/><ellipse cx='7.0' cy='59.3' rx='11.4' ry='7.3'/><ellipse cx='16.1' cy='35.1' rx='10.1' ry='6.5'/><ellipse cx='-2.1' cy='71.4' rx='7.1' ry='4.0'/><path d='M46.0 78.0 L55.4 86.9 L50.7 84.9 L57.9 95.9 L51.9 93.8 L60.4 104.8 L53.2 102.8 L63.0 113.8 L54.5 111.7 L65.5 122.7 L49.0 130.0 L43.0 130.0 L26.5 122.7 L37.5 111.7 L29.0 113.8 L38.8 102.8 L31.6 104.8 L40.1 93.8 L34.1 95.9 L41.3 84.9 L36.6 86.9Z'/><path d='M69.0 130 L70.6 63.5 L73.4 63.5 L75.0 130Z'/><ellipse cx='72.0' cy='46.4' rx='15.4' ry='9.9'/><ellipse cx='63.5' cy='54.0' rx='11.9' ry='7.6'/><ellipse cx='81.5' cy='54.0' rx='13.1' ry='8.4'/><ellipse cx='69.2' cy='63.5' rx='10.7' ry='6.8'/><ellipse cx='77.7' cy='40.7' rx='9.5' ry='6.1'/><ellipse cx='60.6' cy='74.9' rx='6.7' ry='3.8'/><path d='M116.0 80.0 L122.5 88.6 L119.2 86.6 L124.2 97.2 L120.1 95.2 L126.0 105.8 L121.0 103.8 L127.7 114.4 L121.9 112.4 L129.5 123.0 L119.0 130.0 L113.0 130.0 L102.5 123.0 L110.1 112.4 L104.3 114.4 L111.0 103.8 L106.0 105.8 L111.9 95.2 L107.8 97.2 L112.8 86.6 L109.5 88.6Z'/><path d='M137.0 130 L138.6 55.1 L141.4 55.1 L143.0 130Z'/><ellipse cx='140.0' cy='35.8' rx='17.4' ry='11.1'/><ellipse cx='130.4' cy='44.4' rx='13.4' ry='8.6'/><ellipse cx='150.7' cy='44.4' rx='14.7' ry='9.4'/><ellipse cx='136.8' cy='55.1' rx='12.0' ry='7.7'/><ellipse cx='146.4' cy='29.4' rx='10.7' ry='6.8'/><ellipse cx='127.2' cy='67.9' rx='7.5' ry='4.3'/><path d='M171.0 79.0 L180.4 87.8 L175.7 85.7 L182.9 96.5 L176.9 94.5 L185.4 105.3 L178.2 103.3 L188.0 114.1 L179.5 112.0 L190.5 122.9 L174.0 130.0 L168.0 130.0 L151.5 122.9 L162.5 112.0 L154.0 114.1 L163.8 103.3 L156.6 105.3 L165.1 94.5 L159.1 96.5 L166.3 85.7 L161.6 87.8Z'/><path d='M195.0 130 L196.6 55.8 L199.4 55.8 L201.0 130Z'/><ellipse cx='198.0' cy='36.7' rx='17.2' ry='11.0'/><ellipse cx='188.5' cy='45.2' rx='13.3' ry='8.5'/><ellipse cx='208.6' cy='45.2' rx='14.6' ry='9.3'/><ellipse cx='194.8' cy='55.8' rx='11.9' ry='7.6'/><ellipse cx='204.4' cy='30.4' rx='10.6' ry='6.8'/><ellipse cx='185.3' cy='68.5' rx='7.4' ry='4.2'/><path d='M238.0 79.0 L246.4 87.8 L242.2 85.7 L248.7 96.5 L243.3 94.5 L250.9 105.3 L244.5 103.3 L253.2 114.1 L245.6 112.0 L255.5 122.9 L241.0 130.0 L235.0 130.0 L220.5 122.9 L230.4 112.0 L222.8 114.1 L231.5 103.3 L225.1 105.3 L232.7 94.5 L227.3 96.5 L233.8 85.7 L229.6 87.8Z'/><path d='M262.0 130 L263.6 55.8 L266.4 55.8 L268.0 130Z'/><ellipse cx='265.0' cy='36.7' rx='17.2' ry='11.0'/><ellipse cx='255.5' cy='45.2' rx='13.3' ry='8.5'/><ellipse cx='275.6' cy='45.2' rx='14.6' ry='9.3'/><ellipse cx='261.8' cy='55.8' rx='11.9' ry='7.6'/><ellipse cx='271.4' cy='30.4' rx='10.6' ry='6.8'/><ellipse cx='252.3' cy='68.5' rx='7.4' ry='4.2'/><path d='M295.0 74.0 L302.2 83.6 L298.6 81.4 L304.1 93.3 L299.6 91.0 L306.1 102.9 L300.6 100.7 L308.1 112.5 L301.5 110.3 L310.0 122.2 L298.0 130.0 L292.0 130.0 L280.0 122.2 L288.5 110.3 L281.9 112.5 L289.4 100.7 L283.9 102.9 L290.4 91.0 L285.9 93.3 L291.4 81.4 L287.8 83.6Z'/><path d='M316.0 130 L317.6 60.7 L320.4 60.7 L322.0 130Z'/><ellipse cx='319.0' cy='42.9' rx='16.1' ry='10.3'/><ellipse cx='310.1' cy='50.8' rx='12.4' ry='7.9'/><ellipse cx='328.9' cy='50.8' rx='13.6' ry='8.7'/><ellipse cx='316.0' cy='60.7' rx='11.1' ry='7.1'/><ellipse cx='324.9' cy='36.9' rx='9.9' ry='6.3'/><ellipse cx='307.1' cy='72.6' rx='6.9' ry='4.0'/><path d='M355.0 130 L356.6 57.9 L359.4 57.9 L361.0 130Z'/><ellipse cx='358.0' cy='39.4' rx='16.7' ry='10.7'/><ellipse cx='348.7' cy='47.6' rx='12.9' ry='8.2'/><ellipse cx='368.3' cy='47.6' rx='14.2' ry='9.1'/><ellipse cx='354.9' cy='57.9' rx='11.6' ry='7.4'/><ellipse cx='364.2' cy='33.2' rx='10.3' ry='6.6'/><ellipse cx='345.6' cy='70.3' rx='7.2' ry='4.1'/><path d='M389.0 42.0 L396.0 57.1 L392.5 53.6 L397.8 72.3 L393.4 68.8 L399.7 87.4 L394.4 83.9 L401.6 102.5 L395.3 99.0 L403.5 117.7 L392.0 130.0 L386.0 130.0 L374.5 117.7 L382.7 99.0 L376.4 102.5 L383.6 83.9 L378.3 87.4 L384.6 68.8 L380.2 72.3 L385.5 53.6 L382.0 57.1Z'/><path d='M409.0 130 L410.6 62.8 L413.4 62.8 L415.0 130Z'/><ellipse cx='412.0' cy='45.5' rx='15.6' ry='10.0'/><ellipse cx='403.4' cy='53.2' rx='12.0' ry='7.7'/><ellipse cx='421.6' cy='53.2' rx='13.2' ry='8.4'/><ellipse cx='409.1' cy='62.8' rx='10.8' ry='6.9'/><ellipse cx='417.8' cy='39.8' rx='9.6' ry='6.1'/><ellipse cx='400.5' cy='74.3' rx='6.7' ry='3.8'/><rect x='0' y='118' width='420' height='12'/></g></svg>")}
+.rs-pines--teal{--pine-img:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='130' viewBox='0 0 420 130'><g fill='%2322625e'><path d='M7.0 130 L8.6 59.3 L11.4 59.3 L13.0 130Z'/><ellipse cx='10.0' cy='41.1' rx='16.4' ry='10.5'/><ellipse cx='0.9' cy='49.2' rx='12.6' ry='8.1'/><ellipse cx='20.1' cy='49.2' rx='13.9' ry='8.9'/><ellipse cx='7.0' cy='59.3' rx='11.4' ry='7.3'/><ellipse cx='16.1' cy='35.1' rx='10.1' ry='6.5'/><ellipse cx='-2.1' cy='71.4' rx='7.1' ry='4.0'/><path d='M46.0 78.0 L55.4 86.9 L50.7 84.9 L57.9 95.9 L51.9 93.8 L60.4 104.8 L53.2 102.8 L63.0 113.8 L54.5 111.7 L65.5 122.7 L49.0 130.0 L43.0 130.0 L26.5 122.7 L37.5 111.7 L29.0 113.8 L38.8 102.8 L31.6 104.8 L40.1 93.8 L34.1 95.9 L41.3 84.9 L36.6 86.9Z'/><path d='M69.0 130 L70.6 63.5 L73.4 63.5 L75.0 130Z'/><ellipse cx='72.0' cy='46.4' rx='15.4' ry='9.9'/><ellipse cx='63.5' cy='54.0' rx='11.9' ry='7.6'/><ellipse cx='81.5' cy='54.0' rx='13.1' ry='8.4'/><ellipse cx='69.2' cy='63.5' rx='10.7' ry='6.8'/><ellipse cx='77.7' cy='40.7' rx='9.5' ry='6.1'/><ellipse cx='60.6' cy='74.9' rx='6.7' ry='3.8'/><path d='M116.0 80.0 L122.5 88.6 L119.2 86.6 L124.2 97.2 L120.1 95.2 L126.0 105.8 L121.0 103.8 L127.7 114.4 L121.9 112.4 L129.5 123.0 L119.0 130.0 L113.0 130.0 L102.5 123.0 L110.1 112.4 L104.3 114.4 L111.0 103.8 L106.0 105.8 L111.9 95.2 L107.8 97.2 L112.8 86.6 L109.5 88.6Z'/><path d='M137.0 130 L138.6 55.1 L141.4 55.1 L143.0 130Z'/><ellipse cx='140.0' cy='35.8' rx='17.4' ry='11.1'/><ellipse cx='130.4' cy='44.4' rx='13.4' ry='8.6'/><ellipse cx='150.7' cy='44.4' rx='14.7' ry='9.4'/><ellipse cx='136.8' cy='55.1' rx='12.0' ry='7.7'/><ellipse cx='146.4' cy='29.4' rx='10.7' ry='6.8'/><ellipse cx='127.2' cy='67.9' rx='7.5' ry='4.3'/><path d='M171.0 79.0 L180.4 87.8 L175.7 85.7 L182.9 96.5 L176.9 94.5 L185.4 105.3 L178.2 103.3 L188.0 114.1 L179.5 112.0 L190.5 122.9 L174.0 130.0 L168.0 130.0 L151.5 122.9 L162.5 112.0 L154.0 114.1 L163.8 103.3 L156.6 105.3 L165.1 94.5 L159.1 96.5 L166.3 85.7 L161.6 87.8Z'/><path d='M195.0 130 L196.6 55.8 L199.4 55.8 L201.0 130Z'/><ellipse cx='198.0' cy='36.7' rx='17.2' ry='11.0'/><ellipse cx='188.5' cy='45.2' rx='13.3' ry='8.5'/><ellipse cx='208.6' cy='45.2' rx='14.6' ry='9.3'/><ellipse cx='194.8' cy='55.8' rx='11.9' ry='7.6'/><ellipse cx='204.4' cy='30.4' rx='10.6' ry='6.8'/><ellipse cx='185.3' cy='68.5' rx='7.4' ry='4.2'/><path d='M238.0 79.0 L246.4 87.8 L242.2 85.7 L248.7 96.5 L243.3 94.5 L250.9 105.3 L244.5 103.3 L253.2 114.1 L245.6 112.0 L255.5 122.9 L241.0 130.0 L235.0 130.0 L220.5 122.9 L230.4 112.0 L222.8 114.1 L231.5 103.3 L225.1 105.3 L232.7 94.5 L227.3 96.5 L233.8 85.7 L229.6 87.8Z'/><path d='M262.0 130 L263.6 55.8 L266.4 55.8 L268.0 130Z'/><ellipse cx='265.0' cy='36.7' rx='17.2' ry='11.0'/><ellipse cx='255.5' cy='45.2' rx='13.3' ry='8.5'/><ellipse cx='275.6' cy='45.2' rx='14.6' ry='9.3'/><ellipse cx='261.8' cy='55.8' rx='11.9' ry='7.6'/><ellipse cx='271.4' cy='30.4' rx='10.6' ry='6.8'/><ellipse cx='252.3' cy='68.5' rx='7.4' ry='4.2'/><path d='M295.0 74.0 L302.2 83.6 L298.6 81.4 L304.1 93.3 L299.6 91.0 L306.1 102.9 L300.6 100.7 L308.1 112.5 L301.5 110.3 L310.0 122.2 L298.0 130.0 L292.0 130.0 L280.0 122.2 L288.5 110.3 L281.9 112.5 L289.4 100.7 L283.9 102.9 L290.4 91.0 L285.9 93.3 L291.4 81.4 L287.8 83.6Z'/><path d='M316.0 130 L317.6 60.7 L320.4 60.7 L322.0 130Z'/><ellipse cx='319.0' cy='42.9' rx='16.1' ry='10.3'/><ellipse cx='310.1' cy='50.8' rx='12.4' ry='7.9'/><ellipse cx='328.9' cy='50.8' rx='13.6' ry='8.7'/><ellipse cx='316.0' cy='60.7' rx='11.1' ry='7.1'/><ellipse cx='324.9' cy='36.9' rx='9.9' ry='6.3'/><ellipse cx='307.1' cy='72.6' rx='6.9' ry='4.0'/><path d='M355.0 130 L356.6 57.9 L359.4 57.9 L361.0 130Z'/><ellipse cx='358.0' cy='39.4' rx='16.7' ry='10.7'/><ellipse cx='348.7' cy='47.6' rx='12.9' ry='8.2'/><ellipse cx='368.3' cy='47.6' rx='14.2' ry='9.1'/><ellipse cx='354.9' cy='57.9' rx='11.6' ry='7.4'/><ellipse cx='364.2' cy='33.2' rx='10.3' ry='6.6'/><ellipse cx='345.6' cy='70.3' rx='7.2' ry='4.1'/><path d='M389.0 42.0 L396.0 57.1 L392.5 53.6 L397.8 72.3 L393.4 68.8 L399.7 87.4 L394.4 83.9 L401.6 102.5 L395.3 99.0 L403.5 117.7 L392.0 130.0 L386.0 130.0 L374.5 117.7 L382.7 99.0 L376.4 102.5 L383.6 83.9 L378.3 87.4 L384.6 68.8 L380.2 72.3 L385.5 53.6 L382.0 57.1Z'/><path d='M409.0 130 L410.6 62.8 L413.4 62.8 L415.0 130Z'/><ellipse cx='412.0' cy='45.5' rx='15.6' ry='10.0'/><ellipse cx='403.4' cy='53.2' rx='12.0' ry='7.7'/><ellipse cx='421.6' cy='53.2' rx='13.2' ry='8.4'/><ellipse cx='409.1' cy='62.8' rx='10.8' ry='6.9'/><ellipse cx='417.8' cy='39.8' rx='9.6' ry='6.1'/><ellipse cx='400.5' cy='74.3' rx='6.7' ry='3.8'/><rect x='0' y='118' width='420' height='12'/></g></svg>")}
+.rs-pines--slate{--pine-img:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='130' viewBox='0 0 420 130'><g fill='%2333444c'><path d='M7.0 130 L8.6 59.3 L11.4 59.3 L13.0 130Z'/><ellipse cx='10.0' cy='41.1' rx='16.4' ry='10.5'/><ellipse cx='0.9' cy='49.2' rx='12.6' ry='8.1'/><ellipse cx='20.1' cy='49.2' rx='13.9' ry='8.9'/><ellipse cx='7.0' cy='59.3' rx='11.4' ry='7.3'/><ellipse cx='16.1' cy='35.1' rx='10.1' ry='6.5'/><ellipse cx='-2.1' cy='71.4' rx='7.1' ry='4.0'/><path d='M46.0 78.0 L55.4 86.9 L50.7 84.9 L57.9 95.9 L51.9 93.8 L60.4 104.8 L53.2 102.8 L63.0 113.8 L54.5 111.7 L65.5 122.7 L49.0 130.0 L43.0 130.0 L26.5 122.7 L37.5 111.7 L29.0 113.8 L38.8 102.8 L31.6 104.8 L40.1 93.8 L34.1 95.9 L41.3 84.9 L36.6 86.9Z'/><path d='M69.0 130 L70.6 63.5 L73.4 63.5 L75.0 130Z'/><ellipse cx='72.0' cy='46.4' rx='15.4' ry='9.9'/><ellipse cx='63.5' cy='54.0' rx='11.9' ry='7.6'/><ellipse cx='81.5' cy='54.0' rx='13.1' ry='8.4'/><ellipse cx='69.2' cy='63.5' rx='10.7' ry='6.8'/><ellipse cx='77.7' cy='40.7' rx='9.5' ry='6.1'/><ellipse cx='60.6' cy='74.9' rx='6.7' ry='3.8'/><path d='M116.0 80.0 L122.5 88.6 L119.2 86.6 L124.2 97.2 L120.1 95.2 L126.0 105.8 L121.0 103.8 L127.7 114.4 L121.9 112.4 L129.5 123.0 L119.0 130.0 L113.0 130.0 L102.5 123.0 L110.1 112.4 L104.3 114.4 L111.0 103.8 L106.0 105.8 L111.9 95.2 L107.8 97.2 L112.8 86.6 L109.5 88.6Z'/><path d='M137.0 130 L138.6 55.1 L141.4 55.1 L143.0 130Z'/><ellipse cx='140.0' cy='35.8' rx='17.4' ry='11.1'/><ellipse cx='130.4' cy='44.4' rx='13.4' ry='8.6'/><ellipse cx='150.7' cy='44.4' rx='14.7' ry='9.4'/><ellipse cx='136.8' cy='55.1' rx='12.0' ry='7.7'/><ellipse cx='146.4' cy='29.4' rx='10.7' ry='6.8'/><ellipse cx='127.2' cy='67.9' rx='7.5' ry='4.3'/><path d='M171.0 79.0 L180.4 87.8 L175.7 85.7 L182.9 96.5 L176.9 94.5 L185.4 105.3 L178.2 103.3 L188.0 114.1 L179.5 112.0 L190.5 122.9 L174.0 130.0 L168.0 130.0 L151.5 122.9 L162.5 112.0 L154.0 114.1 L163.8 103.3 L156.6 105.3 L165.1 94.5 L159.1 96.5 L166.3 85.7 L161.6 87.8Z'/><path d='M195.0 130 L196.6 55.8 L199.4 55.8 L201.0 130Z'/><ellipse cx='198.0' cy='36.7' rx='17.2' ry='11.0'/><ellipse cx='188.5' cy='45.2' rx='13.3' ry='8.5'/><ellipse cx='208.6' cy='45.2' rx='14.6' ry='9.3'/><ellipse cx='194.8' cy='55.8' rx='11.9' ry='7.6'/><ellipse cx='204.4' cy='30.4' rx='10.6' ry='6.8'/><ellipse cx='185.3' cy='68.5' rx='7.4' ry='4.2'/><path d='M238.0 79.0 L246.4 87.8 L242.2 85.7 L248.7 96.5 L243.3 94.5 L250.9 105.3 L244.5 103.3 L253.2 114.1 L245.6 112.0 L255.5 122.9 L241.0 130.0 L235.0 130.0 L220.5 122.9 L230.4 112.0 L222.8 114.1 L231.5 103.3 L225.1 105.3 L232.7 94.5 L227.3 96.5 L233.8 85.7 L229.6 87.8Z'/><path d='M262.0 130 L263.6 55.8 L266.4 55.8 L268.0 130Z'/><ellipse cx='265.0' cy='36.7' rx='17.2' ry='11.0'/><ellipse cx='255.5' cy='45.2' rx='13.3' ry='8.5'/><ellipse cx='275.6' cy='45.2' rx='14.6' ry='9.3'/><ellipse cx='261.8' cy='55.8' rx='11.9' ry='7.6'/><ellipse cx='271.4' cy='30.4' rx='10.6' ry='6.8'/><ellipse cx='252.3' cy='68.5' rx='7.4' ry='4.2'/><path d='M295.0 74.0 L302.2 83.6 L298.6 81.4 L304.1 93.3 L299.6 91.0 L306.1 102.9 L300.6 100.7 L308.1 112.5 L301.5 110.3 L310.0 122.2 L298.0 130.0 L292.0 130.0 L280.0 122.2 L288.5 110.3 L281.9 112.5 L289.4 100.7 L283.9 102.9 L290.4 91.0 L285.9 93.3 L291.4 81.4 L287.8 83.6Z'/><path d='M316.0 130 L317.6 60.7 L320.4 60.7 L322.0 130Z'/><ellipse cx='319.0' cy='42.9' rx='16.1' ry='10.3'/><ellipse cx='310.1' cy='50.8' rx='12.4' ry='7.9'/><ellipse cx='328.9' cy='50.8' rx='13.6' ry='8.7'/><ellipse cx='316.0' cy='60.7' rx='11.1' ry='7.1'/><ellipse cx='324.9' cy='36.9' rx='9.9' ry='6.3'/><ellipse cx='307.1' cy='72.6' rx='6.9' ry='4.0'/><path d='M355.0 130 L356.6 57.9 L359.4 57.9 L361.0 130Z'/><ellipse cx='358.0' cy='39.4' rx='16.7' ry='10.7'/><ellipse cx='348.7' cy='47.6' rx='12.9' ry='8.2'/><ellipse cx='368.3' cy='47.6' rx='14.2' ry='9.1'/><ellipse cx='354.9' cy='57.9' rx='11.6' ry='7.4'/><ellipse cx='364.2' cy='33.2' rx='10.3' ry='6.6'/><ellipse cx='345.6' cy='70.3' rx='7.2' ry='4.1'/><path d='M389.0 42.0 L396.0 57.1 L392.5 53.6 L397.8 72.3 L393.4 68.8 L399.7 87.4 L394.4 83.9 L401.6 102.5 L395.3 99.0 L403.5 117.7 L392.0 130.0 L386.0 130.0 L374.5 117.7 L382.7 99.0 L376.4 102.5 L383.6 83.9 L378.3 87.4 L384.6 68.8 L380.2 72.3 L385.5 53.6 L382.0 57.1Z'/><path d='M409.0 130 L410.6 62.8 L413.4 62.8 L415.0 130Z'/><ellipse cx='412.0' cy='45.5' rx='15.6' ry='10.0'/><ellipse cx='403.4' cy='53.2' rx='12.0' ry='7.7'/><ellipse cx='421.6' cy='53.2' rx='13.2' ry='8.4'/><ellipse cx='409.1' cy='62.8' rx='10.8' ry='6.9'/><ellipse cx='417.8' cy='39.8' rx='9.6' ry='6.1'/><ellipse cx='400.5' cy='74.3' rx='6.7' ry='3.8'/><rect x='0' y='118' width='420' height='12'/></g></svg>")}
+.rs-pines--deep{--pine-img:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='130' viewBox='0 0 420 130'><g fill='%231c2a31'><path d='M7.0 130 L8.6 59.3 L11.4 59.3 L13.0 130Z'/><ellipse cx='10.0' cy='41.1' rx='16.4' ry='10.5'/><ellipse cx='0.9' cy='49.2' rx='12.6' ry='8.1'/><ellipse cx='20.1' cy='49.2' rx='13.9' ry='8.9'/><ellipse cx='7.0' cy='59.3' rx='11.4' ry='7.3'/><ellipse cx='16.1' cy='35.1' rx='10.1' ry='6.5'/><ellipse cx='-2.1' cy='71.4' rx='7.1' ry='4.0'/><path d='M46.0 78.0 L55.4 86.9 L50.7 84.9 L57.9 95.9 L51.9 93.8 L60.4 104.8 L53.2 102.8 L63.0 113.8 L54.5 111.7 L65.5 122.7 L49.0 130.0 L43.0 130.0 L26.5 122.7 L37.5 111.7 L29.0 113.8 L38.8 102.8 L31.6 104.8 L40.1 93.8 L34.1 95.9 L41.3 84.9 L36.6 86.9Z'/><path d='M69.0 130 L70.6 63.5 L73.4 63.5 L75.0 130Z'/><ellipse cx='72.0' cy='46.4' rx='15.4' ry='9.9'/><ellipse cx='63.5' cy='54.0' rx='11.9' ry='7.6'/><ellipse cx='81.5' cy='54.0' rx='13.1' ry='8.4'/><ellipse cx='69.2' cy='63.5' rx='10.7' ry='6.8'/><ellipse cx='77.7' cy='40.7' rx='9.5' ry='6.1'/><ellipse cx='60.6' cy='74.9' rx='6.7' ry='3.8'/><path d='M116.0 80.0 L122.5 88.6 L119.2 86.6 L124.2 97.2 L120.1 95.2 L126.0 105.8 L121.0 103.8 L127.7 114.4 L121.9 112.4 L129.5 123.0 L119.0 130.0 L113.0 130.0 L102.5 123.0 L110.1 112.4 L104.3 114.4 L111.0 103.8 L106.0 105.8 L111.9 95.2 L107.8 97.2 L112.8 86.6 L109.5 88.6Z'/><path d='M137.0 130 L138.6 55.1 L141.4 55.1 L143.0 130Z'/><ellipse cx='140.0' cy='35.8' rx='17.4' ry='11.1'/><ellipse cx='130.4' cy='44.4' rx='13.4' ry='8.6'/><ellipse cx='150.7' cy='44.4' rx='14.7' ry='9.4'/><ellipse cx='136.8' cy='55.1' rx='12.0' ry='7.7'/><ellipse cx='146.4' cy='29.4' rx='10.7' ry='6.8'/><ellipse cx='127.2' cy='67.9' rx='7.5' ry='4.3'/><path d='M171.0 79.0 L180.4 87.8 L175.7 85.7 L182.9 96.5 L176.9 94.5 L185.4 105.3 L178.2 103.3 L188.0 114.1 L179.5 112.0 L190.5 122.9 L174.0 130.0 L168.0 130.0 L151.5 122.9 L162.5 112.0 L154.0 114.1 L163.8 103.3 L156.6 105.3 L165.1 94.5 L159.1 96.5 L166.3 85.7 L161.6 87.8Z'/><path d='M195.0 130 L196.6 55.8 L199.4 55.8 L201.0 130Z'/><ellipse cx='198.0' cy='36.7' rx='17.2' ry='11.0'/><ellipse cx='188.5' cy='45.2' rx='13.3' ry='8.5'/><ellipse cx='208.6' cy='45.2' rx='14.6' ry='9.3'/><ellipse cx='194.8' cy='55.8' rx='11.9' ry='7.6'/><ellipse cx='204.4' cy='30.4' rx='10.6' ry='6.8'/><ellipse cx='185.3' cy='68.5' rx='7.4' ry='4.2'/><path d='M238.0 79.0 L246.4 87.8 L242.2 85.7 L248.7 96.5 L243.3 94.5 L250.9 105.3 L244.5 103.3 L253.2 114.1 L245.6 112.0 L255.5 122.9 L241.0 130.0 L235.0 130.0 L220.5 122.9 L230.4 112.0 L222.8 114.1 L231.5 103.3 L225.1 105.3 L232.7 94.5 L227.3 96.5 L233.8 85.7 L229.6 87.8Z'/><path d='M262.0 130 L263.6 55.8 L266.4 55.8 L268.0 130Z'/><ellipse cx='265.0' cy='36.7' rx='17.2' ry='11.0'/><ellipse cx='255.5' cy='45.2' rx='13.3' ry='8.5'/><ellipse cx='275.6' cy='45.2' rx='14.6' ry='9.3'/><ellipse cx='261.8' cy='55.8' rx='11.9' ry='7.6'/><ellipse cx='271.4' cy='30.4' rx='10.6' ry='6.8'/><ellipse cx='252.3' cy='68.5' rx='7.4' ry='4.2'/><path d='M295.0 74.0 L302.2 83.6 L298.6 81.4 L304.1 93.3 L299.6 91.0 L306.1 102.9 L300.6 100.7 L308.1 112.5 L301.5 110.3 L310.0 122.2 L298.0 130.0 L292.0 130.0 L280.0 122.2 L288.5 110.3 L281.9 112.5 L289.4 100.7 L283.9 102.9 L290.4 91.0 L285.9 93.3 L291.4 81.4 L287.8 83.6Z'/><path d='M316.0 130 L317.6 60.7 L320.4 60.7 L322.0 130Z'/><ellipse cx='319.0' cy='42.9' rx='16.1' ry='10.3'/><ellipse cx='310.1' cy='50.8' rx='12.4' ry='7.9'/><ellipse cx='328.9' cy='50.8' rx='13.6' ry='8.7'/><ellipse cx='316.0' cy='60.7' rx='11.1' ry='7.1'/><ellipse cx='324.9' cy='36.9' rx='9.9' ry='6.3'/><ellipse cx='307.1' cy='72.6' rx='6.9' ry='4.0'/><path d='M355.0 130 L356.6 57.9 L359.4 57.9 L361.0 130Z'/><ellipse cx='358.0' cy='39.4' rx='16.7' ry='10.7'/><ellipse cx='348.7' cy='47.6' rx='12.9' ry='8.2'/><ellipse cx='368.3' cy='47.6' rx='14.2' ry='9.1'/><ellipse cx='354.9' cy='57.9' rx='11.6' ry='7.4'/><ellipse cx='364.2' cy='33.2' rx='10.3' ry='6.6'/><ellipse cx='345.6' cy='70.3' rx='7.2' ry='4.1'/><path d='M389.0 42.0 L396.0 57.1 L392.5 53.6 L397.8 72.3 L393.4 68.8 L399.7 87.4 L394.4 83.9 L401.6 102.5 L395.3 99.0 L403.5 117.7 L392.0 130.0 L386.0 130.0 L374.5 117.7 L382.7 99.0 L376.4 102.5 L383.6 83.9 L378.3 87.4 L384.6 68.8 L380.2 72.3 L385.5 53.6 L382.0 57.1Z'/><path d='M409.0 130 L410.6 62.8 L413.4 62.8 L415.0 130Z'/><ellipse cx='412.0' cy='45.5' rx='15.6' ry='10.0'/><ellipse cx='403.4' cy='53.2' rx='12.0' ry='7.7'/><ellipse cx='421.6' cy='53.2' rx='13.2' ry='8.4'/><ellipse cx='409.1' cy='62.8' rx='10.8' ry='6.9'/><ellipse cx='417.8' cy='39.8' rx='9.6' ry='6.1'/><ellipse cx='400.5' cy='74.3' rx='6.7' ry='3.8'/><rect x='0' y='118' width='420' height='12'/></g></svg>")}
+.rs-pines--foot{--pine-img:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='130' viewBox='0 0 420 130'><g fill='%23152027'><path d='M7.0 130 L8.6 59.3 L11.4 59.3 L13.0 130Z'/><ellipse cx='10.0' cy='41.1' rx='16.4' ry='10.5'/><ellipse cx='0.9' cy='49.2' rx='12.6' ry='8.1'/><ellipse cx='20.1' cy='49.2' rx='13.9' ry='8.9'/><ellipse cx='7.0' cy='59.3' rx='11.4' ry='7.3'/><ellipse cx='16.1' cy='35.1' rx='10.1' ry='6.5'/><ellipse cx='-2.1' cy='71.4' rx='7.1' ry='4.0'/><path d='M46.0 78.0 L55.4 86.9 L50.7 84.9 L57.9 95.9 L51.9 93.8 L60.4 104.8 L53.2 102.8 L63.0 113.8 L54.5 111.7 L65.5 122.7 L49.0 130.0 L43.0 130.0 L26.5 122.7 L37.5 111.7 L29.0 113.8 L38.8 102.8 L31.6 104.8 L40.1 93.8 L34.1 95.9 L41.3 84.9 L36.6 86.9Z'/><path d='M69.0 130 L70.6 63.5 L73.4 63.5 L75.0 130Z'/><ellipse cx='72.0' cy='46.4' rx='15.4' ry='9.9'/><ellipse cx='63.5' cy='54.0' rx='11.9' ry='7.6'/><ellipse cx='81.5' cy='54.0' rx='13.1' ry='8.4'/><ellipse cx='69.2' cy='63.5' rx='10.7' ry='6.8'/><ellipse cx='77.7' cy='40.7' rx='9.5' ry='6.1'/><ellipse cx='60.6' cy='74.9' rx='6.7' ry='3.8'/><path d='M116.0 80.0 L122.5 88.6 L119.2 86.6 L124.2 97.2 L120.1 95.2 L126.0 105.8 L121.0 103.8 L127.7 114.4 L121.9 112.4 L129.5 123.0 L119.0 130.0 L113.0 130.0 L102.5 123.0 L110.1 112.4 L104.3 114.4 L111.0 103.8 L106.0 105.8 L111.9 95.2 L107.8 97.2 L112.8 86.6 L109.5 88.6Z'/><path d='M137.0 130 L138.6 55.1 L141.4 55.1 L143.0 130Z'/><ellipse cx='140.0' cy='35.8' rx='17.4' ry='11.1'/><ellipse cx='130.4' cy='44.4' rx='13.4' ry='8.6'/><ellipse cx='150.7' cy='44.4' rx='14.7' ry='9.4'/><ellipse cx='136.8' cy='55.1' rx='12.0' ry='7.7'/><ellipse cx='146.4' cy='29.4' rx='10.7' ry='6.8'/><ellipse cx='127.2' cy='67.9' rx='7.5' ry='4.3'/><path d='M171.0 79.0 L180.4 87.8 L175.7 85.7 L182.9 96.5 L176.9 94.5 L185.4 105.3 L178.2 103.3 L188.0 114.1 L179.5 112.0 L190.5 122.9 L174.0 130.0 L168.0 130.0 L151.5 122.9 L162.5 112.0 L154.0 114.1 L163.8 103.3 L156.6 105.3 L165.1 94.5 L159.1 96.5 L166.3 85.7 L161.6 87.8Z'/><path d='M195.0 130 L196.6 55.8 L199.4 55.8 L201.0 130Z'/><ellipse cx='198.0' cy='36.7' rx='17.2' ry='11.0'/><ellipse cx='188.5' cy='45.2' rx='13.3' ry='8.5'/><ellipse cx='208.6' cy='45.2' rx='14.6' ry='9.3'/><ellipse cx='194.8' cy='55.8' rx='11.9' ry='7.6'/><ellipse cx='204.4' cy='30.4' rx='10.6' ry='6.8'/><ellipse cx='185.3' cy='68.5' rx='7.4' ry='4.2'/><path d='M238.0 79.0 L246.4 87.8 L242.2 85.7 L248.7 96.5 L243.3 94.5 L250.9 105.3 L244.5 103.3 L253.2 114.1 L245.6 112.0 L255.5 122.9 L241.0 130.0 L235.0 130.0 L220.5 122.9 L230.4 112.0 L222.8 114.1 L231.5 103.3 L225.1 105.3 L232.7 94.5 L227.3 96.5 L233.8 85.7 L229.6 87.8Z'/><path d='M262.0 130 L263.6 55.8 L266.4 55.8 L268.0 130Z'/><ellipse cx='265.0' cy='36.7' rx='17.2' ry='11.0'/><ellipse cx='255.5' cy='45.2' rx='13.3' ry='8.5'/><ellipse cx='275.6' cy='45.2' rx='14.6' ry='9.3'/><ellipse cx='261.8' cy='55.8' rx='11.9' ry='7.6'/><ellipse cx='271.4' cy='30.4' rx='10.6' ry='6.8'/><ellipse cx='252.3' cy='68.5' rx='7.4' ry='4.2'/><path d='M295.0 74.0 L302.2 83.6 L298.6 81.4 L304.1 93.3 L299.6 91.0 L306.1 102.9 L300.6 100.7 L308.1 112.5 L301.5 110.3 L310.0 122.2 L298.0 130.0 L292.0 130.0 L280.0 122.2 L288.5 110.3 L281.9 112.5 L289.4 100.7 L283.9 102.9 L290.4 91.0 L285.9 93.3 L291.4 81.4 L287.8 83.6Z'/><path d='M316.0 130 L317.6 60.7 L320.4 60.7 L322.0 130Z'/><ellipse cx='319.0' cy='42.9' rx='16.1' ry='10.3'/><ellipse cx='310.1' cy='50.8' rx='12.4' ry='7.9'/><ellipse cx='328.9' cy='50.8' rx='13.6' ry='8.7'/><ellipse cx='316.0' cy='60.7' rx='11.1' ry='7.1'/><ellipse cx='324.9' cy='36.9' rx='9.9' ry='6.3'/><ellipse cx='307.1' cy='72.6' rx='6.9' ry='4.0'/><path d='M355.0 130 L356.6 57.9 L359.4 57.9 L361.0 130Z'/><ellipse cx='358.0' cy='39.4' rx='16.7' ry='10.7'/><ellipse cx='348.7' cy='47.6' rx='12.9' ry='8.2'/><ellipse cx='368.3' cy='47.6' rx='14.2' ry='9.1'/><ellipse cx='354.9' cy='57.9' rx='11.6' ry='7.4'/><ellipse cx='364.2' cy='33.2' rx='10.3' ry='6.6'/><ellipse cx='345.6' cy='70.3' rx='7.2' ry='4.1'/><path d='M389.0 42.0 L396.0 57.1 L392.5 53.6 L397.8 72.3 L393.4 68.8 L399.7 87.4 L394.4 83.9 L401.6 102.5 L395.3 99.0 L403.5 117.7 L392.0 130.0 L386.0 130.0 L374.5 117.7 L382.7 99.0 L376.4 102.5 L383.6 83.9 L378.3 87.4 L384.6 68.8 L380.2 72.3 L385.5 53.6 L382.0 57.1Z'/><path d='M409.0 130 L410.6 62.8 L413.4 62.8 L415.0 130Z'/><ellipse cx='412.0' cy='45.5' rx='15.6' ry='10.0'/><ellipse cx='403.4' cy='53.2' rx='12.0' ry='7.7'/><ellipse cx='421.6' cy='53.2' rx='13.2' ry='8.4'/><ellipse cx='409.1' cy='62.8' rx='10.8' ry='6.9'/><ellipse cx='417.8' cy='39.8' rx='9.6' ry='6.1'/><ellipse cx='400.5' cy='74.3' rx='6.7' ry='3.8'/><rect x='0' y='118' width='420' height='12'/></g></svg>")}
+
+/* ---------- legal pages ---------- */
+.rs-lhero{position:relative;padding:56px 0 150px;background:var(--tex-contour) 0 0/340px,linear-gradient(180deg,#22303A,#3a3a34 60%,#c67a33 100%);color:#fff}
+.rs-lhero__in{max-width:900px;margin:0 auto;padding:0 20px;position:relative;z-index:2}
+.rs-lhero__back{display:inline-flex;align-items:center;gap:8px;min-height:44px;margin-bottom:18px;color:var(--sand);font-weight:700;text-underline-offset:3px}
+.rs-lhero__back svg{width:20px;height:20px}
+.rs-lhero__pines{position:absolute;left:0;right:0;bottom:0;height:130px}
+.rs-lbody{background:var(--tex-contour) 0 0/340px,var(--slate);padding:10px 0 80px}
+.rs-lbody__card{max-width:900px;margin:0 auto;padding:30px 22px;background:var(--tex-pebble) 0 0/190px,var(--sand-l);border-radius:28px 40px 30px 44px / 34px 30px 40px 32px;box-shadow:0 30px 50px -26px rgba(0,0,0,.7);color:var(--ink)}
+.rs-lbody__card h2{font-size:1.6rem;color:var(--slate);margin:28px 0 10px}
+.rs-lbody__card p,.rs-lbody__card li{font-size:16.5px;color:#2b3a41}
+.rs-lbody__card p+p{margin-top:12px}
+.rs-lbody__card ul{list-style:disc;padding-left:22px;margin:10px 0;display:grid;gap:6px}
+.rs-lbody__card a{color:var(--teal-dd);font-weight:700;overflow-wrap:anywhere}
+.rs-lbody__card h2:nth-of-type(5) + p{margin-top:12px;padding:14px 18px;border-left:5px solid var(--amber);border-radius:0 18px 18px 0;background:rgba(242,163,58,.16);font-size:14.5px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;line-height:1.55;color:#22303A}
+.rs-lfoot{background:var(--foot);color:#c9d4d3;padding:24px 20px 30px;text-align:center;font-size:14px;display:grid;gap:6px;justify-items:center}
+@media (min-width:760px){.rs-lbody__card{padding:44px 52px}.rs-lhero__in{padding:0 32px}}

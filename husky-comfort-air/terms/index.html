@@ -40,9 +40,15 @@
   <symbol id="k-arrow" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="k-hook" viewBox="0 0 40 56"><rect x="11" y="0" width="18" height="15" rx="3.5" fill="currentColor"/><circle cx="20" cy="7.5" r="3" fill="#F2B705"/><path d="M20 15v17a9 9 0 1 1-9-9" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></symbol>
   <symbol id="k-logo" viewBox="0 0 48 48"><rect x="1" y="1" width="46" height="46" rx="10" fill="#F2B705"/><path d="M24 1v11" stroke="#12233B" stroke-width="3"/><rect x="17.5" y="10" width="13" height="8" rx="2" fill="#12233B"/><path d="M24 18v8.5a6.5 6.5 0 1 1-6.5-6.5" fill="none" stroke="#12233B" stroke-width="3.4" stroke-linecap="round"/><path d="M29 31h11M31 36h9M29 41h11" stroke="#12233B" stroke-width="2.6" stroke-linecap="round"/></symbol>
+  <symbol id="k-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="k-quote" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><rect x="9" y="2.5" width="6" height="3.5" rx="1" fill="currentColor"/><path d="M8.5 11h7M8.5 14.5h7M8.5 18h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="k-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="k-home" viewBox="0 0 24 24"><path d="M3 11 12 3l9 8M5.5 9.5V21h13V9.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 21v-6h4v6" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="k-camera" viewBox="0 0 24 24"><path d="M4 7h3.5L9 4.5h6L16.5 7H20a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.6" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
 </svg>
 <a class="skiplink" href="#main">Skip to content</a>
 
+<!--HEADER-->
 <header class="hdr">
   <div class="hdr-in">
     <a class="brand" href="../" aria-label="Husky Comfort Air, home">
@@ -50,12 +56,19 @@
       <span class="brand-words"><span class="brand-name">Husky</span><span class="brand-sub">Comfort Air</span><span class="brand-tag">AC &amp; Heating &middot; Richmond, TX</span></span>
     </a>
     <nav class="hdr-nav" aria-label="Main">
-      <a href="../#loads">Services</a>
-      <a href="../#diagnosis">Diagnosis</a>
-      <a href="../#area">Service area</a>
-      <a href="../#faq">Questions</a>
-      <a href="../#contact">Contact</a>
+      <div class="nav-dd">
+        <a href="../services/">Services</a>
+        <button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-svc"><span class="vh">Show the six services</span><svg aria-hidden="true"><use href="#k-down"/></svg></button>
+        <ul class="dd-menu" id="dd-svc">
+          <li><a href="../services/ac-repair/"><svg aria-hidden="true"><use href="#k-gauge"/></svg>AC repair and diagnosis</a></li><li><a href="../services/installation/"><svg aria-hidden="true"><use href="#k-snow"/></svg>AC and heating installation</a></li><li><a href="../services/system-replacement/"><svg aria-hidden="true"><use href="#k-fan"/></svg>System replacement</a></li><li><a href="../services/rooftop-package-units/"><svg aria-hidden="true"><use href="#k-coil"/></svg>Rooftop and package units</a></li><li><a href="../services/attic-air-handlers-ductwork/"><svg aria-hidden="true"><use href="#k-drop"/></svg>Attic air handlers and ductwork</a></li><li><a href="../services/maintenance/"><svg aria-hidden="true"><use href="#k-clock"/></svg>Maintenance</a></li>
+          <li class="dd-all"><a href="../services/">All six services<svg aria-hidden="true"><use href="#k-arrow"/></svg></a></li>
+        </ul>
+      </div>
+      <a href="../service-area/">Service area</a>
+      <a href="../about/">About</a>
+      <a href="../contact/">Contact</a>
     </nav>
+    <a class="pill pill-line hdr-quote" href="../contact/#quote"><svg aria-hidden="true"><use href="#k-quote"/></svg>Request a quote</a>
     <a class="pill pill-y hdr-call" href="tel:+18324551055"><svg aria-hidden="true"><use href="#k-phone"/></svg>(832) 455-1055</a>
     <button class="hdr-menu" type="button" aria-expanded="false" aria-controls="drop"><span class="burger" aria-hidden="true"></span>Menu</button>
   </div>
@@ -67,17 +80,22 @@
     <button class="drop-close" type="button">Close</button>
   </div>
   <nav class="drop-links" aria-label="Menu links">
-    <a href="../#loads">Services</a>
-    <a href="../#diagnosis">The diagnosis</a>
-    <a href="../#area">Service area</a>
-    <a href="../#faq">Questions</a>
-    <a href="../#contact">Contact</a>
+    <a href="../">Home</a>
+    <a href="../services/">Services</a>
+    <ul class="drop-sub"><li><a href="../services/ac-repair/">AC repair and diagnosis</a></li><li><a href="../services/installation/">AC and heating installation</a></li><li><a href="../services/system-replacement/">System replacement</a></li><li><a href="../services/rooftop-package-units/">Rooftop and package units</a></li><li><a href="../services/attic-air-handlers-ductwork/">Attic air handlers and ductwork</a></li><li><a href="../services/maintenance/">Maintenance</a></li></ul>
+    <a href="../service-area/">Service area</a>
+    <a href="../about/">About</a>
+    <a href="../contact/">Contact</a>
+    <a href="../contact/#quote">Request a quote</a>
+    <span class="drop-legal"><a href="../privacy/">Privacy Policy</a><a href="../terms/">Terms of Use</a></span>
   </nav>
   <div class="drop-act">
     <a class="pill pill-y" href="tel:+18324551055"><svg aria-hidden="true"><use href="#k-phone"/></svg>Call (832) 455-1055</a>
+    <a class="pill pill-line" href="../contact/#quote"><svg aria-hidden="true"><use href="#k-quote"/></svg>Request a quote</a>
     <a class="pill pill-line" href="sms:+18324551055?&amp;body=Hi%2C%20my%20AC%20needs%20a%20look."><svg aria-hidden="true"><use href="#k-chat"/></svg>Text (832) 455-1055</a>
   </div>
 </div>
+<!--/HEADER-->
 
 <main id="main">
 <section class="page-sheet" aria-labelledby="page-h">
@@ -93,7 +111,7 @@
 <ul>
   <li>Any estimate, quote or price discussed through this site, by phone, message or email is an estimate only and is <strong>not binding</strong> until the scope, price and schedule are confirmed in a written agreement or work order that both parties accept.</li>
   <li>Prices, availability and schedules may change with site conditions, access, weather and your requested changes.</li>
-  <li>Submitting the form on this site does not create a contract or guarantee that we can take on the job.</li>
+  <li>Submitting the form on this site does not create a contract or a promise that we can take on the job.</li>
 </ul>
 <h2>3. Photos and images</h2>
 <p>Images on this site are illustrative. They may be representative or computer-generated and are not a promise of any particular result.</p>
@@ -106,7 +124,7 @@
 <h2>7. Third-party links</h2>
 <p>Links to other websites are provided for convenience. We do not control or endorse them and are not responsible for their content.</p>
 <h2>8. Website availability</h2>
-<p>This site is provided "as is" and "as available." We do not warrant that it will be uninterrupted or error-free, and information may be out of date.</p>
+<p>This site is provided "as is" and "as available." We do not promise that it will be uninterrupted or without errors, and information may be out of date.</p>
 <h2>9. Limitation of liability</h2>
 <p>To the fullest extent permitted by law, Husky Comfort Air and its owners, employees and contractors are not liable for indirect, incidental, special or consequential damages arising from your use of this website or reliance on its content. Nothing here limits any liability that cannot be limited by law, or the terms of any written agreement for actual services.</p>
 <h2>10. Intellectual property and acceptable use</h2>
@@ -120,6 +138,7 @@
 </section>
 </main>
 
+<!--FOOTER-->
 <footer class="foot">
   <div class="foot-beam" aria-hidden="true"></div>
   <div class="lane foot-grid">
@@ -130,25 +149,25 @@
       </a>
       <p>AC repair, installation and replacement, rooftop units and attic air handlers in Houston, Sugar Land, Katy and Richmond, Texas.</p>
       <p class="foot-lic"><svg aria-hidden="true"><use href="#k-badge"/></svg>Texas HVAC licence TACLA113919C</p>
+      <a class="pill pill-y foot-quote" href="../contact/#quote"><svg aria-hidden="true"><use href="#k-quote"/></svg>Request a quote</a>
     </div>
     <div>
       <h2 class="foot-h">Services</h2>
       <ul class="foot-list">
-        <li><a href="../#loads">AC repair and diagnosis</a></li>
-        <li><a href="../#loads">AC and heating installation</a></li>
-        <li><a href="../#loads">System replacement</a></li>
-        <li><a href="../#loads">Rooftop and package units</a></li>
-        <li><a href="../#loads">Attic air handlers and ductwork</a></li>
-        <li><a href="../#loads">Maintenance</a></li>
+        <li><a href="../services/ac-repair/">AC repair and diagnosis</a></li><li><a href="../services/installation/">AC and heating installation</a></li><li><a href="../services/system-replacement/">System replacement</a></li><li><a href="../services/rooftop-package-units/">Rooftop and package units</a></li><li><a href="../services/attic-air-handlers-ductwork/">Attic air handlers and ductwork</a></li><li><a href="../services/maintenance/">Maintenance</a></li>
+        <li><a href="../services/">All services</a></li>
       </ul>
     </div>
     <div>
-      <h2 class="foot-h">Service area</h2>
+      <h2 class="foot-h">Pages</h2>
       <ul class="foot-list">
-        <li>Houston, TX</li>
-        <li>Sugar Land, TX</li>
-        <li>Katy, TX</li>
-        <li>Richmond, TX</li>
+        <li><a href="../">Home</a></li>
+        <li><a href="../service-area/">Service area</a></li>
+        <li><a href="../about/">About</a></li>
+        <li><a href="../contact/">Contact</a></li>
+        <li><a href="../contact/#quote">Request a quote</a></li>
+        <li><a href="../privacy/">Privacy Policy</a></li>
+        <li><a href="../terms/">Terms of Use</a></li>
       </ul>
     </div>
     <div>
@@ -159,6 +178,7 @@
         <li><svg aria-hidden="true"><use href="#k-mail"/></svg><a href="mailto:huskycomfortair@gmail.com">huskycomfortair@gmail.com</a></li>
         <li><svg aria-hidden="true"><use href="#k-fb"/></svg><a href="https://www.facebook.com/108502251729856" target="_blank" rel="noopener">Facebook</a></li>
         <li><svg aria-hidden="true"><use href="#k-star"/></svg><a href="https://maps.google.com/?cid=4967095693728026579" target="_blank" rel="noopener">5.0 on Google</a></li>
+        <li><svg aria-hidden="true"><use href="#k-pin"/></svg>Houston, Sugar Land, Katy, Richmond</li>
       </ul>
     </div>
   </div>
@@ -173,9 +193,9 @@
   <a href="tel:+18324551055"><svg aria-hidden="true"><use href="#k-phone"/></svg>Call</a>
   <a href="sms:+18324551055?&amp;body=Hi%2C%20my%20AC%20needs%20a%20look."><svg aria-hidden="true"><use href="#k-chat"/></svg>Text</a>
 </nav>
+<!--/FOOTER-->
 
 <script src="../js/site.js" defer></script>
-
 <!-- sc-visit --><script>(function(){try{var s=location.pathname.split('/')[1];if(!s)return;if(/[?&]qa=1/.test(location.search))localStorage.setItem('sc_qa','1');if(localStorage.getItem('sc_qa'))return;if(navigator.webdriver||/bot|crawl|spider|preview|facebookexternalhit|whatsapp|slack|telegram|discord|headless/i.test(navigator.userAgent))return;if(sessionStorage.getItem('sc_v'))return;var sent=0,t;function go(){if(sent)return;sent=1;clearTimeout(t);sessionStorage.setItem('sc_v','1');['scroll','touchstart','pointerdown','keydown'].forEach(function(e){removeEventListener(e,go,true)});var tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'';var d=/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)?'phone':'desktop';var r=document.referrer?new URL(document.referrer).hostname:'';new Image().src='https://n8n.thevoxfitness.com/webhook/demo-visit-7f3a91c2?s='+encodeURIComponent(s)+'&tz='+encodeURIComponent(tz)+'&d='+d+'&p='+encodeURIComponent(location.pathname)+'&r='+encodeURIComponent(r)}['scroll','touchstart','pointerdown','keydown'].forEach(function(e){addEventListener(e,go,{capture:true,passive:true})});function arm(){clearTimeout(t);if(document.visibilityState==='visible')t=setTimeout(go,15000)}document.addEventListener('visibilitychange',arm);arm()}catch(e){}})();</script><!-- /sc-visit -->
 </body>
 </html>

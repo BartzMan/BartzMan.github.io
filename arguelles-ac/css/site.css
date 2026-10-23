@@ -474,7 +474,7 @@ svg use{pointer-events:none}
   .cursor{display:none}
 }
 
-/* 23 Oct (Claude QC): on phones the form fields/button ran past the card edge and were clipped */
+/* phones: keep the form fields and button inside the card */
 @media (max-width: 640px) {
   .ct-card .wa-form, .ct-card .wa-form * { box-sizing: border-box; min-width: 0; max-width: 100%; }
   .ct-card .wa-form input, .ct-card .wa-form textarea, .ct-card .wa-form select, .ct-card .wa-form button { width: 100%; }

@@ -114,3 +114,4 @@
   var yr = document.querySelectorAll('.yr');
   yr.forEach(function (y) { y.textContent = new Date().getFullYear(); });
 })();
+

@@ -304,7 +304,7 @@
     <form class="quote rv" id="quote" novalidate>
       <svg class="quote-corner" viewBox="0 0 200 200" aria-hidden="true"><g fill="none"><circle cx="200" cy="0" r="40"/><circle cx="200" cy="0" r="80"/><circle cx="200" cy="0" r="120"/><circle cx="200" cy="0" r="160"/></g></svg>
       <h3 class="quote-h">Ask for a quote</h3>
-      <p class="quote-p">This opens your own email app with everything filled in. Nothing is stored on this site.</p>
+      <p class="quote-p"></p>
       <div class="f2">
         <p class="fld"><label for="qName">Your name</label><input id="qName" name="name" autocomplete="name" required></p>
         <p class="fld"><label for="qReach">Phone or email</label><input id="qReach" name="reach" autocomplete="tel" required></p>
@@ -324,7 +324,7 @@
         <p class="fld"><label for="qWidth">Rough width across the top</label><input id="qWidth" name="width" placeholder="For example: about 2 ft"></p>
       </div>
       <p class="fld"><label for="qNotes">Where is it, and what is close by?</label><textarea id="qNotes" name="notes" rows="3" placeholder="Your part of Clearwater or Pinellas County, fences, pool cage, roots near the house..."></textarea></p>
-      <button class="pill pill-y pill-wide" type="submit" data-cursor="Send">Open my email app <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      <button class="pill pill-y pill-wide" type="submit" data-cursor="Send">Request a quote<svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
       <p class="quote-alt">Rather text? Send the stump photo to <a href="sms:+17274954557">(727) 495-4557</a>.</p>
       <p class="quote-err" id="qErr" role="alert" hidden>Please add your name and a phone number or email.</p>
     </form>
@@ -395,5 +395,5 @@
 
 <script src="js/site.js" defer></script>
 <!-- sc-visit --><script>(function(){try{var s=location.pathname.split('/')[1];if(!s)return;if(/[?&]qa=1/.test(location.search))localStorage.setItem('sc_qa','1');if(localStorage.getItem('sc_qa'))return;if(navigator.webdriver||/bot|crawl|spider|preview|facebookexternalhit|whatsapp|slack|telegram|discord|headless/i.test(navigator.userAgent))return;if(sessionStorage.getItem('sc_v'))return;var t0=Date.now(),sent=0,E=['scroll','touchstart','pointerdown','keydown'];function go(){if(sent||Date.now()-t0<1500||document.visibilityState!=='visible'||!document.hasFocus())return;sent=1;sessionStorage.setItem('sc_v','1');E.forEach(function(e){removeEventListener(e,go,true)});var tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'';var d=/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)?'phone':'desktop';var r=document.referrer?new URL(document.referrer).hostname:'';new Image().src='https://n8n.thevoxfitness.com/webhook/demo-visit-7f3a91c2?s='+encodeURIComponent(s)+'&tz='+encodeURIComponent(tz)+'&d='+d+'&p='+encodeURIComponent(location.pathname)+'&r='+encodeURIComponent(r)}E.forEach(function(e){addEventListener(e,go,{capture:true,passive:true})})}catch(e){}})();</script><!-- /sc-visit -->
-</body>
+<!-- sc-form --><script src="js/sc-form.js" defer></script><!-- /sc-form --></body>
 </html>

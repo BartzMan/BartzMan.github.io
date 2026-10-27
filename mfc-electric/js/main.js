@@ -15,14 +15,6 @@
     window.addEventListener('resize',function(){if(window.innerWidth>980&&sheet.classList.contains('open'))setOpen(false);});
   }
   var f=document.getElementById('quote');
-  if(f){
-    f.addEventListener('submit',function(e){
-      e.preventDefault();
-      var d=new FormData(f),v=function(k){return (d.get(k)||'').toString().trim();};
-      var body='Name: '+v('name')+'\nPhone: '+v('phone')+'\nStreet or neighbourhood: '+v('area')+'\nType of job: '+v('job')+'\n\nWhat is going on:\n'+v('msg');
-      window.location.href='mailto:friscobayconstruction@gmail.com?subject='+encodeURIComponent('Electrical job request: '+v('job'))+'&body='+encodeURIComponent(body);
-      var n=document.getElementById('sent');if(n){n.hidden=false;}
-    });
-  }
+  if(f){f.addEventListener('submit',function(e){e.preventDefault();});}
   var y=document.getElementById('yr');if(y){y.textContent=new Date().getFullYear();}
 })();

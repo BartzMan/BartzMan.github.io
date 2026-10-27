@@ -345,3 +345,8 @@ html.js .tk-line.is-ticked .tk-box svg{stroke-dashoffset:0}
   .tk-stub-word{font-size:23px}
   .tk-stub-lines>div{grid-template-columns:78px minmax(0,1fr)}
 }
+
+/* hero: keep the giant headline readable above the pinned van photo */
+.tk-hero h1{z-index:6}
+.tk-pinned{z-index:1}
+@media (min-width:921px){.tk-pinned{margin-top:clamp(120px,12.5vw,250px)}}

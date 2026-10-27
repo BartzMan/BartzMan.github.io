@@ -78,6 +78,16 @@
     });
   });
 
+  /* data-x / data-y are percentages of the whole photo; convert them through object-fit:cover and object-position */
+  function place(pin, pal, xp, yp) {
+    var box = pal.querySelector('.kc-pal__photo'), img = box.querySelector('img');
+    var W = box.clientWidth, H = box.clientHeight, iw = img.naturalWidth || 1200, ih = img.naturalHeight || 1600;
+    var sc = Math.max(W / iw, H / ih), dw = iw * sc, dh = ih * sc;
+    var op = getComputedStyle(img).objectPosition.split(' ');
+    var ox = (W - dw) * (parseFloat(op[0]) / 100), oy = (H - dh) * (parseFloat(op[1] || op[0]) / 100);
+    pin.style.setProperty('--px', (ox + dw * xp / 100) + 'px');
+    pin.style.setProperty('--py', (oy + dh * yp / 100) + 'px');
+  }
   /* palettes: tap a chip, a pin drops where it was sampled */
   [].slice.call(d.querySelectorAll('.kc-pal')).forEach(function (pal) {
     var pin = pal.querySelector('.kc-pal__pin');
@@ -86,8 +96,7 @@
       b.addEventListener('click', function () {
         var on = b.getAttribute('aria-pressed') !== 'true';
         dabs.forEach(function (o) { o.setAttribute('aria-pressed', on && o === b ? 'true' : 'false'); });
-        pin.style.setProperty('--px', b.getAttribute('data-x') + '%');
-        pin.style.setProperty('--py', b.getAttribute('data-y') + '%');
+        place(pin, pal, +b.getAttribute('data-x'), +b.getAttribute('data-y'));
         pin.style.setProperty('--pc', getComputedStyle(b).getPropertyValue('--c'));
         pin.classList.toggle('is-on', on);
       });

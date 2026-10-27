@@ -371,3 +371,8 @@ html:not(.js) .hero__shade{opacity:0}
   .contact li{grid-template-columns:minmax(0,1fr);gap:6px}
   .score{gap:14px}
 }
+
+/* switch must stay clickable above the hero copy */
+.hero__copy{pointer-events:none}
+.hero__copy a,.hero__copy button,.hero__copy input,.hero__copy [tabindex]{pointer-events:auto}
+.bigswitch{z-index:8}

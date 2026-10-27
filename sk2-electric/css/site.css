@@ -157,7 +157,7 @@ html:not(.js) .pen-under path,html:not(.js) .big-tick path{stroke-dashoffset:0}
 @keyframes stamp{from{transform:rotate(12deg) scale(1.6);opacity:0}}
 
 /* ---------- CKT 02 directory ---------- */
-.dir{background:var(--ink) var(--grain);color:var(--paper);padding:330px 0 120px}
+.dir{background:var(--ink) var(--grain);color:var(--paper);padding:110px 0 120px}
 .dir__top{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:24px 60px;align-items:end;margin-bottom:56px}
 .dir__top .item{grid-column:1/-1;margin:0}
 .dir__h2{font-size:clamp(56px,8.4vw,136px)}
@@ -242,7 +242,7 @@ html:not(.js) .pen-under path,html:not(.js) .big-tick path{stroke-dashoffset:0}
 .panels__disc figcaption{padding:8px 4px 12px;font-size:27px}
 
 /* ---------- CKT 06 inspections: the clipboard ---------- */
-.insp{background:var(--board);background-image:var(--grain),radial-gradient(ellipse at 30% 20%,rgba(255,255,255,.1),transparent 60%),linear-gradient(115deg,#8b6340,#6c4a2b 55%,#7f5838);padding:150px 0 120px}
+.insp{background:var(--board);background-image:var(--grain),radial-gradient(ellipse at 30% 20%,rgba(255,255,255,.1),transparent 60%),linear-gradient(115deg,#8b6340,#6c4a2b 55%,#7f5838);padding:110px 0 120px}
 .sheet{position:relative;background:var(--card);background-image:var(--grain),repeating-linear-gradient(180deg,transparent 0 35px,rgba(35,70,166,.1) 35px 36px);max-width:1180px;margin:0 auto;padding:70px clamp(18px,4vw,64px) 56px;box-shadow:0 50px 70px -40px rgba(0,0,0,.75),0 1px 0 rgba(0,0,0,.2);transform:rotate(-.6deg)}
 .sheet__clip{position:absolute;left:50%;top:-58px;width:300px;transform:translateX(-50%)}
 .sheet__head{display:flex;justify-content:space-between;font:700 11px/1 var(--mono);text-transform:uppercase;letter-spacing:.1em;border-bottom:3px double var(--ink);padding-bottom:12px}
@@ -497,3 +497,7 @@ html:not(.js) .pen-under path,html:not(.js) .big-tick path{stroke-dashoffset:0}
 .fire{--red:#e4462f}
 .fire .btn--red,.ev figcaption b{background:#b8291e}
 .fire .item b{color:var(--paper)}
+
+.dir__side{display:flex;flex-direction:column;gap:28px;align-items:flex-start}
+.polaroid--dir{width:min(100%,330px);transform:rotate(3deg);--ar:3/4;margin-right:-40px}
+@media (max-width:900px){.polaroid--dir{width:78%;margin:0 0 0 auto;transform:rotate(2deg)}}

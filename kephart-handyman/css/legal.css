@@ -1,0 +1,59 @@
+/* Kephart legal page styles — a clipboard sheet on the workshop wall */
+.legal-page{
+  background:
+    radial-gradient(rgba(36,28,20,.16) 2.2px,transparent 2.9px),
+    radial-gradient(rgba(36,28,20,.12) 2.2px,transparent 2.9px) 13px 13px,
+    linear-gradient(#b18757,#96703f);
+  background-size:26px 26px,26px 26px,100% 100%;
+}
+
+.legal-page .kp-head{position:static;background:#2b2013;padding:14px 0}
+.legal-page .kp-head-in{width:min(1160px,92vw)}
+.kp-legal-kicker{font-family:"Caveat",cursive;font-weight:600;font-size:20px;color:#f2b53a;margin-left:auto}
+.legal-call{padding:12px 20px;font-size:15px;color:#f6efe1}
+
+.legal{padding:64px 0 90px}
+.legal-in{
+  width:min(1160px,92vw);margin:0 auto;position:relative;
+  background:#f6efe1;border-radius:14px;box-shadow:0 20px 40px rgba(36,28,20,.35);
+  padding:clamp(26px,4.4vw,60px);
+  rotate:-.4deg;
+}
+.legal-kicker{
+  font:700 12.5px/1 "Work Sans",system-ui,sans-serif;letter-spacing:.24em;text-transform:uppercase;
+  display:inline-block;background:#241c14;color:#f2b53a;padding:8px 12px;border-radius:6px;
+  rotate:1deg;margin:0 0 8px;
+}
+.legal h1{
+  font-family:"Staatliches",Impact,sans-serif;
+  font-size:clamp(44px,5.4vw,76px);line-height:.95;margin:6px 0 24px;color:#241c14;
+}
+.legal h1::after{content:"";display:block;width:84px;height:8px;background:#c73b27;border-radius:4px;margin-top:10px}
+.legal-body{color:#241c14}
+.legal-body p{margin:0 0 14px;max-width:70ch;font-size:16.5px}
+.legal-body ul{margin:0 0 16px;padding-left:22px}
+.legal-body li{margin-bottom:8px;max-width:66ch}
+.legal-body h2{
+  font-family:"Staatliches",Impact,sans-serif;letter-spacing:.02em;
+  font-size:clamp(24px,2.4vw,32px);margin:30px 0 10px;color:#241c14;
+}
+.legal-body h2::before{content:"\2713 ";color:#c73b27;margin-right:2px}
+.legal-body strong{color:#241c14}
+.legal-body a{color:#8a3320;text-underline-offset:3px}
+.legal-body a:hover{color:#c73b27}
+
+.kp-legal-foot{
+  background:#241705;color:#f6efe1;text-align:center;
+  padding:34px 20px 42px;font-size:15px;
+}
+.kp-legal-foot p{margin:0 0 10px}
+.kp-legal-foot a{color:#f2b53a;text-decoration:none}
+.kp-legal-foot a:hover{color:#f6efe1}
+
+@media (max-width:680px){
+  .legal{padding:36px 0 60px}
+  .legal-in{rotate:0deg;padding:24px 18px 34px}
+  .kp-legal-kicker{display:none}
+  .legal-page .kp-head-in{gap:12px}
+  .legal-call{padding:11px 14px;font-size:14px}
+}

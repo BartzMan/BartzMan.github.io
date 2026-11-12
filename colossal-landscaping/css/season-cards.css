@@ -1,0 +1,189 @@
+
+@font-face {font-family:Caprasimo;src:url(../fonts/caprasimo-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face {font-family:Rubik;src:url(../fonts/rubik-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face {font-family:Rubik;src:url(../fonts/rubik-700.woff2) format("woff2");font-weight:700;font-display:swap}
+:root {
+ --moss:#4e6b3a;--mulch:#5c3b28;--paver:#cdb79e;--lake:#dde9f0;
+ --garden-ink:#273a22;--garden-light:#f5eddd;--garden-edge:clamp(17px,4.7vw,91px);
+ --garden-pattern:repeating-radial-gradient(ellipse at 95% 85%,transparent 0 35px,#50674422 36px 37px,transparent 38px 62px);
+ --kit-bg:#f5eddd;--kit-ink:#273a22;--kit-accent:#426332;
+}
+body {--season-dark:#5c3b28;--season-light:#e7caa9;background:#e1dec6;color:#273a22;font:400 17px/1.5 Rubik,sans-serif}
+body[data-season=spring] {--season-dark:#416335;--season-light:#d9e3b8}
+body[data-season=fall] {--season-dark:#813e29;--season-light:#f2c29c}
+body[data-season=pavers] {--season-dark:#325867;--season-light:#d1e3ea}
+h1,h2,h3,p,figure {margin:0}
+h1,h2,h3,.season-lockup strong {font-family:Caprasimo,Georgia,serif;font-weight:400;line-height:.94;letter-spacing:-.054em}
+h2 {font-size:clamp(52px,6.55vw,123px)}
+h3 {font-size:clamp(28px,3.3vw,61px)}
+em {font-style:normal;color:var(--season-dark)}
+a {color:inherit;text-underline-offset:.19em}
+section[id] {scroll-margin-top:87px}
+.garden-label {font-size:.77rem;text-transform:uppercase;letter-spacing:.1em;font-weight:700}
+.garden-gate {position:sticky;top:0;z-index:111;display:flex;justify-content:space-between;align-items:center;gap:13px;padding:8px var(--garden-edge);background:#d7ddbd;color:#273a22;border-bottom:3px solid #82966d}
+.kit-scrolled .garden-gate {background:#e4e6d1;box-shadow:0 6px 15px #334a3342}
+.season-lockup {display:flex;align-items:center;gap:7px;min-height:49px;text-decoration:none}
+.season-lockup svg {width:42px;flex:0 0 42px;color:#416335}
+.season-lockup strong {display:block;font-size:clamp(22px,2.3vw,34px)}
+.season-lockup small {display:block;font-weight:700;font-size:.71rem;margin-top:5px}
+.garden-gate nav {display:flex;gap:clamp(12px,2.55vw,35px)}
+.garden-gate nav a {display:flex;align-items:center;min-height:44px;text-decoration:none;font-weight:700}
+.garden-gate nav a:hover,.garden-gate nav a[aria-current] {text-decoration:underline;color:#395b2c}
+.garden-call {display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:8px 15px;width:fit-content;border:1px solid #768d64;border-radius:47px;background:#3c5732;color:white;text-decoration:none;font-weight:700}
+.garden-call:hover {background:#294021;box-shadow:0 0 0 3px #839e73}
+.garden-call svg,.garden-number svg,.garden-thumb-bar svg {width:21px;height:21px;flex:none}
+.garden-season-progress {position:absolute;inset:auto 0 -3px;height:4px;background:var(--season-dark);transform:scaleX(var(--kit-scroll,0));transform-origin:left;pointer-events:none}
+.gate-toggle,.garden-drawer button {width:47px;height:47px;border:1px solid #768d64;background:#f5eddd;color:#273a22;font-size:24px}
+.gate-toggle svg {width:26px}
+.garden-drawer {padding:20px var(--garden-edge);background:#344f2e var(--garden-pattern);color:white}
+.garden-drawer>div {display:flex;align-items:center;justify-content:space-between;gap:10px}
+.garden-drawer .season-lockup svg {color:#e4ebd1}
+.garden-drawer nav {display:grid;margin-top:22px}
+.garden-drawer nav a {min-height:50px;padding:10px 0;border-bottom:1px solid #d1ddbf;font:400 clamp(24px,7vw,39px)/1.04 Caprasimo,serif;text-decoration:none}
+.garden-thumb-bar {gap:8px;padding:7px 12px max(7px,env(safe-area-inset-bottom));background:#d7ddbd;border-top:1px solid #638054}
+.garden-thumb-bar a {flex:1;display:flex;align-items:center;justify-content:center;gap:7px;min-height:46px;background:#3c5732;color:white;border-radius:35px;text-decoration:none;font-weight:700}
+.garden-thumb-bar a+a {background:#5c3b28}
+@media(hover:hover) {
+ .garden-call {position:relative}
+ .garden-call::after {content:"";position:absolute;right:6px;top:-7px;width:18px;height:14px;background:#d7ddbd;border:1px solid #416335;border-radius:2% 70%;opacity:0;transform:rotate(-22deg);transition:opacity .18s;pointer-events:none}
+ .garden-call:hover::after,.garden-call:focus-visible::after {opacity:1}
+}
+
+.garden-cover,.geneseo-slope {position:relative;isolation:isolate;display:grid;align-items:end;color:white;background:#273a22}
+.garden-cover {min-height:clamp(574px,48vw,804px)}
+.garden-cover img,.geneseo-slope img {position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.garden-cover img {object-position:center 66%;filter:saturate(.89)}
+.garden-cover::before,.geneseo-slope::before {content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#263721f9,#263721a8 40%,transparent 79%)}
+.garden-cover>div {width:min(100%,1080px);padding:40px var(--garden-edge) 66px}
+.garden-cover h1 {font-size:clamp(93px,9vw,154px);margin:14px 0 15px}
+.garden-cover h1 em {display:block;color:#e8dab8}
+.garden-cover p:first-child {font-weight:700;text-transform:uppercase;letter-spacing:.11em;font-size:.81rem}
+.garden-cover p:nth-of-type(2) {font-size:clamp(18px,1.65vw,25px);margin-bottom:14px}
+.garden-cover .garden-call {border-color:#a7bb8d}
+.garden-outside {padding:37px var(--garden-edge) 50px;background:#e9ddc5 var(--garden-pattern);border-top:5px solid #7d936d}
+.outside-heading {display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:17px}
+.outside-heading h2,.wheel-controls h2,.mulch-notes h2,.garden-inquiry h2 {margin:8px 0}
+.outside-heading>p {max-width:32ch}
+.garden-work-wall {display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:10px}
+.garden-work-wall figure {grid-column:span 4;min-width:0;background:#f9f3e6;color:#273a22;border:1px solid #99a580;border-bottom:5px solid var(--season-dark)}
+.garden-work-wall figure:nth-child(1),.garden-work-wall figure:nth-child(6) {grid-column:span 5}
+.garden-work-wall figure:nth-child(3),.garden-work-wall figure:nth-child(4) {grid-column:span 3}
+.garden-work-wall img {width:100%;height:clamp(200px,22vw,380px);object-fit:cover}
+.garden-work-wall img:hover {filter:saturate(1.15) brightness(1.08)}
+.garden-work-wall figcaption {padding:8px 12px}
+.garden-work-wall figcaption h3 {font-size:clamp(25px,2.55vw,48px);margin-bottom:4px}
+.garden-work-wall figcaption small {color:#4e5140}
+
+.garden-wheel-block {display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(22px,5vw,93px);align-items:center;padding:35px 0 45px var(--garden-edge);background:var(--season-dark) var(--garden-pattern);color:white;transition:background-color .28s}
+.garden-wheel-block em {color:var(--season-light)}
+.garden-wheel {position:relative;width:min(100%,320px);aspect-ratio:1;margin-top:13px;isolation:isolate;background:#253525;border-radius:50%;border:3px solid #b5c2a0;box-shadow:0 0 0 6px #e8decd30}
+.garden-wheel svg {position:absolute;inset:0;z-index:-1;width:100%;height:100%}
+.garden-wheel button {position:absolute;min-height:46px;min-width:80px;border:1px solid #5c7452;border-radius:34px;background:#f0e8da;color:#273a22;padding:5px 9px;font-weight:700}
+.garden-wheel button[aria-pressed=true],.garden-wheel button:hover {background:var(--season-light);border-color:#e7e7c6;box-shadow:0 0 0 3px #e7e7c663}
+.garden-wheel button:nth-of-type(1) {left:50%;top:7%;transform:translateX(-50%)}
+.garden-wheel button:nth-of-type(2) {right:4%;top:50%;transform:translateY(-50%)}
+.garden-wheel button:nth-of-type(3) {left:50%;bottom:7%;transform:translateX(-50%)}
+.garden-wheel button:nth-of-type(4) {left:4%;top:50%;transform:translateY(-50%)}
+.garden-season-pictures {margin-top:-67px}
+.garden-season-record {position:relative;isolation:isolate;display:grid;align-items:end;min-height:clamp(355px,36vw,605px);background:#405b33;color:white;border-left:5px solid var(--season-light)}
+.garden-season-record img {position:absolute;inset:0;z-index:-1;width:100%;height:100%;object-fit:cover;filter:saturate(.87)}
+.garden-season-record>div {padding:13px 16px;background:#263b21;color:white;width:min(100%,540px);border-top:4px solid var(--season-light)}
+.garden-season-record h3 {margin:7px 0}
+.garden-season-record:not([hidden]) img {animation:garden-arrival .4s ease both}
+@keyframes garden-arrival {from{opacity:.45}to{opacity:1}}
+
+.mulch-notes {display:grid;grid-template-columns:.86fr 1.14fr;gap:clamp(22px,5.6vw,102px);align-items:center;padding:36px var(--garden-edge) 45px 0;background:#dce8e8 var(--garden-pattern)}
+.mulch-cut {margin-top:-63px;background:#425e3c;color:white;border-bottom:5px solid #a17b56}
+.mulch-cut svg {width:100%;max-height:390px;display:block}
+.mulch-cut figcaption {padding:7px 12px;font-size:.82rem}
+.mulch-notes details {background:#fbf6ea;color:#273a22;border-bottom:1px solid #9b9d86}
+.mulch-notes details:first-of-type {margin-top:12px}
+.mulch-notes summary {min-height:46px;padding:8px 10px;cursor:pointer;font-weight:700}
+.mulch-notes summary:hover {background:#e8e8d7}
+.mulch-notes details p {padding:0 10px 9px}
+.geneseo-slope {min-height:clamp(335px,33vw,573px)}
+.geneseo-slope img {object-position:center 46%}
+.geneseo-slope::before {background:linear-gradient(0deg,#273a22ef,transparent 86%)}
+.geneseo-slope>div {padding:19px var(--garden-edge) 26px}
+.geneseo-slope h2 {font-size:clamp(74px,15.3vw,274px);color:#f2dec0}
+.garden-inquiry {display:grid;grid-template-columns:1.12fr .88fr;align-items:center;gap:clamp(21px,6vw,110px);padding:37px var(--garden-edge);background:#e6d0b4 var(--garden-pattern);color:#273a22}
+.garden-inquiry address {display:grid;font-style:normal;margin-bottom:8px}
+.garden-inquiry address>* {display:flex;align-items:center;gap:7px;min-height:45px;width:fit-content}
+.garden-inquiry address a[href^=mailto] {font-size:clamp(.77rem,2.5vw,1rem);white-space:nowrap}
+.garden-number {font:400 clamp(28px,3.85vw,64px)/1 Caprasimo,serif}
+.garden-rating {display:inline-flex;align-items:center;gap:9px;padding:6px 10px;background:#405b33;color:white;border-left:4px solid #9db489;text-decoration:none}
+.garden-rating svg {width:34px;flex:0 0 34px}
+.garden-rating small {display:block}
+.garden-rating:hover small {text-decoration:underline}
+.garden-quote {display:grid;gap:8px;padding:14px;background:#f8f2e5;color:#273a22;border:1px solid #9c947b;border-top:6px solid var(--season-dark)}
+.garden-quote label {display:grid;gap:3px;font-weight:700}
+.garden-quote input,.garden-quote textarea {width:100%;min-height:45px;border:1px solid #657862;background:#fff;color:#273a22;padding:7px}
+.garden-quote textarea::placeholder {color:#4e6050}
+.garden-quote>p {font-size:.81rem}
+.garden-footer {padding:24px var(--garden-edge) 18px;background:#344f2e var(--garden-pattern);color:white;border-top:4px solid #9db489}
+.garden-footer .season-lockup svg {color:#dce6c9}
+.garden-footer>div {display:grid;grid-template-columns:1.15fr .85fr 1.12fr .62fr;align-items:start;gap:14px}
+.garden-footer>div>div {display:grid}
+.garden-footer>div>div a {display:flex;align-items:center;min-height:44px;width:fit-content}
+.garden-footer a[href^=mailto] {white-space:nowrap;font-size:.78rem}
+.garden-footer>p {margin-top:11px;padding-top:8px;border-top:1px solid #c5d1ba;font-size:.81rem}
+.garden-missing {padding:39px var(--garden-edge);background:#e3dec6 var(--garden-pattern)}
+.garden-missing svg {width:82px;color:#416335}
+.garden-missing>p {font:400 clamp(86px,22vw,270px)/.92 Caprasimo,serif}
+.garden-missing h1 {font-size:clamp(43px,7vw,105px);margin:9px 0 14px}
+.kit-legal {background-image:var(--garden-pattern)}
+.kit-legal-in {padding:clamp(14px,4vw,50px);background:#fbf6ea;border-left:6px solid #4e6b3a;overflow-wrap:anywhere}
+@media(max-width:900px) {
+ .garden-gate nav,.garden-gate>.garden-call {display:none}
+ .garden-footer>div {grid-template-columns:1fr 1fr}
+ .garden-footer .season-lockup {grid-column:1/-1}
+}
+@media(max-width:700px) {
+ h2 {font-size:clamp(42px,11.65vw,65px)}
+ .garden-cover {min-height:583px}
+ .garden-cover img {object-position:52% 40%}
+ .garden-cover::before {background:linear-gradient(0deg,#263721fc 5%,#263721dc 39%,transparent 83%)}
+ .garden-cover>div {padding:246px var(--garden-edge) 29px}
+ .garden-cover h1 {font-size:clamp(44px,12.5vw,64px)}
+ .garden-outside {padding-block:24px 31px}
+ .outside-heading {display:block}
+ .outside-heading>p {margin-top:8px}
+ .garden-work-wall {display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding:3px 3px 10px}
+ .garden-work-wall figure {flex:0 0 78%;scroll-snap-align:start}
+ .garden-work-wall img {height:224px}
+ .garden-wheel-block {grid-template-columns:1fr;padding:25px 0 33px var(--garden-edge);gap:16px}
+ .wheel-controls {padding-right:var(--garden-edge)}
+ .garden-wheel {width:min(92%,285px);margin:18px auto 0}
+ .garden-wheel button {min-width:69px;padding-inline:6px;font-size:.85rem}
+ .garden-season-pictures {margin-top:0}
+ .garden-season-record {min-height:327px}
+ .mulch-notes {grid-template-columns:1fr;padding:0 var(--garden-edge) 26px;gap:14px}
+ .mulch-cut {margin:-11px 10px 0 calc(-1*var(--garden-edge))}
+ .mulch-cut svg {max-height:220px}
+ .geneseo-slope h2 {font-size:clamp(60px,16vw,99px)}
+ .garden-inquiry {grid-template-columns:1fr;padding-block:26px}
+ .garden-footer>div>div:nth-child(3) {grid-row:3;grid-column:1/-1}
+}
+
+
+.garden-cover img {object-position:center 40%}
+.garden-wheel {
+  --wheel-mark:90deg;
+  background:conic-gradient(from -45deg,#4d6d43 0 90deg,#765038 90deg 180deg,#87462f 180deg 270deg,#416674 270deg);
+}
+body[data-season=spring] .garden-wheel {--wheel-mark:0deg}
+body[data-season=fall] .garden-wheel {--wheel-mark:180deg}
+body[data-season=pavers] .garden-wheel {--wheel-mark:270deg}
+.garden-wheel::before {
+  content:"";
+  position:absolute;
+  inset:3px;
+  z-index:-1;
+  border-radius:50%;
+  border-top:4px solid #f3e2bc;
+  transform:rotate(var(--wheel-mark));
+  transition:transform .38s ease;
+  pointer-events:none;
+}
+.garden-season-record>div {box-shadow:6px -6px 0 #f0e8da3b}
+@media(max-width:700px) {.garden-cover img {object-position:54% 39%}}

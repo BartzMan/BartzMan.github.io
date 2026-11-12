@@ -1,0 +1,207 @@
+@font-face {font-family:"Familjen Grotesk";src:url(../fonts/familjen-grotesk-700.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face {font-family:Spectral;src:url(../fonts/spectral-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face {font-family:Spectral;src:url(../fonts/spectral-600.woff2) format("woff2");font-weight:600;font-display:swap}
+:root {
+  --phase-navy:#12263f;
+  --phase-orange:#ff7a1a;
+  --phase-concrete:#d9d6d0;
+  --phase-inset:clamp(18px,4vw,78px);
+  --phase-ruler:repeating-linear-gradient(90deg,#ff7a1a 0 4px,transparent 4px 19px);
+  --phase-hatch:repeating-linear-gradient(130deg,transparent 0 16px,#b4bdd415 16px 18px);
+  --kit-bg:#e9e4dc;--kit-ink:#12263f;--kit-accent:#9a3d08;
+}
+body {background:#c9cbd0;color:#12263f;font:400 18px/1.46 Spectral,Georgia,serif}
+h1,h2,h3,p,figure {margin:0}
+h1,h2,h3,.phase-location,.phase-lockup strong,.phase-tabs,.phase-filters,.phase-current,.phase-call,.phase-range {font-family:"Familjen Grotesk",Arial,sans-serif;font-weight:700}
+h1,h2,h3 {line-height:.88;letter-spacing:-.065em}
+h2 {font-size:clamp(54px,7vw,129px)}
+h3 {font-size:clamp(27px,3.5vw,63px)}
+em {font-style:normal;color:#923e12}
+section[id] {scroll-margin-top:86px}
+a {color:inherit;text-underline-offset:.2em}
+.phase-location {text-transform:uppercase;font-size:.78rem;letter-spacing:.105em}
+.phase-header {position:sticky;top:0;z-index:110;display:flex;align-items:center;justify-content:space-between;gap:15px;padding:10px var(--phase-inset);background:#12263f;color:white;border-bottom:4px solid #43556b}
+.kit-scrolled .phase-header {background:#192c47;box-shadow:0 7px 22px #14264260}
+.phase-lockup {display:inline-flex;align-items:center;gap:7px;min-height:47px;text-decoration:none}
+.phase-lockup svg {width:42px;flex:0 0 42px;color:var(--phase-orange)}
+.phase-lockup strong {display:block;font-size:clamp(24px,2.4vw,36px);line-height:.8}
+.phase-lockup small {display:block;font-size:.76rem;line-height:1.12;margin-top:5px}
+.phase-header nav {display:flex;align-items:center;gap:clamp(13px,2.6vw,38px);font-weight:600}
+.phase-header nav a {min-height:44px;display:flex;align-items:center;text-decoration:none}
+.phase-header nav a:hover,.phase-header nav a[aria-current] {color:#ffb37e;text-decoration:underline}
+.phase-scroll {position:absolute;inset:auto 0 -4px;height:4px;background:var(--phase-ruler),#c45112;transform:scaleX(var(--kit-scroll,0));transform-origin:left;pointer-events:none}
+.phase-call {display:inline-flex;align-items:center;gap:9px;justify-content:center;min-height:48px;padding:10px 18px;width:fit-content;border:1px solid #ffb17c;border-radius:90px;color:#102138;background:var(--phase-orange);text-decoration:none}
+.phase-call:hover {background:#ff9d5f;box-shadow:0 0 0 3px #ffb17c}
+.phase-call svg,.phase-phone-strip svg,.phase-number-link svg {width:22px;height:22px;flex:none}
+.phase-menu,.phase-sheet button {height:48px;width:48px;border:1px solid #ffb17c;background:#172c47;color:white;font-size:23px}
+.phase-sheet {padding:20px var(--phase-inset);background-color:#12263f;background-image:var(--phase-hatch)}
+.phase-sheet>div {display:flex;justify-content:space-between;align-items:center}
+.phase-sheet nav {display:grid;margin:21px 0}
+.phase-sheet nav a {border-bottom:1px solid #8494a8;padding:12px 0;min-height:50px;font:700 34px/1 "Familjen Grotesk",sans-serif;text-decoration:none}
+.phase-phone-strip {padding:7px 12px max(7px,env(safe-area-inset-bottom));gap:10px;background:#142841;border-top:1px solid #ff7a1a}
+.phase-phone-strip a {display:flex;align-items:center;justify-content:center;gap:6px;flex:1;min-height:46px;background:#ff7a1a;color:#12263f;border-radius:40px;font-weight:600;text-decoration:none}
+.phase-phone-strip a+a {color:white;background:#405572}
+
+.phase-opening {display:grid;align-items:end;position:relative;min-height:clamp(550px,45vw,790px);isolation:isolate;background:#182d45;color:white;overflow:clip}
+.phase-opening>img,.phase-borough>img {position:absolute;z-index:-2;inset:0;width:100%;height:100%;object-fit:cover}
+.phase-opening>img {object-position:center 62%;filter:saturate(.83)}
+.phase-opening::before {content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(108deg,#12263ffa 13%,#12263fce 36%,transparent 76%)}
+.phase-opening-panel {width:min(100%,1100px);padding:46px var(--phase-inset) 80px}
+.phase-opening-panel h1 {font-size:clamp(94px,9vw,159px);max-width:7.9ch;margin:13px 0 18px}
+.phase-opening-panel h1 em,.phase-schedule h2 em,.phase-deck-plan h2 em {color:var(--phase-orange)}
+.phase-opening-panel>p:not(.phase-location) {max-width:34ch;margin-bottom:18px;font-size:clamp(19px,2vw,26px)}
+.phase-opening-label {position:absolute;right:var(--phase-inset);bottom:20px;padding:7px 11px;background:#132943;color:white;font-size:.84rem;border-left:4px solid #ff7a1a}
+.phase-opening-label b {margin-right:8px;color:#ffb17c}
+
+.phase-schedule {position:relative;z-index:1;margin-top:-14px;padding:33px var(--phase-inset) 48px;background-color:#182e49;background-image:var(--phase-hatch);color:white;border-top:6px solid #ff7a1a}
+.phase-schedule-heading h2 {margin:8px 0 14px}
+.phase-range {display:grid;grid-template-columns:max-content 1fr max-content;align-items:center;gap:13px;margin:20px 0 8px;background:#cbd5df;color:#142841;padding:5px 11px}
+.phase-range input {width:100%;min-width:0;height:45px;accent-color:#9e400b;cursor:pointer}
+.phase-range output {font-size:.89rem;text-align:right}
+.phase-tabs {display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px;margin-bottom:10px}
+.phase-tabs button {min-height:46px;border:1px solid #8297af;color:white;background:#263c58;padding:4px 6px}
+.phase-tabs button b {color:#ffb17c}
+.phase-tabs button:hover,.phase-tabs button[aria-pressed=true] {background:#ff7a1a;color:#132943}
+.phase-tabs button[aria-pressed=true] b,.phase-tabs button:hover b {color:#132943}
+.phase-track {display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-color:#ff7a1a #334a65;padding:5px 4px 14px;margin:0 -4px}
+.phase-entry {position:relative;isolation:isolate;flex:0 0 77%;min-width:0;min-height:clamp(300px,33vw,585px);display:grid;align-items:end;background:#35495f;color:white;scroll-snap-align:start;border-bottom:5px solid #ff7a1a}
+.phase-entry img {position:absolute;z-index:-1;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.84)}
+.phase-entry:nth-child(2) img {object-position:center 63%}
+.phase-slip {background:#12263f;color:white;max-width:50ch;width:fit-content;padding:14px 18px}
+.phase-index {display:block;color:#ffb17c;font:700 1rem/1.2 "Familjen Grotesk",sans-serif;margin-bottom:6px}
+.phase-slip h3 {margin-bottom:6px}
+.phase-slip small {color:#d7e0eb}
+
+.phase-borough {position:relative;isolation:isolate;display:flex;align-items:end;min-height:clamp(345px,32vw,590px);background:#12263f;color:white;overflow:clip}
+.phase-borough::before {content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,#102238f5,transparent 91%)}
+.phase-borough div {width:100%;padding:23px var(--phase-inset) 35px;border-top:1px dashed #ffb17c}
+.phase-borough h2 {font-size:clamp(59px,13vw,231px);color:#ff8c40}
+.phase-borough p {color:white;font-weight:600}
+
+.phase-services {padding:41px var(--phase-inset) 59px;background-color:#e3ded6;background-image:repeating-linear-gradient(0deg,transparent 0 45px,#17263e14 45px 46px)}
+.phase-services-head {display:flex;align-items:end;justify-content:space-between;gap:19px}
+.phase-services-head p:not(.phase-location) {max-width:31ch}
+.phase-filters {display:flex;flex-wrap:wrap;gap:7px;margin:21px 0 12px}
+.phase-filters button {min-height:46px;padding:6px 14px;border:1px solid #12263f;background:#f6f2ea;color:#12263f}
+.phase-filters button:hover,.phase-filters button[aria-pressed=true] {background:#12263f;color:white}
+.phase-service-grid {display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px;align-items:stretch}
+.phase-service-grid figure {grid-column:span 4;display:flex;flex-direction:column;min-width:0;background:#12263f;color:white;border-bottom:5px solid #c65310}
+.phase-service-grid figure:nth-child(1),.phase-service-grid figure:nth-child(2) {grid-column:span 6}
+.phase-service-grid img,.phase-service-grid svg {height:clamp(235px,25vw,440px);width:100%;object-fit:cover;filter:saturate(.83);background:#344a67;color:#ffb17c;transition:filter .25s}
+.phase-service-grid img:hover {filter:brightness(1.13)}
+.phase-service-grid figcaption {padding:11px 14px 14px}
+.phase-service-grid figcaption p {margin:7px 0 4px}
+.phase-service-grid figcaption small {color:#dbe1eb}
+
+.phase-deck-plan {display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(25px,6vw,90px);align-items:center;padding:40px var(--phase-inset) 54px 0;background:#12263f var(--phase-hatch);color:white}
+.phase-plan-view {margin-top:-68px;background:#26405e;outline:5px solid #fd7a20;color:white}
+.phase-plan-view svg {width:100%;max-height:460px;display:block}
+.phase-plan-view p {padding:0 15px 13px;font-size:.86rem}
+.phase-deck-plan h2 {margin:8px 0 12px}
+.phase-deck-plan details {background:#e9e4dc;color:#12263f;border-bottom:1px solid #9a9e9f}
+.phase-deck-plan details:first-of-type {margin-top:13px}
+.phase-deck-plan summary {min-height:46px;cursor:pointer;padding:9px 12px;font-weight:600}
+.phase-deck-plan summary:hover {background:#f8dbbf}
+.phase-deck-plan details p {padding:0 12px 10px}
+
+.phase-contact {display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:clamp(26px,7vw,130px);padding:54px var(--phase-inset);color:#12263f;background:#dfb78e repeating-linear-gradient(130deg,transparent 0 25px,#7b390d14 25px 27px)}
+.phase-contact h2 {margin:7px 0 13px}
+.phase-contact address {display:grid;font-style:normal;margin-bottom:12px}
+.phase-contact address>* {display:flex;align-items:center;gap:7px;min-height:45px;width:fit-content}
+.phase-number-link {font:700 clamp(32px,4vw,69px)/1 "Familjen Grotesk",sans-serif}
+.phase-google {display:inline-flex;align-items:center;gap:13px;background:#12263f;color:white;padding:9px 13px;text-decoration:none;border-left:6px solid #ff7a1a}
+.phase-google strong {font:700 47px/1 "Familjen Grotesk",sans-serif;color:#ffb17c}
+.phase-google:hover small {text-decoration:underline}
+.phase-request {display:grid;gap:9px;background:#f7f4ed;color:#12263f;padding:20px;border:1px solid #12263f;border-top:8px solid #ff7a1a}
+.phase-request label {display:grid;gap:3px;font-weight:600}
+.phase-request input,.phase-request textarea {background:#fff;color:#12263f;border:1px solid #677687;padding:8px;width:100%;min-height:46px}
+.phase-request textarea::placeholder {color:#57677d}
+.phase-request>p {font-size:.84rem}
+.phase-footer {background:#12263f var(--phase-hatch);color:white;padding:30px var(--phase-inset) 20px;border-top:5px solid #ff7a1a}
+.phase-footer-index {display:grid;grid-template-columns:1.1fr .85fr 1fr .7fr;align-items:start;gap:16px}
+.phase-footer-index div {display:grid}
+.phase-footer-index div a {width:fit-content;display:flex;align-items:center;min-height:44px}
+.phase-footer-index a[href^=mailto] {white-space:nowrap}
+.phase-footer>p {margin-top:11px;border-top:1px solid #7890aa;padding-top:10px;font-size:.82rem}
+.phase-missing {padding:50px var(--phase-inset);background:#d8d5cd var(--phase-hatch)}
+.phase-missing-code {font:700 clamp(115px,25vw,340px)/.9 "Familjen Grotesk",sans-serif;color:#963f0f}
+.phase-missing h1 {font-size:clamp(48px,7vw,124px);margin:10px 0 20px}
+.kit-legal-in {background:#faf7ee;border-top:7px solid #ff7a1a;padding:clamp(15px,4vw,55px);overflow-wrap:anywhere}
+
+@media(max-width:900px) {
+  .phase-header nav,.phase-header>.phase-call {display:none}
+  .phase-footer-index {grid-template-columns:1fr 1fr}
+  .phase-footer-index>.phase-lockup {grid-column:1/-1}
+}
+@media(max-width:700px) {
+  h2 {font-size:clamp(46px,12vw,67px)}
+  .phase-header {padding-block:6px}
+  .phase-opening {min-height:594px}
+  .phase-opening>img {object-position:56% 41%}
+  .phase-opening::before {background:linear-gradient(0deg,#12263ffa 8%,#12263fdd 39%,transparent 81%)}
+  .phase-opening-panel {padding:253px var(--phase-inset) 65px}
+  .phase-opening-panel h1 {font-size:clamp(55px,14vw,75px);max-width:9ch}
+  .phase-opening-label {bottom:18px;left:var(--phase-inset);right:auto;padding:5px 8px}
+  .phase-schedule {padding-block:25px 31px}
+  .phase-range {grid-template-columns:1fr auto;gap:3px 8px}
+  .phase-range input {grid-row:2;grid-column:1/-1}
+  .phase-tabs {grid-template-columns:repeat(3,minmax(0,1fr))}
+  .phase-entry {flex-basis:86%;min-height:360px}
+  .phase-slip {padding:10px}
+  .phase-borough h2 {font-size:clamp(57px,13.5vw,80px)}
+  .phase-services {padding-block:32px 48px}
+  .phase-services-head {display:block}
+  .phase-services-head h2 {margin-bottom:8px}
+  .phase-service-grid {display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 3px 10px}
+  .phase-service-grid figure {flex:0 0 80%;scroll-snap-align:start}
+  .phase-deck-plan {grid-template-columns:1fr;padding:0 var(--phase-inset) 31px;gap:19px}
+  .phase-plan-view {margin:-13px 12px 0 calc(-1 * var(--phase-inset));outline-width:3px}
+  .phase-plan-view svg {max-height:235px}
+  .phase-contact {grid-template-columns:1fr;padding-block:36px}
+  .phase-footer-index>div:nth-child(3) {grid-row:3;grid-column:1/-1}
+}
+
+/* The stage rail sets the angle for the cover and the finish line for the footer. */
+.phase-opening {display:flex}
+.phase-opening::before {
+  background:#142943ee var(--phase-hatch);
+  clip-path:polygon(0 0,62% 0,47% 100%,0 100%);
+  border-right:6px solid #ff7a1a;
+}
+.phase-schedule {background-color:#243c60}
+.phase-entry {border-top:4px solid #ff7a1a;box-shadow:0 3px 0 #12263f}
+.phase-track:focus-visible {outline-color:#ffb17c}
+.phase-service-grid figure:nth-child(6),.phase-service-grid figure:nth-child(7) {grid-column:span 6}
+.phase-service-grid figure:nth-child(6) img {object-position:center 59%}
+.phase-footer {
+  background:#c6d0da repeating-linear-gradient(130deg,transparent 0 19px,#40567413 19px 21px);
+  color:#12263f;
+}
+.phase-footer .phase-lockup svg {color:#8b3609}
+.phase-footer-index {border-bottom:1px solid #708295;padding-bottom:12px}
+.phase-footer>p {border-top:0}
+@media(max-width:700px) {
+  .phase-opening::before {
+    background:linear-gradient(0deg,#12263ffa 8%,#12263fdd 39%,transparent 81%);
+    clip-path:none;
+    border-right:0;
+  }
+}
+
+/* Concept detail for pointer and keyboard use. */
+@media (hover:hover) {
+  .phase-call {position:relative}
+  .phase-call::after {
+    content:"";
+    position:absolute;
+    right:6px;
+    top:-6px;
+    width:17px;
+    height:14px;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .18s;
+    background:repeating-linear-gradient(128deg,#12263f 0 3px,#ff9d5f 3px 6px);border:1px solid #12263f;clip-path:polygon(12% 0,100% 0,86% 100%,0 100%);
+  }
+  .phase-call:hover::after,.phase-call:focus-visible::after {opacity:1}
+}

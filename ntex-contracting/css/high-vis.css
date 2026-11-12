@@ -1,0 +1,168 @@
+
+@font-face {font-family:"Bowlby One SC";src:url(../fonts/bowlby-one-sc-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face {font-family:"Kumbh Sans";src:url(../fonts/kumbh-sans-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face {font-family:"Kumbh Sans";src:url(../fonts/kumbh-sans-700.woff2) format("woff2");font-weight:700;font-display:swap}
+:root {
+ --hi:#b8f400;--asphalt:#0d0d0d;--steel:#6e7378;--rail-inset:clamp(17px,4.25vw,82px);
+ --mesh:repeating-linear-gradient(0deg,transparent 0 18px,#d4d9df13 18px 19px),repeating-linear-gradient(90deg,transparent 0 18px,#d4d9df13 18px 19px);
+ --kit-bg:#161718;--kit-ink:#fff;--kit-accent:#b8f400;--kit-accent-text:#ceff4d;
+}
+body {background:#1c1d1e;color:white;font:400 17px/1.54 "Kumbh Sans",sans-serif}
+h1,h2,h3,p,figure {margin:0}
+h1,h2,h3,.ntex-emblem strong {font-family:"Bowlby One SC",Impact,sans-serif;font-weight:400;letter-spacing:-.06em;line-height:.94}
+h2 {font-size:clamp(42px,5.7vw,105px)}
+h3 {font-size:clamp(26px,3.2vw,58px)}
+em {font-style:normal;color:#c2c8cf}
+a {color:inherit;text-underline-offset:.2em}
+section[id] {scroll-margin-top:87px}
+.ntex-marking {font-size:.75rem;text-transform:uppercase;font-weight:700;letter-spacing:.13em}
+.ntex-guardrail {position:sticky;top:0;z-index:111;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:9px var(--rail-inset);background:#101112;color:white;border-bottom:3px solid #51565a}
+.kit-scrolled .ntex-guardrail {background:#252627;box-shadow:0 7px 18px #0008}
+.ntex-emblem {display:flex;align-items:center;gap:7px;min-height:48px;text-decoration:none}
+.ntex-emblem svg {width:48px;flex:0 0 48px;color:#b8f400}
+.ntex-emblem strong {display:block;font-size:clamp(25px,3vw,44px)}
+.ntex-emblem small {display:block;font-size:.73rem;font-weight:700;margin-top:4px}
+.ntex-guardrail nav {display:flex;gap:clamp(10px,2.8vw,34px)}
+.ntex-guardrail nav a {display:flex;align-items:center;min-height:44px;font-weight:700;text-decoration:none}
+.ntex-guardrail nav a:hover,.ntex-guardrail nav a[aria-current] {text-decoration:underline;text-decoration-color:#b8f400}
+.ntex-lime-call {display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:8px 16px;width:fit-content;border:1px solid #b8f400;border-radius:43px;background:#b8f400;color:#101112;font-weight:700;text-decoration:none}
+.ntex-lime-call:hover {background:#d3ff51;box-shadow:0 0 0 3px #d3ff5155}
+.ntex-lime-call svg,.ntex-thumb-rail svg,.ntex-number svg {width:21px;height:21px;flex:none}
+.ntex-line-progress {position:absolute;inset:auto 0 -3px;height:4px;background:#b8f400;transform:scaleX(var(--kit-scroll,0));transform-origin:left;pointer-events:none}
+.ntex-switchboard,.ntex-mobile-sheet button {width:47px;height:47px;background:#26292c;color:white;border:1px solid #b8f400;font-size:24px}
+.ntex-switchboard svg {width:26px}
+.ntex-mobile-sheet {padding:20px var(--rail-inset);background-image:var(--mesh);background-color:#101112}
+.ntex-mobile-sheet>div {display:flex;justify-content:space-between;align-items:center}
+.ntex-mobile-sheet nav {display:grid;margin:23px 0}
+.ntex-mobile-sheet nav a {min-height:51px;padding:11px 0;border-bottom:1px solid #64696e;font:400 clamp(23px,7vw,37px)/1.04 "Bowlby One SC",Impact,sans-serif;text-decoration:none}
+.ntex-thumb-rail {gap:8px;padding:7px 12px max(7px,env(safe-area-inset-bottom));background:#101112;border-top:1px solid #b8f400}
+.ntex-thumb-rail a {flex:1;display:flex;align-items:center;justify-content:center;gap:7px;min-height:46px;border-radius:30px;background:#b8f400;color:#101112;font-weight:700;text-decoration:none}
+.ntex-thumb-rail a+a {background:#e2e4e5}
+
+.highvis-cover,.rockwall-line {position:relative;isolation:isolate;display:grid;align-items:end;background:#0d0d0d;color:white}
+.highvis-cover {min-height:clamp(580px,46vw,793px)}
+.highvis-cover img,.rockwall-line img {position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.highvis-cover img {object-position:center 48%;filter:saturate(.68) contrast(1.08)}
+.highvis-cover::before,.rockwall-line::before {content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#0d0d0dfc 3%,#0d0d0ddd 36%,transparent 80%)}
+.highvis-cover>div {width:min(100%,1130px);padding:48px var(--rail-inset) 68px}
+.highvis-cover h1 {font-size:clamp(90px,8.7vw,154px);margin:13px 0 15px}
+.highvis-cover h1 em {display:block;color:#d4d9df}
+.highvis-cover p:first-child {font-weight:700;text-transform:uppercase;letter-spacing:.12em;font-size:.8rem}
+.highvis-cover p:nth-of-type(2) {font-size:clamp(17px,1.55vw,24px);max-width:39ch;margin-bottom:15px}
+.highvis-scope {display:grid;grid-template-columns:.68fr 1.32fr;grid-template-areas:"scope-title scope-photo" "scope-tabs scope-photo";gap:15px clamp(19px,5vw,86px);padding:34px 0 42px var(--rail-inset);align-items:center;background-color:#25292b;background-image:var(--mesh);border-top:5px solid #b8f400}
+.highvis-section-header {grid-area:scope-title;align-self:end}
+.highvis-section-header h2,.daylight-lab h2,.western-windows h2,.ntex-contact-board h2 {margin:9px 0}
+.highvis-service-tabs {grid-area:scope-tabs;align-self:start;display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.highvis-service-tabs button {min-height:47px;padding:5px 7px;background:#32373b;color:white;border:1px solid #878f96;font-weight:700}
+.highvis-service-tabs button[aria-pressed=true],.highvis-service-tabs button:hover {background:#f3f3f1;color:#101112;border-bottom:4px solid #92bf16}
+.highvis-services {grid-area:scope-photo;min-width:0;margin-top:-58px}
+.highvis-service-view {position:relative;isolation:isolate;display:grid;align-items:end;min-height:clamp(330px,31vw,540px);background:#34383a;color:white;border-left:5px solid #b8f400}
+.highvis-service-view img {position:absolute;inset:0;z-index:-1;width:100%;height:100%;object-fit:cover;filter:saturate(.72)}
+.highvis-service-view>div {padding:12px 16px;background:#121415;width:min(100%,520px);border-top:1px solid #b8f400}
+.highvis-service-view p {margin:7px 0 4px}
+.highvis-service-view small {color:#d3d7db}
+
+.daylight-lab {display:grid;grid-template-columns:1.12fr .88fr;gap:clamp(22px,6vw,110px);align-items:center;padding:36px var(--rail-inset);background-color:#0d0d0d;background-image:var(--mesh);color:white}
+.daylight-drawing {background:#272b2e;border:1px solid #858c92;box-shadow:8px 8px 0 #b8f40055}
+.daylight-drawing svg {display:block;width:100%;max-height:440px}
+.daylight-drawing p {padding:8px 12px;font-size:.82rem;border-top:1px solid #727b82}
+.daylight-control label {display:block;margin-top:16px;font-weight:700}
+.daylight-control input {display:block;width:100%;height:49px;cursor:pointer;accent-color:#a4d315}
+.daylight-labels {display:flex;justify-content:space-between;gap:10px;font-size:.85rem;color:#e2e5e8}
+#daylight-result {margin-top:13px;padding:11px 10px;border-left:3px solid #b8f400;background:#2b2e31;color:white;min-height:76px}
+.ntex-kitchen-pass {display:grid;grid-template-columns:.68fr 1.32fr;align-items:center;gap:clamp(25px,5vw,92px);padding:36px 0 35px var(--rail-inset);background-color:#343a40;background-image:var(--mesh);color:white}
+.ntex-kitchen-pass h2 {margin:7px 0 12px}
+.ntex-kitchen-pass figure {position:relative;margin-top:-50px;border-left:6px solid #b8f400;background:#0d0d0d;color:white}
+.ntex-kitchen-pass img {width:100%;height:clamp(270px,30vw,540px);object-fit:cover}
+.ntex-kitchen-pass figcaption,.western-windows figcaption {padding:6px 10px;font-size:.83rem}
+.western-windows {display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(21px,5.5vw,101px);align-items:center;padding:38px var(--rail-inset) 38px 0;background-color:#1f2224;background-image:var(--mesh);color:white}
+.western-windows figure {background:#101112;border-bottom:5px solid #b8f400}
+.western-windows img {width:100%;height:clamp(235px,26vw,480px);object-fit:cover}
+.western-windows details {background:#e8ebed;color:#101112;border-bottom:1px solid #8b949b}
+.western-windows details:first-of-type {margin-top:10px}
+.western-windows summary {min-height:46px;padding:8px 11px;cursor:pointer;font-weight:700}
+.western-windows summary:hover {background:#d1d7dc}
+.western-windows details p {padding:0 11px 9px}
+
+.ntex-visual-register {padding:36px var(--rail-inset) 43px;background-color:#0d0d0d;background-image:var(--mesh)}
+.ntex-visual-register h2 {margin:8px 0 15px}
+.ntex-detail-strip {display:grid;grid-template-columns:1.25fr .75fr;gap:8px}
+.ntex-detail-strip figure {background:#2d3135;color:white;border-top:3px solid #b8f400}
+.ntex-detail-strip figure:nth-child(3) {grid-column:2;grid-row:2}
+.ntex-detail-strip img {width:100%;height:clamp(200px,24vw,415px);object-fit:cover;filter:saturate(.72)}
+.ntex-detail-strip img:hover {filter:brightness(1.15)}
+.ntex-detail-strip figcaption {padding:7px 10px;font-weight:700;font-size:.89rem}
+.ntex-detail-strip small {display:block;color:#d3d8dd;font-weight:400}
+.rockwall-line {min-height:clamp(345px,32vw,591px)}
+.rockwall-line img {object-position:center 43%;filter:saturate(.65)}
+.rockwall-line::before {background:linear-gradient(0deg,#0d0d0df8,transparent 88%)}
+.rockwall-line div {padding:20px var(--rail-inset) 26px}
+.rockwall-line h2 {font-size:clamp(53px,8vw,149px);color:#fff;max-width:100%}
+.rockwall-line p {padding-bottom:6px;border-bottom:2px solid #b8f400;margin-bottom:12px;font-size:.88rem}
+.ntex-contact-board {display:grid;grid-template-columns:1.12fr .88fr;gap:clamp(21px,6vw,111px);align-items:center;padding:37px var(--rail-inset);background-color:#252a2e;background-image:var(--mesh)}
+.ntex-contact-board address {display:grid;font-style:normal}
+.ntex-contact-board address>* {display:flex;align-items:center;gap:7px;min-height:45px;width:fit-content}
+.ntex-number {font:700 clamp(27px,4.1vw,69px)/1 "Kumbh Sans",sans-serif;letter-spacing:-.05em}
+.ntex-request-form {display:grid;gap:8px;padding:15px;background:#f4f5f3;color:#101112;border-top:7px solid #b8f400}
+.ntex-request-form label {display:grid;gap:3px;font-weight:700}
+.ntex-request-form input,.ntex-request-form textarea {width:100%;min-height:45px;padding:7px;border:1px solid #707a81;background:white;color:#101112}
+.ntex-request-form textarea::placeholder {color:#45515b}
+.ntex-request-form>p {font-size:.82rem}
+.ntex-steel-footer {padding:25px var(--rail-inset) 17px;background-color:#101112;background-image:var(--mesh);border-top:5px solid #b8f400}
+.ntex-steel-footer>div {display:grid;grid-template-columns:1.1fr .8fr 1.12fr .6fr;gap:13px;align-items:start}
+.ntex-steel-footer>div>div {display:grid}
+.ntex-steel-footer>div>div a {display:flex;min-height:44px;align-items:center;width:fit-content}
+.ntex-steel-footer a[href^=mailto] {white-space:nowrap;font-size:.86rem}
+.ntex-steel-footer>p {margin-top:10px;padding-top:9px;border-top:1px solid #8d989e;font-size:.81rem}
+.ntex-missing {padding:39px var(--rail-inset);background-color:#101112;background-image:var(--mesh)}
+.ntex-missing svg {width:82px;color:#b8f400}
+.ntex-missing>p {font:400 clamp(88px,21vw,290px)/.9 "Bowlby One SC",Impact,sans-serif;color:#b8f400}
+.ntex-missing h1 {font-size:clamp(39px,7vw,104px);margin:9px 0 15px}
+.kit-legal {background-image:var(--mesh)}
+.kit-legal-in {padding:clamp(15px,4vw,51px);background:#252a2e;border-left:5px solid #b8f400;overflow-wrap:anywhere}
+@media(max-width:900px) {
+ .ntex-guardrail nav,.ntex-guardrail>.ntex-lime-call {display:none}
+ .ntex-steel-footer>div {grid-template-columns:1fr 1fr}
+ .ntex-steel-footer .ntex-emblem {grid-column:1/-1}
+}
+@media(max-width:700px) {
+ h2 {font-size:clamp(37px,10.2vw,60px)}
+ .highvis-cover {min-height:571px}
+ .highvis-cover img {object-position:50% 38%}
+ .highvis-cover::before {background:linear-gradient(0deg,#0d0d0dfc 6%,#0d0d0de5 39%,transparent 83%)}
+ .highvis-cover>div {padding:243px var(--rail-inset) 30px}
+ .highvis-cover h1 {font-size:clamp(43px,12vw,64px)}
+ .highvis-scope {grid-template-columns:1fr;grid-template-areas:"scope-title" "scope-tabs" "scope-photo";padding:25px var(--rail-inset)}
+ .highvis-service-tabs {grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}
+ .highvis-service-tabs button {font-size:.85rem;padding-inline:2px}
+ .highvis-services {margin:0 calc(-1*var(--rail-inset)) 0 0}
+ .highvis-service-view {min-height:322px}
+ .daylight-lab,.ntex-kitchen-pass,.western-windows {grid-template-columns:1fr;gap:13px;padding:25px var(--rail-inset)}
+ .daylight-drawing {order:2;margin-right:5px}
+ .ntex-kitchen-pass figure {margin:0 calc(-1*var(--rail-inset)) 0 0}
+ .western-windows figure {margin-left:calc(-1*var(--rail-inset))}
+ .ntex-visual-register {padding-block:26px}
+ .ntex-detail-strip {display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 3px 10px}
+ .ntex-detail-strip figure {flex:0 0 78%;scroll-snap-align:start}
+ .ntex-detail-strip img {height:230px}
+ .rockwall-line h2 {font-size:clamp(38px,11vw,60px)}
+ .ntex-contact-board {grid-template-columns:1fr;padding-block:25px}
+ .ntex-steel-footer>div>div:nth-child(3) {grid-row:3;grid-column:1/-1}
+}
+
+
+.ntex-lime-call:not([href^="tel:"]) {background:#e2e4e5;border-color:#727a81;color:#101112}
+.ntex-lime-call:not([href^="tel:"]):hover {background:white;box-shadow:0 0 0 3px #d3d8dd55}
+.daylight-drawing {background-color:#32373b;box-shadow:8px 8px 0 #a1c03255}
+.highvis-service-view>div {box-shadow:inset -1px 0 #65717b}
+.ntex-steel-footer {background-color:#25292c}
+@media(max-width:700px) {
+ .highvis-cover img {object-position:76% 41%}
+ .daylight-drawing {margin-top:2px}
+}
+
+@media (hover:hover) {
+ .ntex-lime-call {position:relative}
+ .ntex-lime-call::after {content:"↗";position:absolute;right:8px;top:-8px;display:grid;place-items:center;width:21px;height:20px;background:#202426;color:white;border:1px solid #b8f400;font-size:.72rem;line-height:1;opacity:0;transform:translateY(3px);transition:opacity .18s,transform .18s;pointer-events:none}
+ .ntex-lime-call:hover::after,.ntex-lime-call:focus-visible::after {opacity:1;transform:none}
+}

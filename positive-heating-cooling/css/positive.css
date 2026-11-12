@@ -1,0 +1,112 @@
+@font-face{font-family:Urbanist;src:url("../fonts/urbanist-700.woff2") format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:Petrona;src:url("../fonts/petrona-400.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:Petrona;src:url("../fonts/petrona-600.woff2") format("woff2");font-weight:600;font-display:swap}
+:root{--positive:#1e9e6a;--pine:#114737;--mint:#e3f5ec;--graphite:#23272b;--sun:#ffb547;--edge:clamp(18px,4.7vw,95px);--kit-bg:#e3f5ec;--kit-ink:#23272b;--kit-accent:#14654a;--kit-sheet-bg:#143e31;--kit-sheet-ink:#fff;--cross:polygon(34% 0,66% 0,66% 34%,100% 34%,100% 66%,66% 66%,66% 100%,34% 100%,34% 66%,0 66%,0 34%,34% 34%)}
+body{font:400 18px/1.5 Petrona,serif;background:#c7e9d9;color:var(--graphite)}
+a{color:inherit;text-underline-offset:4px}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid currentColor;outline-offset:3px}
+h1,h2,h3,p,figure{margin:0}h1,h2,h3{font:700 1em/.89 Urbanist,sans-serif;letter-spacing:-.055em}h2{font-size:clamp(55px,7vw,133px)}h3{font-size:clamp(29px,3.5vw,65px)}em{font-style:normal;color:#126246}img{filter:saturate(.85) sepia(.08) contrast(1.04)}
+section[id]{scroll-margin-top:82px}
+.positive-mast{position:sticky;top:0;z-index:110;display:flex;align-items:center;justify-content:space-between;gap:22px;padding:12px var(--edge);background:#143e31;color:white;transition:padding .2s}
+.kit-scrolled .positive-mast{padding-block:5px}
+.positive-wordmark{min-height:48px;display:inline-flex;align-items:center;gap:9px;text-decoration:none;white-space:nowrap;font:700 clamp(29px,3vw,44px)/.85 Urbanist,sans-serif;letter-spacing:-.04em}
+.positive-wordmark svg{width:38px;height:38px;color:var(--sun)}
+.positive-wordmark small{font:700 12px/1.2 Urbanist,sans-serif;letter-spacing:.065em;text-transform:uppercase;display:block;margin-top:5px}
+.positive-mast nav{display:flex;gap:clamp(15px,3vw,54px)}.positive-mast nav a{display:grid;align-items:center;min-height:44px;text-decoration:none;font-weight:600}
+.positive-mast nav a:is(:hover,[aria-current]){text-decoration:underline;text-decoration-color:var(--sun)}
+.sun-call{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:8px 19px;min-height:48px;background:var(--sun);color:var(--graphite);font:700 17px/1 Urbanist,sans-serif;text-decoration:none;border:0;border-radius:100px;width:fit-content;transition:background .2s,box-shadow .2s}
+.sun-call:hover{background:#ffcc79;box-shadow:0 0 0 4px #187151}
+.sum-progress{position:absolute;bottom:-4px;left:0;width:100%;height:4px;background:repeating-linear-gradient(90deg,var(--sun) 0 14px,#eea432 14px 16px);transform:scaleX(var(--kit-scroll,0));transform-origin:left;pointer-events:none}
+[data-kit-menu],[data-kit-close]{width:46px;height:46px;background:var(--sun);color:var(--graphite);border:0;border-radius:12px;display:grid;place-items:center}
+[data-kit-sheet]{padding:25px var(--edge)}.positive-menu-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+[data-kit-sheet] nav{display:grid;margin:7vh 0 26px}[data-kit-sheet] nav a{font:700 clamp(30px,8vw,63px)/1 Urbanist,sans-serif;padding:13px 0;text-decoration:none;border-bottom:1px solid #aad4c3}[data-kit-sheet] nav a:hover{color:var(--sun)}
+.warmth-banner{display:grid;grid-template-columns:1.12fr .88fr;align-items:center;min-height:clamp(635px,45vw,855px);padding:55px var(--edge) 85px;position:relative;isolation:isolate;background:#17332a;color:white;overflow:hidden}
+.warmth-banner>img,.tri-valley>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.warmth-banner::before,.tri-valley::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#132c25f7,#132c25d1 35%,#132c2542 74%),linear-gradient(0deg,#132c25ad,transparent 32%)}
+.comfort-head{position:relative;z-index:1}
+.comfort-head>p:first-child,.tri-valley p{font:700 15px/1.3 Urbanist,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.comfort-head h1{font-size:clamp(93px,8.9vw,163px);margin:14px 0 21px}.comfort-head h1 em{color:#a5efc8}
+.comfort-head>p:nth-of-type(2){max-width:36ch;font-size:clamp(19px,1.42vw,27px);margin-bottom:21px}
+.sun-plus{color:var(--sun);width:min(38vw,640px);justify-self:end;transform:rotate(-10deg);filter:drop-shadow(6px 6px 0 #102d23a0);animation:arrive-plus .7s ease-out both}
+.sun-plus svg{width:100%;height:auto;display:block}
+@keyframes arrive-plus{from{scale:.89;opacity:0}to{scale:1;opacity:1}}
+.warmth-credit,.tri-photo-note{position:absolute;right:var(--edge);bottom:18px;background:#143e31;color:white;padding:5px 9px;font-size:13px}
+.comfort-matrix{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,6vw,120px);padding:clamp(45px,6vw,112px) var(--edge);background:#d4eee1;background-image:linear-gradient(90deg,#a9d6bf35 1px,transparent 1px),linear-gradient(#a9d6bf35 1px,transparent 1px);background-size:24px 24px}
+.matrix-heading p,.switch-heading>p,.tune-copy>p{margin:13px 0 16px;max-width:39ch}
+.matrix-heading figure{width:83%;position:relative;transform:translateX(-3vw);margin-top:22px;border:7px solid #fff;box-shadow:8px 8px 0 #12624646;background:#143e31;color:white}
+.matrix-heading img{width:100%;height:clamp(145px,18vw,320px);object-fit:cover}
+figcaption{font-size:13px;padding:6px 10px}
+.symptom-panel{background:#143e31;color:white;border-radius:30px 30px 5px 30px;padding:clamp(17px,3vw,49px);box-shadow:9px 12px 0 var(--positive);align-self:start}
+.symptom-panel fieldset{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0;border:0;min-width:0}
+.symptom-panel legend{font:700 clamp(30px,3.4vw,59px)/1 Urbanist,sans-serif;margin-bottom:15px}
+.symptom-panel label{display:flex;align-items:center;gap:7px;min-height:47px;padding:7px 10px;background:#244e40;color:#fff;border:1px solid #a6c9b7;border-radius:9px;cursor:pointer}
+.symptom-panel label:has(:checked){background:var(--sun);color:var(--graphite);border-color:var(--sun)}
+.symptom-panel input{width:21px;height:21px;flex:none;accent-color:#14664a}
+.comfort-answers{padding-top:17px;margin-top:17px;border-top:1px solid #b3d4c4}
+.comfort-answers h3{font-size:32px;color:#b5f4d4;margin-bottom:6px}
+.comfort-answers ul{list-style:none;padding:0;margin:0}.comfort-answers li{padding:6px 0}.comfort-answers li::before{content:"+";color:var(--sun);font-weight:600;margin-right:7px}
+.climate-switchboard{padding:clamp(38px,5vw,100px) var(--edge) 42px;display:grid;grid-template-columns:.83fr 1.17fr;gap:30px;background:#f2c681;background-image:linear-gradient(135deg,transparent 70%,#ffdeaa88 70%);position:relative;z-index:2}
+.climate-choices{display:flex;flex-wrap:wrap;gap:6px}.climate-choices button{border:1px solid var(--pine);border-radius:22px;padding:6px 15px;min-height:46px;background:var(--mint);color:var(--graphite);font-weight:600}
+.climate-choices button:is(:hover,[aria-pressed=true]){background:var(--pine);color:#fff}
+.climate-note{margin-top:14px;max-width:45ch;min-height:120px}.climate-note h3{font-size:35px;margin-bottom:7px}
+.climate-photos{display:grid;grid-template-columns:1.4fr 1fr;grid-template-rows:1fr 1fr;gap:5px;transform:translateY(64px);margin-top:-40px}
+.climate-photos figure,.montage-track figure{min-width:0;display:grid;grid-template-rows:minmax(0,1fr) auto;background:#143e31;color:#fff;overflow:hidden}
+.climate-photos figure:first-child{grid-row:span 2}.climate-photos img{width:100%;height:100%;object-fit:cover;max-height:370px;min-height:0}
+.tri-valley{min-height:clamp(380px,34vw,645px);display:grid;align-items:end;position:relative;isolation:isolate;padding:72px var(--edge) 53px;color:white;background:#143e31}
+.tri-valley::before{background:linear-gradient(0deg,#0a2c21f7 4%,#0a2c2177 67%,#0a2c2122)}
+.tri-valley h2{font-size:clamp(99px,14vw,248px);line-height:.86}.tri-valley h2 span{color:var(--sun)}
+.tune-index{display:grid;grid-template-columns:1.13fr .87fr;gap:clamp(23px,6vw,110px);padding:clamp(41px,6vw,105px) var(--edge);background:#206248;color:#fff}
+.tune-picture{position:relative;align-self:center;color:var(--sun)}
+.tune-picture figure{background:#103e2d;color:white;border-radius:14px;overflow:hidden}
+.tune-picture img{width:100%;height:clamp(220px,26vw,450px);object-fit:cover}
+.tune-picture>div{position:absolute;right:-18px;bottom:-19px;pointer-events:none}.tune-picture svg{width:84px;height:84px}
+.tune-copy em{color:#ffe0a8}.tune-copy h2{font-size:clamp(55px,6.4vw,120px)}.tune-copy details{border-bottom:1px solid #afd6c4}.tune-copy summary{padding:11px 0;min-height:47px;cursor:pointer;font-weight:600}.tune-copy summary:hover{color:var(--sun)}.tune-copy details p{padding:0 0 12px 18px}
+.room-montage{padding:clamp(37px,5.4vw,100px) var(--edge);background:#d6e9d5;background-image:linear-gradient(115deg,#ffffff65,transparent)}
+.room-montage>div:first-child{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:20px}.room-montage h2 span{color:#126246}.room-montage p{max-width:29ch}
+.montage-track{display:grid;grid-template-columns:1.24fr .89fr 1fr .76fr;grid-template-rows:190px 200px;gap:7px}
+.montage-track figure:first-child,.montage-track figure:nth-child(2),.montage-track figure:nth-child(3){grid-row:span 2}
+.montage-track a{display:block;overflow:hidden;min-height:0}.montage-track img{width:100%;height:100%;object-fit:cover;transition:transform .3s}.montage-track a:hover img{transform:scale(1.07)}
+.positive-request{display:grid;grid-template-columns:1.16fr .84fr;gap:clamp(28px,5vw,100px);padding:clamp(40px,6vw,110px) var(--edge);background:#a8d2b7;color:var(--graphite);position:relative;isolation:isolate}
+.positive-request::before{content:"";position:absolute;right:8%;top:3%;width:min(68%,660px);aspect-ratio:1;clip-path:var(--cross);background:#cde8d4;z-index:-1;pointer-events:none}
+.positive-details{align-self:center}.positive-details h2{font-size:clamp(50px,6vw,116px);margin-bottom:17px}
+.hotline-positive,.positive-contact-row{display:flex;align-items:center;min-height:44px;gap:8px;width:fit-content}.hotline-positive{font:700 clamp(31px,4.6vw,75px)/1.1 Urbanist,sans-serif;text-decoration:none}
+.positive-contact-row svg,.hotline-positive svg{flex:none;color:var(--pine)}.positive-contact-row:hover,.hotline-positive:hover{color:var(--pine)}
+.positive-proof{display:flex;gap:10px;align-items:center;width:fit-content;background:#143e31;color:white;text-decoration:none;padding:12px 15px;margin-top:13px;border-radius:5px 23px}.positive-proof svg{color:var(--sun)}.positive-proof small{display:block;text-decoration:underline}.positive-proof:hover{background:#082f23}
+.positive-form{background:var(--mint);color:var(--graphite);border:1px solid var(--pine);border-top:9px solid var(--pine);border-radius:20px;padding:clamp(17px,3vw,52px);display:grid;gap:9px;box-shadow:8px 9px 0 #4d956f66}
+.positive-form h3{margin-bottom:8px}.positive-form label{display:grid;gap:4px;font-weight:600;min-width:0}.positive-form input,.positive-form textarea{width:100%;min-height:45px;padding:8px 10px;border:1px solid #52816c;border-radius:6px;color:var(--graphite);background:#fff}.positive-form textarea::placeholder{color:#495952;opacity:1}
+.positive-base{background:#143e31;color:#fff;padding:37px var(--edge) 23px;border-top:8px solid var(--sun)}
+.base-sum{display:grid;grid-template-columns:1.1fr 1fr 1.2fr .6fr;gap:15px;padding-bottom:17px}
+.base-sum h2{font:700 24px/1 Urbanist,sans-serif;color:var(--sun);margin-bottom:9px}.base-sum p{margin-top:9px;max-width:28ch}
+.base-sum>div>a:not(.positive-wordmark){display:flex;align-items:center;min-height:44px;width:fit-content}.base-sum>div:nth-child(3) a{white-space:nowrap}.base-sum a:hover{color:var(--sun)}.positive-credits{font-size:13px;border-top:1px solid #9abdaf;padding-top:14px}
+.positive-dock{background:#143e31;color:#fff;gap:5px;padding:6px 8px max(6px,env(safe-area-inset-bottom));border-top:3px solid var(--sun)}
+.positive-dock a{display:flex;flex:1;gap:7px;justify-content:center;align-items:center;min-height:46px;text-decoration:none;border:1px solid #d7eee3;border-radius:44px;font-weight:600}.positive-dock a:first-child{background:var(--sun);color:var(--graphite);border-color:var(--sun)}
+.missing-plus{min-height:64vh;display:grid;align-content:center;justify-items:start;gap:12px;background:#abd4ba;padding:46px var(--edge)}.missing-plus>svg{width:92px;height:92px;color:var(--pine)}.missing-plus h1{font-size:clamp(54px,9vw,147px)}
+@media(max-width:900px){.positive-mast nav,.positive-mast>.sun-call{display:none}.base-sum{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){
+ body{font-size:16px}
+ .positive-mast{padding-block:8px}.positive-wordmark{font-size:31px}
+ .warmth-banner{display:flex;align-items:end;min-height:622px;padding:22px var(--edge) 49px}
+ .warmth-banner>img{object-position:43% 33%}.warmth-banner::before{background:linear-gradient(0deg,#132c25fa 5%,#132c25e6 38%,#132c2550 70%,transparent 96%)}
+ .comfort-head h1{font-size:clamp(52px,14.8vw,60px);margin:9px 0 12px}.comfort-head>p:nth-of-type(2){font-size:17px;margin-bottom:15px}
+ .sun-plus{position:absolute;top:19px;right:19px;width:112px}.warmth-credit,.tri-photo-note{bottom:10px;font-size:12px}
+ .comfort-matrix,.climate-switchboard,.tune-index,.positive-request{display:block;padding-block:35px}
+ .matrix-heading figure{display:none}.matrix-heading p{margin-bottom:16px}
+ .symptom-panel{border-radius:18px 18px 5px 18px}.symptom-panel label{font-size:15px;padding-inline:5px}
+ .climate-photos{margin-top:0;transform:translateY(60px);grid-template-rows:93px 93px}
+ .climate-photos figcaption{font-size:12px;padding:4px 5px}
+ .climate-note{min-height:0}.climate-switchboard{padding-bottom:18px}
+ .tri-valley{min-height:345px;padding-bottom:43px}.tri-valley h2{font-size:clamp(59px,16.2vw,105px)}
+ .tune-picture{margin-bottom:27px}.tune-picture img{height:156px}.tune-picture svg{width:53px;height:53px}
+ .room-montage>div:first-child{display:block}.room-montage>div:first-child p{margin-top:10px}
+ .montage-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory}.montage-track figure{min-width:71%;height:200px;scroll-snap-align:start}
+ .positive-details{margin-bottom:23px}.positive-contact-row[href^="mailto:"]{font-size:clamp(13px,4vw,16px)}
+ .base-sum{grid-template-columns:1fr 1fr}.base-sum>div:nth-child(1),.base-sum>div:nth-child(3){grid-column:1/-1}.base-sum>div:last-child{grid-column:2;grid-row:2}.base-sum>div:nth-child(3) a{font-size:15px}
+}
+.climate-photos{grid-template-rows:repeat(2,clamp(100px,12vw,220px))}
+.climate-photos img{max-height:none}
+.climate-photos figure:first-child img{object-position:58% center}
+.quote-neighborhood{margin-top:20px;max-width:660px;background:#143e31;color:#fff;border-left:7px solid var(--sun);box-shadow:6px 6px 0 #1e9e6a55}
+.quote-neighborhood img{width:100%;height:clamp(124px,13vw,228px);object-fit:cover;object-position:50% 58%}
+@media(max-width:700px){.climate-photos{grid-template-rows:93px 93px}.climate-photos figure:nth-child(2) img{object-position:center 69%}}
+
+/* 12 Nov QC (Claude): the giant yellow plus covered half the hero photo and read as a sticker; the brand plus stays in the logo */
+.sun-plus{display:none !important}
